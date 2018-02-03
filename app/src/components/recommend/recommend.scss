@@ -1,0 +1,67 @@
+.recommend{
+    padding-left:0.4rem;
+    height:100%;
+    .head{
+        padding-right:0.4rem;
+        font-size:1.4rem;
+        line-height:1.8rem;
+        .where_to_go{
+            height:4.8rem;
+            border-bottom:1px solid #E9E9E9;
+            position:relative;
+            color:#E9E9E9;
+            span{
+                color:#5F6062;
+                font-size:0.626667rem;
+                display:block;
+                position:absolute;
+                top:0;
+                font-weight: bold
+            }
+            .searchs{
+                height:1.013333rem;
+                line-height:1.013333rem;
+                width:2.986667rem;
+                background:#FF9180;
+                font-size:0.346667rem;
+                color:#fff;
+                border-radius:0.493333rem;
+                margin-top:0.773333rem;
+                i{
+                    color:#fff;
+                    margin-left:0.24rem;
+                }
+            }
+        } 
+    }
+    .main{
+        .rooms{
+            .photos{
+                width:100%;
+                overflow-y:hidden;
+            }
+            ul{
+                height:5.786667rem;
+                width:37.733333rem;
+                li{
+                    width:9.2rem;
+                    height:5.786667rem;
+                    float:left;
+                    margin-right:0.213333rem;
+                }
+            }
+            span{
+                margin-top:0.4rem;
+                line-height:1.253333rem;
+                font-size:0.453333rem;
+                font-weight: bold;
+            }
+            .parting_line{
+                margin-right:0.4rem;
+                height:0.746667rem;
+                border-bottom:1px solid #E9E9E9;
+            }
+        }
+    }
+    
+}
