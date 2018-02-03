@@ -14,8 +14,9 @@ export default class HomeComponent extends Component{
                         <li>房东故事</li>
                         <li>旅行故事</li>
                         <li><Link to="discover/strategy">旅游攻略</Link></li>
-                        <li>出行专题</li>
-                        <li>热门评论</li>
+                        <li><Link to="discover/trip">出行专题</Link></li>
+                        <li><Link to="discover/hit">热门评论</Link></li>
+                        
                     </ul>
                 </div>
                 <div className="d_main">{this.props.children}</div>
