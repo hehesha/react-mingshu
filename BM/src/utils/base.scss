@@ -176,12 +176,11 @@ li {
 
 /*公共部分*/
 
-
 /*头部导航开始*/
 .header{
 	height:66px;
 	line-height: 66px;
-	background: #171A1B;
+	background:#002140;
 	padding:  0 32px;
 
 	h1{
@@ -198,12 +197,19 @@ li {
 	}
 	
 }
-.contain{
+
+.userbox{
+    position: relative;
     .form{
-        margin-top: 20%;
-        margin-left: 50%;
-        transform: translateX(-20%);
-        p{
+        padding-left: 15%;
+        position: absolute;
+        top:150px;
+        z-index: 3000;
+       div:nth-child(1){
+           width: 300px;
+       }
+        p{  
+            color: #fff;
             padding: 20px 0;
            label{
                padding-right: 10px;
@@ -213,8 +219,101 @@ li {
            }
            input{
                padding-left: 10px;
+               color: #000;
            }
         }
         
+    }
+    .welcome{
+        padding-top: 5%;
+        font-size: 38px;
+        word-spacing: 20px;
+        color: #ccc;
+        .bigsize{
+            font-size: 48px;
+            font-weight: bold;
+            font-family:"Times New Roman",Georgia,Serif
+        }
+    }
+    
+}
+
+.snow-container {
+    position: absolute;
+    height:590px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    background-color: #001529;
+}
+
+.snow {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    -webkit-animation: snow linear infinite;
+    animation: snow linear infinite;
+}
+
+.snow.foreground {
+    background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png");
+    -webkit-animation-duration: 15s;
+    animation-duration: 15s;
+}
+
+.snow.foreground.layered {
+    -webkit-animation-delay: 7.5s;
+    animation-delay: 7.5s;
+}
+
+.snow.middleground {
+    background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png);
+    -webkit-animation-duration: 20s;
+    animation-duration: 20s;
+}
+
+.snow.middleground.layered {
+    -webkit-animation-delay: 10s;
+    animation-delay: 10s;
+}
+
+.snow.background {
+    background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-small-1ecd03b1fce08c24e064ff8c0a72c519.png);
+    -webkit-animation-duration: 30s;
+    animation-duration: 30s;
+}
+
+.snow.background.layered {
+    -webkit-animation-delay: 15s;
+    animation-delay: 15s;
+}
+
+@-webkit-keyframes snow {
+    0% {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(15%, 100%, 0);
+        transform: translate3d(15%, 100%, 0);
+    }
+}
+
+@keyframes snow {
+    0% {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(15%, 100%, 0);
+        transform: translate3d(15%, 100%, 0);
     }
 }
