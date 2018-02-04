@@ -1,22 +1,46 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router'
 import './recommend.scss'
 
 export default class HomeComponent extends Component{
     componentDidMount(){
+        var $searchNav = $('.searchNav')
+        window.onscroll = function(){
+             //获取滚动条滚动的距离
+            const windowInnerHeight = $(document).scrollTop();
+            if(windowInnerHeight>127){
+                $searchNav.stop().show().animate({
+                    top:0,
+                },300);
 
+            }
+            if(windowInnerHeight<127){
+                $searchNav.stop().animate({
+                    top:'-1.093333rem',
+                },300);
+            }
+        }
     }  
     render(){
         return (
             <div className="recommend">
-                <div className="head">
-                    <div className="where_to_go">
-                        想去哪?
+                <div className="searchNav">
+                    <Link to="/city">
+                        <i className="search icon" data-filtered="filtered"></i>
                         <span>您要入住的城市或目的地</span>
-                        <div className="searchs">
-                            <i className="search icon" data-filtered="filtered"></i>
-                            搜索目的地
+                    </Link>
+                </div>
+                <div className="head">
+                    <Link to="/city">
+                        <div className="where_to_go">
+                            想去哪?
+                            <span>您要入住的城市或目的地</span>
+                            <div className="searchs">
+                                <i className="search icon" data-filtered="filtered"></i>
+                                搜索目的地
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className="mains">
                     <div className="rooms">
@@ -84,6 +108,53 @@ export default class HomeComponent extends Component{
                         <div className="parting_line parting">
                             东北房东遇到上海房东
                         </div>
+                        <div className="credit">
+                            <div className="credit_t">
+                                <ul>
+                                    <li>
+                                        <img src="../../../assets/credit1.jpg"/>
+                                        <p>芝麻信用</p>
+                                    </li>
+                                    <li>
+                                        <img src="../../../assets/credit2.jpg"/>
+                                        <p>住宿险</p>
+                                    </li>
+                                    <li>
+                                        <img src="../../../assets/credit3.jpg"/>
+                                        <p>甜橙信用</p>
+                                    </li>
+                                </ul>
+                                <p>温馨提示:在线订房资金安全有保障,保险报价护航</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="rooms">
+                        <span>旅行故事</span>
+                        <div className="photos">
+                            <ul>
+                                <li><img src="../../../assets/05.jpg"/></li>
+                                <li><img src="../../../assets/01.jpg"/></li>
+                                <li><img src="../../../assets/01.jpg"/></li>
+                                <li><img src="../../../assets/01.jpg"/></li>
+                            </ul>
+                        </div>
+                        <div className="parting_line parting">
+                            南方人的北京卤煮初体验
+                        </div>
+                    </div>
+                    <div className="rooms strategy">
+                        <span>旅行攻略</span>
+                            <ul>
+                                <li><img src="../../../assets/strategy1.jpg"/></li>
+                                <li><img src="../../../assets/strategy2.jpg"/></li>
+                            </ul>
+                            <ul>
+                                <li><img src="../../../assets/strategy3.jpg"/></li>
+                                <li><img src="../../../assets/strategy4.jpg"/></li>
+                            </ul>
+                    </div>
+                    <div className="parting_b">
+                        <img src="../../../assets/release.jpg"/>
                     </div>
                 </div>
                 <div className="foots"></div>
