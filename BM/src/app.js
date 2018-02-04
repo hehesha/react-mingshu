@@ -1,14 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-window.React = React;
 
 //引入路由
-import {HashRouter, Router, NavLink,hashHistory} from 'react-router';
-import routes from './src/router'
+import {Router,hashHistory,Route} from 'react-router';
+import routes from './router/index'
 
-//引入react-redux
-mport {Provider} from 'react-redux'
+
+
+//引入状态管理
+import {Provider} from 'react-redux'
+
+import store from './redux/configStore'
+
+//引入basecss
+import './utils/base.scss'
+
 
 //渲染
 ReactDOM.render(

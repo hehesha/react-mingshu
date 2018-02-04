@@ -1,9 +1,11 @@
 import React,{Component} from 'react';
 
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import {Link,browserHistory} from 'react-router'
+import {Link} from 'react-router'
 
-export default class LoginComponent extends Component{
+
+
+export default class RegisterComponent extends Component{
 	render(){
 
 		return(
@@ -27,13 +29,13 @@ export default class LoginComponent extends Component{
 							<input type="password"  placeholder="please write.."/>
 						</p>
 						<p>
-							<Button type="primary"><Icon type="key" />Login</Button>
-							<Link to='/register'>new employee?</Link>
+							<Button type="primary"><Icon type="usergroup-add" />Register</Button>
+							<Link to='/login'>already have?</Link>
 						</p>
 					</div>
 					<div className="welcome fr">
-						<span className="bigsize">W</span>elcome to <span className="bigsize">H</span>omestay <span className="bigsize">M</span>aster
-						
+
+						<span className="bigsize">J</span>oin in <span className="bigsize">H</span>omestay <span className="bigsize">M</span>aster
 					</div>
 					
 				</div>			
