@@ -9,6 +9,7 @@ import orderComponent from '../components/order/orderComponent.js'
 import StrategyComponent from '../components/discover/strategy/strategy.js'
 import TripComponent from '../components/discover/trip/tripComponent.js'
 import HitComponent from '../components/discover/hitcommon/hitComponent.js'
+import PreorderComponent from '../components/discover/preorder/preorder.js'
 
 const routes = (
     <Route path="/" component={HomeComponent}>
@@ -20,6 +21,7 @@ const routes = (
         </Route>
         <Route path="my" component={myComponent}/>
         <Route path="order" component={orderComponent}/>
+        <Route path="preorder" component={PreorderComponent}/>
     </Route>
 )
 
