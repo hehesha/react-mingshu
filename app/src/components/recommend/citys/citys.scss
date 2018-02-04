@@ -1,0 +1,36 @@
+.citys{
+    .citys_t{
+        padding-left:0.4rem;
+        height:5.386667rem;
+        background:red;
+    }
+    .citys_c{
+        background:#F8F8F8;
+        padding-left:0.4rem;
+        p{
+            line-height:1.853333rem;
+            font-size:0.4rem;
+            font-weight: bold;
+            color:#4F5052;
+        }
+        ul{
+            li{
+                font-size:0.4rem;
+                line-height:1.173333rem;
+                float:left;
+                width:1.853333rem;
+            }
+        }
+    }
+}
+.city_location{
+    position:fixed;
+    right:0.133333rem;
+    top:5.706667rem;
+    li{
+        width:0.426667rem;
+        text-align: center;
+        font-size:0.266667rem;
+        color:#EF9D9F;
+    }
+}

@@ -34,6 +34,26 @@
             }
         } 
     }
+    .searchNav{
+        height:1.093333rem;
+        line-height:1.093333rem;
+        display:none;
+        position:fixed;
+        top:-1.093333rem;
+        left:-0.013333rem;
+        background:#fff;
+        width:100%;
+        z-index:20;
+        padding-left:0;
+        i{
+            font-size:0.466667rem;
+            margin-left: 0.346667rem;
+        }
+        span{
+            font-size:0.466667rem;
+            color:#969696;
+        }
+    }
     .mains{
         .rooms{
             .photos{
@@ -83,6 +103,37 @@
                     }
                 }
             }
+            .credit{
+                .credit_t{
+                    margin-top:0.666667rem;
+                    ul{
+                        display:flex;
+                        li{
+                            flex:1;
+                            text-align: center;
+                            p{
+                                font-size:0.32rem;
+                                font-weight: bold;
+                                line-height: 96px;
+                            }
+                            li:nth-child(2) p{
+                                text-align: center;
+                            }
+                        }
+                        
+                    }
+                    p{
+                        line-height:0.933333rem;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        .strategy{
+            ul{
+                display:flex;
+                justify-content: space-evenly;
+            }
         }
     }
     
@@ -93,4 +144,8 @@
 .pitch_on{
     border-bottom:5px solid #F48C81;
     color:#F48C81 !important;
+}
+.parting_b{
+    padding-top:0.946667rem;
+    border-top:3px solid #E9E9E9;
 }
