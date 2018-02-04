@@ -13,7 +13,7 @@ export default class ControlComponent extends Component{
 	render(){
 		return(
 			 <Row>
-			    <Col xs={12} sm={10} md={7} lg={8} xl={5}>
+			    <Col xs={12} sm={10} md={7} lg={6} xl={5}>
 			    	<Menu
 				        onClick={this.handleClick}
 				        style={{ width: 256 }}
@@ -39,7 +39,7 @@ export default class ControlComponent extends Component{
 				     </Menu>
 			    	
 			    </Col>
-			    <Col xs={12} sm={14} md={13} lg={8} xl={9}>
+			    <Col xs={12} sm={14} md={13} lg={10} xl={14}>
 			    	{this.props.children}
 			    </Col>
 			    
