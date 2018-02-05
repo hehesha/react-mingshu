@@ -32,6 +32,36 @@ exports.register = function(req, res, connection) {
 
 }
 
+//注册管理者,就是这个
+
+//var bodyParser = require('body-parser')
+//app.use(bodyParser.urlencoded({
+//	extended: false
+//}))
+exports.registerAdmin = function(req, res, connection) {
+	//获取注册的手机，密码
+	console.log(req.body)
+	var username=req.body.username;
+	var password = req.body.password;
+	//先查找手机似乎否已被注册
+	connection.query(`SELECT username from admin where username = '${username}'`, function(err, data) {
+		//数据库中查不到手机号会返回空的数组
+		if(data.length == 0) {
+			connection.query(`INSERT into admin (username,password)values('${username}','${password}')`, function(err, data) {
+				
+				res.send('注册成功')
+			})
+			//关闭数据库要写进判断里面
+			connection.end();
+		} else {
+			res.send('该用户已注册')
+			//关闭数据库要写进判断里面
+			connection.end();
+		}
+
+	})
+
+}
 //登录
 //功能：登录。
 //前提：先建立对应的数据库的表
