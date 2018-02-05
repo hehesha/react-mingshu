@@ -10,9 +10,9 @@ export default class HomeComponent extends Component{
             <div className="discover">
                 <div className="n_nav">
                     <ul className="nav">
-                        <li>发现</li>
-                        <li>房东故事</li>
-                        <li>旅行故事</li>
+                        <li><Link to="discover/find">发现</Link></li>
+                        <li><Link to="discover/landlord">房东故事</Link></li>
+                        <li><Link to="discover/story">旅行故事</Link></li>
                         <li><Link to="discover/strategy">旅游攻略</Link></li>
                         <li><Link to="discover/trip">出行专题</Link></li>
                         <li><Link to="discover/hit">热门评论</Link></li>
