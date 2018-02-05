@@ -1,7 +1,14 @@
 import React,{Component} from 'react'
 import { DatePicker,Input,Button} from 'antd';
+import {connect} from 'react-redux'
+import * as actions from './checkAction';
 
-export default class CheckHomestay extends Component{
+//自动调用，需要用到一个生命周期 componentWillMount
+//把action挂载在props上了
+class CheckHomestay extends Component{
+	componentWillMount(){
+		this.props.getcheck()
+	}
 	render(){
 		return(
 				<div className="controlBox">
@@ -44,3 +51,12 @@ export default class CheckHomestay extends Component{
 		)
 	}
 }
+//接受ajax的状态，请求回来的东西
+let mapStateToProps = (state) =>{
+	return{
+		ajaxStatus:state.status,
+		ajaxResult:state.result
+	}
+}
+//把组件，状态，方法发射出去（代替export default class Component）
+export default connect(mapStateToProps,actions)(CheckHomestay);
