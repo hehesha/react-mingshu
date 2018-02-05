@@ -3,8 +3,45 @@ import React, {Component} from 'react'
 import './citys.scss'
 
 export default class cityComponent extends Component{
+    state = {
+        A:[],
+        B:[]
+    }
     componentWillMount(){
-        
+        var self = this;
+        var status = [200,304];
+        var cityList = [];
+        var citys= new Promise((resolve,reject)=>{
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                if(status.includes(xhr.status)){
+                    var city = JSON.parse(xhr.responseText);
+                    console.log(city)
+                    city.map(item=>{
+                        resolve(cityList.push(item.pinyin+','+item.name))
+                    })
+                }else{
+                    reject('请求失败');
+                }
+            }
+            xhr.open('get','http://localhost:3002/src/city.json',true);
+            xhr.send();
+        });
+        citys.then(function(){
+            cityList = cityList.sort();
+            var A=[];
+            var B=[];
+            cityList.map(item=>{
+                if(item.charAt(0)=="A"){
+                    A.push(item) 
+                }
+                if(item.charAt(0)=="B"){
+                    B.push(item) 
+                }
+            })
+            self.setState({A:A})
+            self.setState({B:B})
+        })
     }
     render(){
         return (
@@ -68,6 +105,20 @@ export default class cityComponent extends Component{
                         <li>Y</li>
                         <li>Z</li>
                     </ul>
+                    <div className="citylist">
+                        <p className="">A</p>
+                        {
+                            this.state.A.map(function(item,idx){
+                                return <p key={idx}>{item.split(',')[1]}</p>
+                            })
+                        }
+                        <p className="">B</p>
+                        {
+                            this.state.B.map(function(item,idx){
+                                return <p key={idx}>{item.split(',')[1]}</p>
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         )
