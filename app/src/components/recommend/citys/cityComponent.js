@@ -1,16 +1,33 @@
 import React, {Component} from 'react'
 
+import cityLists from './city.js'
 import './citys.scss'
 
 export default class cityComponent extends Component{
+    state = {
+        city:[]
+    }
     componentWillMount(){
-        
+        var cityList = [];
+        cityLists.map(item=>{
+            cityList.push(item.pinyin+','+item.name)
+        })
+        cityList = cityList.sort();
+        this.setState({city:cityList})
+
     }
     render(){
         return (
             <div>
                 <div className="citys">
-                    <div className="citys_t"></div>
+                    <div className="citys_t">
+                        <div className="searchNav">
+                            <i className="search icon" data-filtered="filtered"></i>
+                            <span>取消</span>
+                            <input type="text" placeholder="请输入目的地城市/景点商圈"/>
+                            <div id='allmap'></div>
+                        </div>
+                    </div>
                     <div className="citys_c">
                         <p>热门城市</p>
                         <ul className="clearfix">
@@ -68,6 +85,13 @@ export default class cityComponent extends Component{
                         <li>Y</li>
                         <li>Z</li>
                     </ul>
+                    <div className="citylist">
+                        {
+                            this.state.city.map(function(item,idx){
+                                return <p key={idx}>{item.split(',')[1]}</p>
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         )

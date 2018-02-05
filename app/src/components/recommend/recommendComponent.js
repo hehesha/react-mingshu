@@ -154,7 +154,7 @@ export default class HomeComponent extends Component{
                             </ul>
                     </div>
                     <div className="parting_b">
-                        <img src="../../../assets/release.jpg"/>
+                        <Link to="/release"><img src="../../../assets/release.jpg"/></Link>
                     </div>
                 </div>
                 <div className="foots"></div>
