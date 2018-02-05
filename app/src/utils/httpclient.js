@@ -1,6 +1,6 @@
 import http from 'superagent'
 
-let baseUrl = 'http://localhost:88/'
+let baseUrl = 'http://localhost:3000/'
 const geturl = (url) => {
     if(url.startsWith('http')){
         return url;
@@ -14,7 +14,8 @@ export default {
     get(url, params){
         return new Promise((resolve, reject) => {
             http.get(geturl(url))
-            .send(params)
+            .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+            .query(params)
             .end((error, res) => {
                 if(error){
                     reject(error)
