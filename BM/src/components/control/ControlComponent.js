@@ -27,8 +27,8 @@ export default class ControlComponent extends Component{
 				        </SubMenu>
 				        <SubMenu key="sub2" title={<span><Icon type="area-chart" /><span>详情页</span></span>}>
 				          	<Menu.Item key="5"><Link to="/control/getplan">工作计划</Link></Menu.Item>
-				        <SubMenu key="sub3" title="各地状态">
-				            <Menu.Item key="7"><Link to="/control/sell">营业额</Link></Menu.Item>
+				        <SubMenu key="sub3" title="分析页">
+				            <Menu.Item key="7"><Link to="/control/sell">营业状态</Link></Menu.Item>
 				            <Menu.Item key="8"><Link to="/control/goodtalk">好评率</Link></Menu.Item>
 				        </SubMenu>
 				        </SubMenu>
