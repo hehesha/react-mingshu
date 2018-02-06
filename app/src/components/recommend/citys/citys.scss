@@ -1,8 +1,8 @@
 .citys{
     .citys_t{
         padding-left:0.4rem;
-        height:5.386667rem;
-        background:red;
+        padding-bottom:0.72rem;
+        // height:5.386667rem;
     }
     .citys_c{
         background:#F8F8F8;
@@ -30,6 +30,29 @@
             padding:0 0.4rem 0 0.4rem;
             font-size:0.373333rem;
             margin-bottom:0;
+        }
+    }
+    .searchNav{
+        line-height:1.093333rem;
+        background:#fff;
+        width:100%;
+        z-index:20;
+        padding-right:0.4rem;
+        i{
+            font-size:0.466667rem;
+        }
+        span{
+            font-size:0.466667rem;
+            color:#969696;
+            float:right;
+        }
+        input{
+            height:0.986667rem;
+            width:100%;
+            color:#585858;
+            font-size:0.56rem;
+            border:1px solid #fff;
+            font-weight: bold;
         }
     }
 }
