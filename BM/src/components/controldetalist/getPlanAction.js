@@ -1,8 +1,8 @@
 import * as ajaxConstants from '../../constaints/ajaxConstants'
 
-export function getcheck(){
+export function getplan(){
 	return{
-		url:'checkhomestay'
+		url:'getplan'
 		//假如需要传参
 		//data:{}
 	}

@@ -1,7 +1,13 @@
 import React,{Component} from 'react'
 import { Progress,Button,Icon } from 'antd';
 
-export default class GetPlanComponent extends Component{
+import {connect} from 'react-redux'
+import * as actions from './getPlanAction';
+
+class GetPlanComponent extends Component{
+	componentWillMount(){
+		this.props.getplan()
+	}
 	render(){
 		return(
 				<div className="controlBox">
@@ -11,21 +17,35 @@ export default class GetPlanComponent extends Component{
 	               	 </div>
 	               	 <div className="listbox">
 	               	 	<ul className="clearfix">
-	               	 		<li className="planlist">
-	               	 			<h2>第一个工作任务<span className="fr">2018-01-03</span></h2>
-	               	 			<p>任务内容:<span>我要成为世界上最可爱的女人,很酷很帅,能旋转跳跃飞舞的</span></p>
-	               	 			<div>进度条:<Progress percent={50} status="active" /></div>
-	               	 			<Button type="danger"><Icon type="close" />太难了,不干了</Button>
-	               	 		</li>
-	               	 		<li className="planlist">
-	               	 			<h2>新年任务<span className="fr">2018-02-03</span></h2>
-	               	 			<p>任务内容:<span>不要吃成一个大胖子,要快点写完项目,快点回家玩,我好寂寞好寂寞啊啊啊</span></p>
-	               	 			<div>进度条:<Progress percent={80} status="active" /></div>
-	               	 			<Button type="danger"><Icon type="close" />太难了,不干了</Button>
-	               	 		</li>
+	               	 		{
+	               	 			this.props.ajaxResult.map(item => {
+	               	 				return (
+	               	 					<li className="planlist" key={item.wid}>
+				               	 			<h2><span className="blue">任务标题:</span>{item.title}<p className="fr">起止日期:
+				               	 				<span>
+				               	 					{item.deadline}
+				               	 				</span>
+				               	 				</p>
+				               	 			</h2>
+				               	 			<p>任务内容:</p>
+				               	 			<span>{item.content}</span>
+				               	 			<div>进度条:<Progress percent={item.percent*1} status="active" /></div>
+				               	 			<Button type="danger"><Icon type="close" />太难了,不干了</Button>
+				               	 		</li>
+	               	 				)
+	               	 			})
+	               	 		}
 	               	 	</ul>
 	               	 </div>
 				</div>
 		)
 	}
 }
+let mapStateToProps = (state) =>{
+	return{
+		ajaxStatus:state.checkReducer.status,
+		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news
+	}
+}
+//把组件，状态，方法发射出去（代替export default class Component）
+export default connect(mapStateToProps,actions)(GetPlanComponent);

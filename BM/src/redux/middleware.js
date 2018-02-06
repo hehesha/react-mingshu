@@ -20,9 +20,10 @@ export default function middleware(api){
 			api.dispatch({type:ajaxContants.AJAX_REQUESTING});
 			if(url){
 				http[method](url,data).then(res => {
+					console.log(JSON.parse(res.text));
 					api.dispatch({
 						type:ajaxContants.AJAX_REQUESTED,
-						result:res.body.data
+						result:JSON.parse(res.text)
 					})
 				}).catch(error => {
 					api.dispatch({
