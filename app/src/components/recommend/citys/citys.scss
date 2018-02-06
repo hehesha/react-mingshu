@@ -23,6 +23,12 @@
         }
     }
     .citylist{
+        p:first-child{
+            background:#EEEEEE;
+            height:0.773333rem;
+            line-height:0.773333rem;
+            font-weight: bold;
+        }
         p{
             height:1.586667rem;
             line-height:1.586667rem;
@@ -66,4 +72,9 @@
         font-size:0.266667rem;
         color:#EF9D9F;
     }
+}
+.back-top{
+    position:fixed;
+    top:70%;
+    right:10%;
 }
