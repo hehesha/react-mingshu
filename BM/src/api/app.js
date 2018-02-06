@@ -13,7 +13,14 @@ function createConnection() {
 	});
 	return connection
 }
-
+//解决跨域
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+   	res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1')
+    next();
+});
 
 app.use(express.static('public'));
 // parse application/json 
@@ -36,7 +43,7 @@ app.get('/insert', function(req, res) {
 //获取所有
 app.get('/selectAll', function(req, res) {
 	//  解决跨域
-	res.append("Access-Control-Allow-Origin", "*")
+//	res.append("Access-Control-Allow-Origin", "*")
 	//然后请求的很快的时候才能正常关闭链接、
 	var connection = createConnection();
 	connection.connect();

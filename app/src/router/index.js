@@ -16,6 +16,7 @@ import LandlordComponent from '../components/discover/landlord/landlord'
 import storyComponent from '../components/discover/story/story'
 import releaseComponent from '../components/recommend/release/releaseComponent'
 import myReleaseComponent from '../components/recommend/release/myReleaseComponent'
+import DetailComponent from '../components/detail/detail'
 
 
 const routes = (
@@ -35,6 +36,7 @@ const routes = (
         <Route path="preorder" component={PreorderComponent}/>
         <Route path="release" component={releaseComponent}/>
         <Route path="myRelease" component={myReleaseComponent}/>
+        <Route path="detail" component={DetailComponent}/>
     </Route>
 )
 
