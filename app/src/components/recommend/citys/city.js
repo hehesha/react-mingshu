@@ -1,4 +1,4 @@
-[{
+export default  [{
 "label": "北京Beijing010",
 "name": "北京",
 "pinyin": "Beijing",

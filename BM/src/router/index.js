@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route} from 'react-router'
+import {Route,Redirect,IndexRoute} from 'react-router'
 
 
 
@@ -21,10 +21,12 @@ import GoodTalk from '../components/controldetalist/GoodTalk'
 import Sell from '../components/controldetalist/sell'
 
 const routes = (
-	<Route path="/" component={HomeComponent}>
+	<Route path="/" component={HomeComponent}>	
+		<IndexRoute component={LoginComponent}/>
 		<Route path="/login" component={LoginComponent}></Route>
 		<Route path="/register" component={RegisterComponent}></Route>
-		<Route path="/control" component={ControlComponent}>
+		<Route path="/control" component={ControlComponent} >
+			<IndexRoute component={SetPlanComponent}/>
 			<Route path="/control/setplan" component={SetPlanComponent}></Route>
 			<Route path="/control/getplan" component={GetPlanComponent}></Route>
 			<Route path="/control/check" component={CheckHomestay}></Route>
