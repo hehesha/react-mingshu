@@ -8,7 +8,7 @@ const MenuItemGroup = Menu.ItemGroup;
 
 export default class ControlComponent extends Component{
 	handleClick = (e) => {
-	    console.log('click ', e);
+//	    console.log('click ', e);
 	  }
 	render(){
 		return(
