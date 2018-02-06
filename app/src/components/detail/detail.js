@@ -59,6 +59,115 @@ export default class HomeComponent extends Component{
                 <div className="detail_data3">
                     <p>房源描述</p>
                     <span>好空间啊哈空间撒活动空间啊号地块的凯撒凯撒好看撒好萨科技活动空间撒好撒哈萨克号多少啊空间撒好</span>
+                    <div className="show_pto">
+                        <div>
+                            <p>
+                                <i className="photo icon"></i>
+                            </p>
+                            <p>7张房源图片</p>
+                        </div>
+                        <div>
+                            <p>
+                                <i className="travel icon"></i>
+                            </p>
+                            <p>最少订一晚</p>
+                        </div>
+                        <div>
+                            <p>
+                                <i className="file text outline icon"></i>
+                            </p>
+                            <p>房东要求</p>
+                        </div>
+                    </div>
+                    <div className="other_commons">
+                        <p>
+                            <span>评价</span>
+                            <span>(1)</span>
+                            <span>
+                                <i className="star icon"></i>
+                                <i className="star icon"></i>
+                                <i className="star icon"></i>
+                                <i className="star icon"></i>
+                                <i className="star icon"></i>
+                            </span>
+                            <span>全部评价</span>
+                        </p>
+                        <div className="commons_content">
+                            <div>
+                                <img src="../../../assets/order_bg_logo.jpg" />
+                            </div>
+                            <span>非常赞(☄⊙ω⊙)☄</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="guide">
+                    <p>出行指南</p>
+                    <div className="how_guide">
+                        <div>
+                            <p>乘车路线</p>
+                            <p>查看路线</p>
+                        </div>
+                        <div>
+                            <p>乘车路线</p>
+                            <p>查看路线</p>
+                        </div>
+                        <div>
+                            <p>乘车路线</p>
+                            <p>查看路线</p>
+                        </div>
+                        <div>
+                            <p>乘车路线</p>
+                            <p>查看路线</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="map">放地图的位置</div>
+                <div className="service">
+                    <p>
+                        <span>配套设施</span>
+                        <span>全部17项</span>
+                    </p>
+                    <div className="service_detail">
+                        <div>
+                            <i className="wifi icon"></i>
+                            <p>无线宽带</p>
+                        </div>
+                        <div>
+                            <i className="television icon"></i>
+                            <p>有线电视</p>
+                        </div>
+                        <div>
+                            <i className="plug icon"></i>
+                            <p>电视</p>
+                        </div>
+                        <div>
+                            <i className="coffee icon"></i>
+                            <p>全天热水</p>
+                        </div>
+                        <div>
+                            <i className="game icon"></i>
+                            <p>空调</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="required">
+                    <div>
+                        <p>入住需知</p>
+                        <p>
+                            <span>14:00</span>
+                            <span>最早入住时间</span>
+                            <span>当日14点</span>
+                        </p>
+                        <p>
+                            <span>12:00</span>
+                            <span>最晚退房时间</span>
+                            <span>当日12点</span>
+                        </p>
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
                 <div className="white_space"></div>
                 <div className="detail_navigation">
