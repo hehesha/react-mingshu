@@ -6,8 +6,4 @@
     "stage-2"
   ],
   "plugins": ["transform-decorators-legacy"]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f229bc267e312a87b6735a335cc6eea5be1cff16

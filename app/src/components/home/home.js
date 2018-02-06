@@ -12,7 +12,7 @@ export default class HomeComponent extends Component{
                             <i className="home icon" data-filtered="filtered"></i>
                             <li>推荐</li>
                         </a>
-                        <a href="#/discover">
+                        <a href="#/discover/find">
                             <i className="search icon" data-filtered="filtered"></i>
                             <li>发现</li>
                         </a>
