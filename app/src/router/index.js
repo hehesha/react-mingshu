@@ -15,6 +15,8 @@ import FindComponent from '../components/discover/find/find'
 import LandlordComponent from '../components/discover/landlord/landlord'
 import storyComponent from '../components/discover/story/story'
 import releaseComponent from '../components/recommend/release/releaseComponent'
+import SareComponent from '../components/discover/sare/sare.js'
+
 
 
 const routes = (
@@ -33,6 +35,7 @@ const routes = (
         <Route path="order" component={orderComponent}/>
         <Route path="preorder" component={PreorderComponent}/>
         <Route path="release" component={releaseComponent}/>
+        <Route path="sare" component={SareComponent}/>
     </Route>
 )
 
