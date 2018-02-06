@@ -84,6 +84,24 @@ app.get('/getplan', function(req, res) {
 	require('./router/select').getplan(req,res,connection);
 	console.log(req.query)
 })	
+//获取所有admin里面的东西
+app.get('/getadmin', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/select').getadmin(req,res,connection);
+	console.log(req.query)
+})	
+//更新admin的员工评分
+app.get('/changerate', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/update').updaterare(req,res,connection);
+	console.log(req.query)
+})	
 
 
 //要post请求...............................................................................

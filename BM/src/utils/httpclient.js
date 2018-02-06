@@ -14,7 +14,8 @@ export default {
     get(url, params){
         return new Promise((resolve, reject) => {
             http.get(geturl(url))
-            .send(params)
+            //传参用query，不然传不过去
+            .query(params)
             .end((error, res) => {
                 if(error){
                     reject(error)

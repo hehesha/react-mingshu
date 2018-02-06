@@ -1,8 +1,8 @@
 import * as ajaxConstants from '../../constaints/ajaxConstants'
 
-export function getplan(){
+export function getadmin(){
 	return{
-		url:'getplan'
+		url:'getadmin'
 	}
 }
 //假如需要传参
