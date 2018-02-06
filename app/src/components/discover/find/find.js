@@ -5,7 +5,116 @@ export default class Find extends React.Component{
     render(){
         return(
                 <div className="find">
-                   
+                    <div className="find_title">
+                        <span>发现</span>
+                        <div>
+                            <b>探索更大的世界</b>
+                            <br/>
+                            <b>DISCOVERY</b>
+                        </div>
+                    </div>
+                    <div className="rooms">
+                        <span>特色房源</span>
+                        <div className="photos">
+                            <ul>
+                                <li><img src="../../../assets/03.jpg"/></li>
+                                <li><img src="../../../assets/01.jpg"/></li>
+                            </ul>
+                        </div>
+                        <div className="parting_line parting">
+                            <span>特色</span>
+                            公司年会，开Patty，租豪华别墅
+                        </div>
+                    </div>
+                    <div className="main">
+                        <ul className="pic">
+                            <li><u>01</u></li>
+                            <li><u>02</u></li>
+                            <li><u>03</u></li>
+                        </ul>
+                        <h3 className="clearfix"><span>攻略</span><b>皇城根下享受老北京生活 </b></h3>
+                        <p>
+                            <b>2018/1/9</b>
+                            <span><i className="empty heart icon"></i>687</span>                    
+                            <span><i className="talk outline icon"></i>1</span>           
+                        </p>
+                    </div>
+                    <div className="box">
+                        <img src="../../../../assets/04.jpg" />
+                        <div>
+                            <span>故事</span>
+                            <p>东北房客遇到上海房东</p>
+                            <p>
+                                <b>2018/1/9</b>
+                                <span><i className="empty heart icon"></i>687</span>                    
+                                <span><i className="talk outline icon"></i>1</span>           
+                            </p>
+                        </div>
+                    </div>
+                    <div className="hot_search">
+                        <div>
+                            <p>大理</p>
+                            <span>1200W搜索</span>
+                        </div>
+                        <div>
+                            <p>丽江</p>
+                            <span>780W搜索</span>
+                        </div>
+                        <div>
+                            <p>桂林</p>
+                            <span>850W搜索</span>
+                        </div>
+                        <div>
+                            <p>凤凰</p>
+                            <span>760W搜索</span>
+                        </div>
+                    </div>
+                    <div className="box">
+                        <img src="../../../../assets/04.jpg" />
+                        <div>
+                            <span>故事</span>
+                            <p>南方人的北京卤煮初体验</p>
+                            <p>
+                                <b>2018/1/9</b>
+                                <span><i className="empty heart icon"></i>687</span>                    
+                                <span><i className="talk outline icon"></i>1</span>           
+                            </p>
+                        </div>
+                    </div>
+                    <div className="nav">
+                        <img src="../../../../assets/j_shanghai.jpg" />
+                    </div>
+                    <div className="user_common">
+                        <div className="user_data">
+                                <img src="../../../../assets/order_bg_logo.jpg" />
+                                <span>康</span>
+                                <span>入住城市</span>
+                                <span>青岛</span>
+                        </div>
+                        <div className="user_content">
+                            <p>房子装修得不错免费沙发森林防火是佛寿山福海三首付款哈哈 还是符合舒服舒服石佛寺佛山佛是房子装修得不错免费沙发森林防火是佛寿山福海三首付款哈哈 还是符合舒服舒服石佛寺佛山佛是房子装修得不错免费沙发森林防火是佛寿山福海三首付款哈哈 还是符合舒服舒服石佛寺佛山佛是</p>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <p className="point_to">评论提到的房源</p>
+                        <div className="user_checkout_room">
+                            <img src='../../../../assets/05.jpg'/>
+                            <div>
+                                <p>
+                                    <span>崂山区</span>
+                                    山海边绿谷聚会别墅——地中海风格
+                                    <span>5.0</span>
+                                </p>
+                                <p>
+                                    <span>整租-独栋别墅-宜住20人以上</span>
+                                    <span>青岛崂山区</span>
+                                    <span>1条评价</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )
     }

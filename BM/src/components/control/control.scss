@@ -38,6 +38,7 @@
         }
         p{
             padding: 6px;
+            padding-right: 4px;
             color: cornflowerblue;
             font-weight: bold;
             span{
@@ -70,6 +71,13 @@
             background: cornflowerblue;
             color:#fff;
         }
+        li{
+            border: 0 none;
+            margin: 0;
+            padding: 0;
+            float: left;
+            width: 32px;
+        }
     }
 }
 .rbox{
@@ -87,3 +95,9 @@
             color:#fff;
         }
     }
+.blue{
+    color: cornflowerblue;
+    font-weight: bold;
+    padding: 6px;
+    
+}
