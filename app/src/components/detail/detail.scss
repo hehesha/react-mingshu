@@ -296,23 +296,85 @@
                     font-weight: 600;
                     margin-right: .733333rem;
                 }
+                span:nth-of-type(2){
+                    color:#8F8F8F;
+                    font-size: .32rem;
+                    margin-right: 3.6rem;
+                }
+                span:nth-of-type(3){
+                    color:#717075;
+                    font-size: .373333rem;
+                    font-weight: 600;
+                }
             }
         }
         div:nth-of-type(2){
             border-top: 1px solid #ccc;
-
+            height: 1.266667rem;
+            padding-left: .293333rem;
+            line-height: 1.266667rem;
+            span{
+                font-size: .373333rem;
+            }
+            span:nth-of-type(1){
+                margin-right: 7.266667rem;   
+            }
         }
         div:nth-of-type(3){
             border-top: 1px solid #ccc;
-
+            padding-left: .293333rem;
+            height: 1.733333rem;
+            line-height: 1.733333rem;
+            font-size: .373333rem;
+            span:nth-of-type(1){
+                border-bottom: 5px solid #58bc58;
+                margin-right: 5.6rem;
+                padding-bottom: .04rem;
+            }
+            span:nth-of-type(2){
+                color:#F5948D;
+            }
         }
         div:nth-of-type(4){
             border-top: 1px solid #ccc;
-
+            padding-left: .293333rem;
+            font-size: .373333rem;
+            height: 2.48rem;
+            padding-top: .6rem;
+            p{
+                span:nth-of-type(2){
+                    color:#F5948D;
+                }
+            }
+            p:nth-of-type(1){
+                span:nth-of-type(1){
+                    margin-right: 7.413333rem;
+                }
+            }
+            p:nth-of-type(2){
+                span:nth-of-type(1){
+                    margin-right: 6.666667rem;
+                }
+            }
         }
         div:nth-of-type(5){
             border-top: 1px solid #ccc;
-
+            padding-left: .293333rem;
+            font-size: .373333rem;
+            height: 2.266667rem;
+            padding-top: .56rem;
+            span{
+                color:#F5948D;
+            }
+            span:nth-of-type(1){
+                color:#444;
+                margin-right: .133333rem;
+            }
+            span:nth-of-type(3){
+                display: inline-block;
+                float:right ;
+                margin-right: .453333rem;
+            }
         }
     }
     .detail_navigation{

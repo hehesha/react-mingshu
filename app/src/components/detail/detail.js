@@ -164,10 +164,29 @@ export default class HomeComponent extends Component{
                             <span>当日12点</span>
                         </p>
                     </div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div>
+                        <span>身份证</span>
+                        <span>需要</span>
+                    </div>
+                    <div>
+                        <span>押金</span>
+                        <span>线下收取￥330</span>
+                    </div>
+                    <div>
+                        <p>
+                            <span>卫生间</span>
+                            <span>详情</span>
+                        </p>
+                        <p>
+                            <span>规定及收费</span>
+                            <span>查看</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span>退款协议：</span>
+                        <span>不支持退款</span>
+                        <span>详情</span>
+                    </div>
                 </div>
                 <div className="white_space"></div>
                 <div className="detail_navigation">
