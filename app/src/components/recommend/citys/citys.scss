@@ -65,7 +65,12 @@
 .city_location{
     position:fixed;
     right:0.133333rem;
-    top:5.706667rem;
+    top: 20%;
+    p{
+        text-align: center;
+        margin-bottom:0;
+        color:#EF9D9F;
+    }
     li{
         width:0.426667rem;
         text-align: center;
