@@ -10,7 +10,7 @@ export function selectPage(page){
 export function delet(hid){
 	return{
 		types:[performanceConstants.PERFORMANCE_REQUESTING,performanceConstants.PERFORMANCE_REQUESTED,performanceConstants.PERFORMANCE_REQUESTERROR],
-		url:'delethomestray'
+		url:'delethomestray',
 		data:{
 			hid:hid
 		}
