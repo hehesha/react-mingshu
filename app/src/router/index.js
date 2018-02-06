@@ -14,6 +14,7 @@ import PreorderComponent from '../components/discover/preorder/preorder.js'
 import FindComponent from '../components/discover/find/find'
 import LandlordComponent from '../components/discover/landlord/landlord'
 import storyComponent from '../components/discover/story/story'
+import DetailComponent from '../components/detail/detail'
 
 
 const routes = (
@@ -31,6 +32,7 @@ const routes = (
         <Route path="my" component={myComponent}/>
         <Route path="order" component={orderComponent}/>
         <Route path="preorder" component={PreorderComponent}/>
+        <Route path="detail" component={DetailComponent}/>
     </Route>
 )
 

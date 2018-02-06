@@ -1,12 +1,13 @@
 import React from 'react';
 import './landlord.scss'
+import {Link} from 'react-router'
 
 export default class Landlord extends React.Component{
     render(){
         return(
                 <div className="landlord">
                    <div className="box">
-                        <img src="../../../../assets/04.jpg" />
+                        <Link to="detail"><img src="../../../../assets/04.jpg" /></Link>
                         <div>
                             <span>故事</span>
                             <p>东北房客遇到上海房东</p>
