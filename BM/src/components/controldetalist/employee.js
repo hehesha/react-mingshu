@@ -22,7 +22,7 @@ class Employee extends Component{
                	 					<th>工号</th>
                	 					<th>人员</th>
                	 					<th>权限</th>
-               	 					<th>评分</th>
+               	 					<th>绩效</th>
                	 					<th>操作</th>
                	 				</tr>
 	               	 		</thead>

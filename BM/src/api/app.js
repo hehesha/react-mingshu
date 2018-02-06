@@ -40,12 +40,19 @@ app.get('/insert', function(req, res) {
 	console.log(req.query)
 })
 
+//分页获取前端页面的商品数据
+app.get('/selectpage', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/select').selectPage(req,res,connection);
+	console.log(req.query)
+})	
 	
 //获取所有前端页面的商品数据
 app.get('/selectAll', function(req, res) {
-	//  解决跨域
-//	res.append("Access-Control-Allow-Origin", "*")
-	//然后请求的很快的时候才能正常关闭链接、
+	
 	var connection = createConnection();
 	connection.connect();
 	//引入查找模块
