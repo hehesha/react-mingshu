@@ -1,14 +1,15 @@
 exports.userlogin = function(req, res, connection) {
-    var user = req.query.user;
+    var user = req.query.username;
     var password = req.query.password;
-    connection.query(`SELECT * from user where user = '${user}' and password='${password}'`, function(err, data) {
+    console.log(user,password);
+    connection.query(`SELECT * from user where username = '${user}' and password='${password}'`, function(err, data) {
         if(data.length==0){
             //数据库中没有匹配到帐号密码
-            res.end('手机没注册或密码错误')
+            res.send(false)
             connection.end();
         }else{
             
-            res.end('登录成功')
+            res.send(true)
             connection.end();
         }
     })
