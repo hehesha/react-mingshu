@@ -26,11 +26,15 @@
     }
 }
 .listbox{
+    .checkli{
+        height: 350px;
+        margin: 10px 2px;
+    }
     li{
         border: 1px solid #dbdbdb;
         padding: 20px;
         width: 250px;
-        height: 350px;
+       
         float: left;
         margin-left: 10px;
         img{

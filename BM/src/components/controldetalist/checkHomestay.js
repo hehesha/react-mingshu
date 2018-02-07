@@ -17,6 +17,10 @@ class CheckHomestay extends Component{
 	}
 	insertclick(hid,src,address,budget,city){
 		console.log(hid,src,address,budget,city);
+		this.props.insertclick(src,address,budget,city).then(function(){
+			alert('添加成功')
+			this.deleteclick(hid)
+		}.bind(this))
 	}
 	render(){
 		return(
@@ -30,7 +34,7 @@ class CheckHomestay extends Component{
 	               	 		{
              	 				this.props.ajaxResult.map(item =>{
              	 					return (
-             	 						<li key={item.hid}>
+             	 						<li key={item.hid} className='checkli'>
 											<img src={item.image_src}/>
 											<p>民宿地址:<span>{item.address}</span></p>
 											<p>预算价格:<span>{item.budget}</span></p>

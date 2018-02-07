@@ -24,6 +24,11 @@ export function insertclick(src,address,budget,city){
 	return{
 		types:[performanceConstants.PERFORMANCE_REQUESTING,performanceConstants.PERFORMANCE_REQUESTED,performanceConstants.PERFORMANCE_REQUESTERROR],
 		url:'insertcheck',
-		
+		data:{
+			image_src:src,
+			title:address,
+			price:budget,
+			city:city
+		}
 	}
 }

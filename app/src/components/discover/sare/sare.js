@@ -2,6 +2,7 @@ import React from 'react'
 import './sare.scss'
 
 import {connect} from 'react-redux'
+import {hashHistory} from 'react-router'
 import * as actions from '../../../actions/strategyAction.js';
 
  class SareComponent extends React.Component{
@@ -16,7 +17,7 @@ import * as actions from '../../../actions/strategyAction.js';
             <div className="sare">
                 <header>
                 <p>
-                    <i className="angle left icon"></i>
+                    <i className="angle left icon" onClick={()=>hashHistory.goBack()}></i>
                     <span>
                     <i className="talk outline icon"></i>
                     <i className="share icon"></i>
