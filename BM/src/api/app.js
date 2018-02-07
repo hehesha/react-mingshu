@@ -51,7 +51,7 @@ app.get('/insertcheck', function(req, res) {
 	var connection = createConnection();
 	connection.connect();
 	//引入插入模块	
-	require('./router/insert').insert(req,res,connection)
+	require('./router/insert').insertCheck(req,res,connection)
 	console.log(req.query)
 })
 
