@@ -10,35 +10,43 @@ class CheckHomestay extends Component{
 		this.props.getcheck()
 		
 	}
+	deleteclick(hid){
+		this.props.deletcheck(hid).then(function(){
+			this.props.getcheck()
+		}.bind(this))
+	}
+	insertclick(hid,src,address,budget,city){
+		console.log(hid,src,address,budget,city);
+	}
 	render(){
 		return(
-				<div className="controlBox">
-	               	 <div className="head">
-	               	 	<h1>申请列表</h1>
-	               	 	<p>这里可以查看和审核业主租房申请,如果经过核实为真实信息,可以批准,并加入到民宿列表</p>
-	               	 </div>
-	               	 <div className="listbox">
-	               	 	<ul className="clearfix">
-		               	 		{
-	             	 				this.props.ajaxResult.map(item =>{
-	             	 					return (
-	             	 						<li key={item.hid}>
-												<img src={item.image_src}/>
-												<p>民宿地址:<span>{item.address}</span></p>
-												<p>预算价格:<span>{item.budget}</span></p>
-												<p>所在城市:<span>{item.city}</span></p>
-												<Button type="primary">审核过关</Button>
-												<Button type="danger">审核不过关</Button>
-												
-					               	 		</li>
-	             	 					)
-	             	 				})
-		               	 		}
-               	 			
-	               	 		
-	               	 	</ul>
-	               	 </div>
-				</div>
+			<div className="controlBox">
+               	 <div className="head">
+               	 	<h1>申请列表</h1>
+               	 	<p>这里可以查看和审核业主租房申请,如果经过核实为真实信息,可以批准,并加入到民宿列表</p>
+               	 </div>
+               	 <div className="listbox">
+               	 	<ul className="clearfix">
+	               	 		{
+             	 				this.props.ajaxResult.map(item =>{
+             	 					return (
+             	 						<li key={item.hid}>
+											<img src={item.image_src}/>
+											<p>民宿地址:<span>{item.address}</span></p>
+											<p>预算价格:<span>{item.budget}</span></p>
+											<p>所在城市:<span>{item.city}</span></p>
+											<Button type="primary" onClick={this.insertclick.bind(this,item.hid,item.image_src,item.address,item.budget,item.city)}>审核过关</Button>
+											<Button type="danger" onClick={this.deleteclick.bind(this,item.hid)}>审核不过关</Button>
+											
+				               	 		</li>
+             	 					)
+             	 				})
+	               	 		}
+           	 			
+               	 		
+               	 	</ul>
+               	 </div>
+			</div>
 		)
 	}
 }

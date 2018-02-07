@@ -1,7 +1,7 @@
 import * as ajaxConstants from '../constants/ajaxConstants.js';
-import * as strategyConstants from '../constants/storyConstants';
+import * as strategyConstants from '../constants/landlordConstants';
 
-export default function storyReducer(state={},action){
+export default function landlordReducer(state={},action){
     let newState = JSON.parse(JSON.stringify(state));
     switch(action.type){
         case(strategyConstants.GETSTRATEGY_REQUESTING || ajaxConstants.AJAX_REQUESTING):

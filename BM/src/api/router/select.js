@@ -68,3 +68,20 @@ exports.selectTravel = function(req, res, connection) {
 		connection.end();
 	});
 }
+//分页查找所有的酒店信息
+exports.selectPage = function(req,res,connection){
+	var pageCount = req.query.pageCount||10;
+	var page = req.query.page||1;
+	var pageBegin = pageCount * (page - 1)
+												//从这里开始显示     显示多少个
+	connection.query('select * from homestary limit '+ pageBegin + ','+pageCount,function(err,results, fields){
+		var obj = {
+			news: results,
+		}
+		res.end(JSON.stringify(obj))
+		
+		
+	})
+	connection.end();
+	
+}
