@@ -1,3 +1,38 @@
+//通过id查找admin表里面的东西
+exports.selectAid = function(req, res, connection) {
+	//查找......................
+	var aid = req.query.aid;
+	connection.query(`SELECT * FROM admin where aid = '${aid}'`, function(error, results, fields) {
+		if(error) throw error;
+		//results =>array类型
+		console.log('The solution is: ', results);
+		//把数据整理，返回到前端
+		var obj = {
+			news: results,
+		}
+		res.send(results);
+		connection.end();
+	});
+}
+
+
+//通过id查找homestay里面的东西
+exports.selectId = function(req, res, connection) {
+	//查找......................
+	var hid = req.query.hid;
+	connection.query(`SELECT * FROM homestary where hid = '${hid}'`, function(error, results, fields) {
+		if(error) throw error;
+		//results =>array类型
+		console.log('The solution is: ', results);
+		//把数据整理，返回到前端
+		var obj = {
+			news: results,
+		}
+		res.send(results);
+		connection.end();
+	});
+}
+
 //查找所有的员工信息
 exports.getadmin = function(req, res, connection) {
 	connection.query(`SELECT * FROM admin`, function(error, results, fields) {
@@ -51,10 +86,12 @@ exports.selectAll = function(req, res, connection) {
 		var obj = {
 			news: results,
 		}
-		res.send(JSON.stringify(obj));
+		res.send(results);
 		connection.end();
 	});
 }
+
+
 
 //查找travel所有的东西
 exports.selectTravel = function(req, res, connection) {
@@ -85,3 +122,4 @@ exports.selectPage = function(req,res,connection){
 	connection.end();
 	
 }
+
