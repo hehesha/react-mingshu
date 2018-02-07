@@ -5,12 +5,14 @@
     .pic{
         width:(3.533333rem+0.16rem)*3;
         overflow:hidden;
+        // display:flex;
         li{
-            width:3.533333rem;
+            width:30%;
+            // flex:1/3;
             height:2.266667rem;
-            background:#ccc;
+            background:#fff;
             float:left;
-            margin-right:0.16rem;
+            padding-right:0.16rem;
             position:relative;
             u{
                 font-size:0.346667rem;

@@ -23,10 +23,26 @@ app.all('*', function(req, res, next) {
     next();
 });
 
+
 app.use(express.static('public'));
 // parse application/json 
 
 //get请求.................................................................................
+//.......................赖俊豪写的两个接口...........................................
+app.post('/userregister',function(req,res){
+	// res.append("Access-Control-Allow-Origin", "*")
+	var connection = createConnection();
+	connection.connect();
+	require('./router/userregister.js').userregister(req,res,connection);
+})
+
+app.get('/userlogin',function(req,res){
+	// res.append("Access-Control-Allow-Origin", "*");
+	var connection = createConnection();
+	connection.connect();
+	require('./router/userlogin.js').userlogin(req,res,connection);
+})
+//.......................赖俊豪写的两个接口................................................
 //删除homestary里面的民宿信息
 app.get('/delethomestray', function(req, res) {
 	
@@ -51,7 +67,7 @@ app.get('/insertcheck', function(req, res) {
 	var connection = createConnection();
 	connection.connect();
 	//引入插入模块	
-	require('./router/insert').insert(req,res,connection)
+	require('./router/insert').insertCheck(req,res,connection)
 	console.log(req.query)
 })
 
@@ -159,10 +175,21 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({
 	extended: false
 }))
+//鱼露
+app.post('/release', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/release').release(req,res,connection)
+	console.log(req.body)
+})
+
+
 //注册管理者
 app.post('/registeradmin', function(req, res) {
 	//  解决跨域
-	res.append("Access-Control-Allow-Origin", "*")
+	
 	//然后请求的很快的时候才能正常关闭链接、
 	var connection = createConnection();
 	connection.connect();
