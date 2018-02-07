@@ -25,3 +25,11 @@ export function gethotel(city){
         types:[strategyConstants.GETHOTEL_REQUESTING,strategyConstants.GETHOTEL_REQUESTED,strategyConstants.GETHOTEL_ERROR],
     }
 }
+
+export function sorthotel(city,sort){
+    return{
+        url:'sorthotel',
+        data:{sort:sort,city:city},
+        types:[strategyConstants.GETHOTEL_REQUESTING,strategyConstants.GETHOTEL_REQUESTED,strategyConstants.GETHOTEL_ERROR],
+    }
+}

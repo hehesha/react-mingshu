@@ -134,6 +134,15 @@ app.get('/selectShare', function(req, res) {
 	console.log(req.query)
 })	
 	
+// 酒店排序
+app.get('/sorthotel', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/sorthotel').sorthotel(req,res,connection);
+	console.log(req.query)
+})	
 
 //查找所有审核表单里的东西
 app.get('/checkhomestay', function(req, res) {
