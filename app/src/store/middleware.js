@@ -16,11 +16,7 @@ export default function middleware(api){
             if(url){
                 return new Promise((resolve, reject) => {
                     http[method](url, data).then(res => {
-<<<<<<< HEAD
-                        // console.log('3333',requested,res);
-=======
                         // console.log(res.body);
->>>>>>> c45a44465ecea7069fb475891a62371c9b247ca0
                         api.dispatch({
                             type: requested,
                             result: res.body
