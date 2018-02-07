@@ -4,7 +4,9 @@ import * as ajaxContants from '../constants/ajaxConstants'
 export default function middleware(api){
     return function(dispatch){
         return function(action){
+            // console.log(action,'11111111111');
             let {type, types, method = 'get', data = {}, url} = action;
+            
             if(!url){
                 return dispatch(action);
             }
@@ -14,13 +16,14 @@ export default function middleware(api){
             if(url){
                 return new Promise((resolve, reject) => {
                     http[method](url, data).then(res => {
-                        console.log(res.body);
+                        // console.log('3333',requested,res);
                         api.dispatch({
                             type: requested,
                             result: res.body
                         })
                         resolve(res.body)
                     }).catch(error => {
+                        
                         api.dispatch({
                             type: requesterror,
                             result: error

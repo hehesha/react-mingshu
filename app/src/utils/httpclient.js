@@ -13,6 +13,7 @@ const geturl = (url) => {
 export default {
     get(url, params){
         return new Promise((resolve, reject) => {
+            // console.log('222222',url, params);
             http.get(geturl(url))
             .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
             .query(params)
