@@ -25,10 +25,11 @@ class loginComponent extends Component{
                     </div>
                     <div className="new new1">
                         <p>密码</p>
-                        <input type="text" ref="mima" placeholder="请输入密码"/>
+                        <input type="password" ref="mima" placeholder="请输入密码"/>
                     </div>
                     <input type="button" className="save" value="登录" onClick={this.login.bind(this)}/>
                     <Link to="register"><p className="link">还没有账号？</p></Link>
+                    <p>{this.props.result}</p>
                 </div>
             </div>
         )

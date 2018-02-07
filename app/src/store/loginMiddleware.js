@@ -1,5 +1,5 @@
 import * as constants from '../constants/ajaxConstants'
-import http from 'superagent'
+import http from '../utils/httpclient'
 
 export function middleware(api){
     return function(dispatch){
