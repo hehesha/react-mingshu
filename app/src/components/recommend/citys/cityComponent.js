@@ -148,7 +148,6 @@ export default class cityComponent extends Component{
             this.setState({X:X})
             this.setState({Y:Y})
             this.setState({Z:Z})
-
     }
     componentDidMount() {
         window.onscroll = function () {
@@ -215,7 +214,7 @@ export default class cityComponent extends Component{
                             <li>重庆</li>
                         </ul>
                     </div>
-                    <ul className="city_location" onClick={this.city_location.bind(this)}>
+                    <ul className="city_location" onTouchStart={this.city_location.bind(this)}>
                         <p>全</p>
                         <p>部</p>
                         <p>城</p>
@@ -420,7 +419,7 @@ export default class cityComponent extends Component{
                         }
                     </div>
                 </div>
-                <div id="top_view" onClick={this.scrollToTop} className="back-top">
+                <div id="top_view" onTouchStart={this.scrollToTop} className="back-top">
                     <img src="../../../../assets/fanhui.jpg"/>
                 </div>
             </div>

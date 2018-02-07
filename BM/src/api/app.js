@@ -23,6 +23,20 @@ app.all('*', function(req, res, next) {
     next();
 });
 
+app.post('/userRegister',function(req,res){
+	res.append("Access-Control-Allow-Origin", "*")
+	var connection = createConnection();
+	connection.connect();
+	require('./router/userregister.js').userregister(req,res,connection);
+})
+
+app.get('/userLogin',function(req,res){
+	res.append("Access-Control-Allow-Origin", "*");
+	var connection = createConnection();
+	connection.connect();
+	require('./router/userlogin.js').userlogin(req,res,connection);
+})
+
 app.use(express.static('public'));
 // parse application/json 
 
