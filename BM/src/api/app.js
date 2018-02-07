@@ -54,6 +54,20 @@ app.get('/userlogin',function(req,res){
 	require('./router/userlogin.js').userlogin(req,res,connection);
 })
 //.......................赖俊豪写的两个接口................................................
+
+//通过aid寻找管理员的信息
+app.get('/selectaid', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/select').selectAid(req,res,connection);
+	console.log(req.query)
+})	
+
+
+
+
 //删除homestary里面的民宿信息
 app.get('/delethomestray', function(req, res) {
 	
@@ -226,6 +240,16 @@ app.post('/registeradmin', function(req, res) {
 	connection.connect();
 	//引入插入模块	
 	require('./router/register').registerAdmin(req,res,connection)
+})
+//验证登录者
+app.post('/loginadmin', function(req, res) {
+	//  解决跨域
+	
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/register').loginAdmin(req,res,connection)
 })
 
 //监听该端口..............................................................................

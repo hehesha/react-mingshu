@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 
 import { Form, Icon, Input, Button, Checkbox,Alert } from 'antd';
 import {Link,hashHistory} from 'react-router'
+import {connect} from 'react-redux'
 
 import * as actions from './loginAction';
 
@@ -31,9 +32,16 @@ class LoginComponent extends Component{
 		}
 	}
 	login(){
+		this.props.loginAdmin(this.state.username,this.state.password).then(function(res){
+			alert('登录成功，正在跳转....')
+			hashHistory.push({
+				pathname:'/control',
+				query:{
+					aidnumber:res[0].aid
+				}
+			})
+		})
 		
-		this.props.loginAdmin(this.state.username,this.state.password)
-		console.log(123);
 	}
 	render(){
 
@@ -86,4 +94,4 @@ let mapStateToProps = (state) =>{
 	}
 }
 //把组件，状态，方法发射出去（代替export default class Component）
-export default connect(mapStateToProps,actions)(RegisterComponent);
+export default connect(mapStateToProps,actions)(LoginComponent);

@@ -3,12 +3,21 @@ import { Row, Col ,Menu, Icon} from 'antd';
 import './control.scss';
 import {Link} from 'react-router'
 
+import {connect} from 'react-redux';
+import * as actions from './controlAction';
+
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
-export default class ControlComponent extends Component{
+class ControlComponent extends Component{
+	componentWillMount(){
+		var aid = this.props.location.query.aidnumber;
+		this.props.getaiddatalist(aid).then(function(res){
+			console.log(res);
+		});
+	}
 	handleClick = (e) => {
-//	    console.log('click ', e);
+	//	    console.log('click ', e);
 	  }
 	render(){
 		return(
@@ -48,3 +57,14 @@ export default class ControlComponent extends Component{
 		)
 	}
 }
+
+let mapStateToProps = (state) =>{
+//	console.log(state);
+	return{
+		ajaxStatus:state.checkReducer.status,
+		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news
+
+	}
+}
+//把组件，状态，方法发射出去（代替export default class Component）
+export default connect(mapStateToProps,actions)(ControlComponent);

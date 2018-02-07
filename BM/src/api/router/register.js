@@ -69,21 +69,24 @@ exports.registerAdmin = function(req, res, connection) {
 //逻辑：先查数据库帐号密码是否已注册，查询到有注册才允许登录
 //返回：手机没注册或密码错误/登录成功
 //配置：路由：login    require(该文件的路径).login(req, res, connection)  
-exports.login = function(req, res, connection) {
+exports.loginAdmin = function(req, res, connection) {
 
-	//获取注册的手机，密码
-	var phone = req.query.phone;
-	var password = req.query.password;
-	console.log(phone,password)
+	
+	var username = req.body.username;
+	var password = req.body.password;
+	console.log(username,password)
 	//查找手机是否已经注册
-	connection.query(`SELECT * from register where phone = '${phone}' and password='${password}'`, function(err, data) {
+	connection.query(`SELECT * from admin where username = '${username}' and password='${password}'`, function(err, data) {
 		if(data.length==0){
 			//数据库中没有匹配到帐号密码
-			res.end('手机没注册或密码错误')
+			res.send(false)
 			connection.end();
 		}else{
-			
-			res.end('登录成功')
+			var obj = {
+				news: data,
+			}
+			// res.send(JSON.stringify(obj));
+			res.send(data);
 			connection.end();
 		}
 	})
