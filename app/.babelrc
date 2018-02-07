@@ -3,13 +3,7 @@
     ["es2015", { "modules": false }],
     "react",
     "latest",
-<<<<<<< HEAD
-    "stage-2"  ],
-  "plugins": ["transform-object-rest-spread"]
-}
-=======
     "stage-2"
   ],
   "plugins": ["transform-decorators-legacy"]
 }
->>>>>>> a9c4aa2d785d5a88605e2250d562fbd90043c615

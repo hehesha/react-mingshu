@@ -1,7 +1,22 @@
 import React from 'react';
 import './find.scss'
+import {connect} from 'react-redux'
+import * as actions from '../../../actions/landlordAction';
+import {hashHistory} from 'react-router'
 
-export default class Find extends React.Component{
+class Find extends React.Component{
+    componentWillMount(){
+        this.props.getpage()
+        this.props.getlandlord();
+    }
+    btnClick(n){
+        hashHistory.push({  
+            pathname: '/sare',
+            query:{
+                id:n,
+            },  
+        })      
+    }
     render(){
         return(
                 <div className="find">
@@ -26,31 +41,44 @@ export default class Find extends React.Component{
                             公司年会，开Patty，租豪华别墅
                         </div>
                     </div>
-                    <div className="main">
-                        <ul className="pic">
-                            <li><u>01</u></li>
-                            <li><u>02</u></li>
-                            <li><u>03</u></li>
-                        </ul>
-                        <h3 className="clearfix"><span>攻略</span><b>皇城根下享受老北京生活 </b></h3>
-                        <p>
-                            <b>2018/1/9</b>
-                            <span><i className="empty heart icon"></i>687</span>                    
-                            <span><i className="talk outline icon"></i>1</span>           
-                        </p>
-                    </div>
-                    <div className="box">
-                        <img src="../../../../assets/04.jpg" />
-                        <div>
-                            <span>故事</span>
-                            <p>东北房客遇到上海房东</p>
-                            <p>
+                      {
+                        this.props.ajaxResult.map(item=>{
+                            if(item.id == 5){
+                            return( 
+                               <div className="main" key={item.id} onClick={this.btnClick.bind(this,item.id)}>
+                                <ul className="pic" >
+                                    <li><u>01</u><img src={item.imgurls.split(';')[0]}/></li>
+                                    <li><u>02</u><img src={item.imgurls.split(';')[1]}/></li>
+                                    <li><u>03</u><img src={item.imgurls.split(';')[2]}/></li>
+                                </ul>
+                                <h3 className="clearfix"><span>攻略</span><b>{item.title}</b></h3>
+                                <p>
                                 <b>2018/1/9</b>
-                                <span><i className="empty heart icon"></i>687</span>                    
-                                <span><i className="talk outline icon"></i>1</span>           
-                            </p>
-                        </div>
-                    </div>
+                                <span><i className="empty heart icon"></i>{item.likes}</span>                    
+                                <span><i className="talk outline icon"></i>{item.common}</span>           
+                                </p>
+                            </div>
+                            )}
+                        })
+                       
+                    }
+                    {this.props.ajaxResult.map(item=>{
+                            if(item.id == 9){
+                                return (<div className="box" key={item.id} onClick={this.btnClick.bind(this,item.id)}>
+                                    <img src={item.imgurls.split(';')[0]} />
+                                    <div>
+                                        <span>故事</span>
+                                        <p>{item.title}</p>
+                                        <p>
+                                            <b>2018/1/9</b>
+                                            <span><i className="empty heart icon"></i>{item.commons}</span>                    
+                                            <span><i className="talk outline icon"></i>{item.likes}</span>           
+                                        </p>
+                                    </div>
+                                </div>)
+                            }
+                        })
+                    }
                     <div className="hot_search">
                         <div>
                             <p>大理</p>
@@ -69,53 +97,82 @@ export default class Find extends React.Component{
                             <span>760W搜索</span>
                         </div>
                     </div>
-                    <div className="box">
-                        <img src="../../../../assets/04.jpg" />
-                        <div>
-                            <span>故事</span>
-                            <p>南方人的北京卤煮初体验</p>
-                            <p>
-                                <b>2018/1/9</b>
-                                <span><i className="empty heart icon"></i>687</span>                    
-                                <span><i className="talk outline icon"></i>1</span>           
-                            </p>
-                        </div>
-                    </div>
+                    {this.props.ajaxResult.map(item=>{
+                            if(item.id == 10){
+                                return (<div className="box" key={item.id} onClick={this.btnClick.bind(this,item.id)}>
+                                    <img src={item.imgurls.split(';')[0]} />
+                                    <div>
+                                        <span>故事</span>
+                                        <p>{item.title}</p>
+                                        <p>
+                                            <b>2018/1/9</b>
+                                            <span><i className="empty heart icon"></i>{item.commons}</span>                    
+                                            <span><i className="talk outline icon"></i>{item.likes}</span>           
+                                        </p>
+                                    </div>
+                                </div>)
+                            }
+                        })
+                    }
                     <div className="nav">
                         <img src="../../../../assets/j_shanghai.jpg" />
                     </div>
-                    <div className="user_common">
-                        <div className="user_data">
-                                <img src="../../../../assets/order_bg_logo.jpg" />
-                                <span>康</span>
-                                <span>入住城市</span>
-                                <span>青岛</span>
-                        </div>
-                        <div className="user_content">
-                            <p>房子装修得不错免费沙发森林防火是佛寿山福海三首付款哈哈 还是符合舒服舒服石佛寺佛山佛是房子装修得不错免费沙发森林防火是佛寿山福海三首付款哈哈 还是符合舒服舒服石佛寺佛山佛是房子装修得不错免费沙发森林防火是佛寿山福海三首付款哈哈 还是符合舒服舒服石佛寺佛山佛是</p>
-                            <ul>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                        <p className="point_to">评论提到的房源</p>
-                        <div className="user_checkout_room">
-                            <img src='../../../../assets/05.jpg'/>
-                            <div>
-                                <p>
-                                    <span>崂山区</span>
-                                    山海边绿谷聚会别墅——地中海风格
-                                    <span>5.0</span>
-                                </p>
-                                <p>
-                                    <span>整租-独栋别墅-宜住20人以上</span>
-                                    <span>青岛崂山区</span>
-                                    <span>1条评价</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    {this.props.ajaxResult1.map(item=>{
+                            if(item.hid == 25){
+                               return (
+                                <div className="user_common" key={item.hid}>
+                                    <div className="user_data" >
+                                            <img src={item.head_image} />
+                                            <span>康</span>
+                                            <span>入住城市</span>
+                                            <span>{item.city}</span>
+                                    </div>
+                                    <div className="user_content">
+                                        <p>这里的评论的是写死的是写死的是写死的是写死的是写死的是写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的死的死的死的死的死死死死死死</p>
+                                        <ul>
+                                            <li>
+                                                <img src={item.image_src} />
+                                            </li>
+                                            <li>
+                                                <img src={item.image_src} />
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p className="point_to">评论提到的房源</p>
+                                    <div className="user_checkout_room">
+                                        <img src={item.image_src}/>
+                                        <div className="show_price">￥{item.price.slice(0,item.price.length-1)}</div>
+                                        <div>
+                                            <p>
+                                                <span>{/*崂山区*/}</span>
+                                                {item.title}
+                                                <span>5.0</span>
+                                            </p>
+                                            <p>
+                                                <span>整租-独栋别墅-宜住20人以上</span>
+                                                <span>{item.city}崂山区</span>
+                                                <span>{item.talk}条评价</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                               )
+                            }
+                        })
+                    }
                 </div>
             )
     }
 }
+
+let mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        ajaxStatus: state.strategylist.status,
+        ajaxResult: state.strategylist.result || [],
+        ajaxStatus1: state.getpage.status,
+        ajaxResult1: state.getpage.result || [],
+    }
+}
+
+export default connect(mapStateToProps, actions)(Find);
