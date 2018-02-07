@@ -7,7 +7,7 @@ export function selectPage(page){
 		data:{page:page}
 	}
 }
-export function delet(hid){
+export function deleteHomestray(hid){
 	return{
 		types:[performanceConstants.PERFORMANCE_REQUESTING,performanceConstants.PERFORMANCE_REQUESTED,performanceConstants.PERFORMANCE_REQUESTERROR],
 		url:'delethomestray',

@@ -12,57 +12,59 @@ class EditComponent extends Component{
 		current:1
 	}
 	onChange = (page) => {
-    	console.log(page);
    		this.setState({
       	current: page,
     });
     this.props.selectPage(page);
   }
-	handleclick(){
-		console.log(this.title);
+	delclick(hid){
+//		console.log(hid);
+		this.props.deleteHomestray(hid).then(function(){
+			this.props.selectPage(this.current)
+		}.bind(this))
 	}
 	render(){
 		return(
-				<div className="controlBox">
-					<div className="head">
-						<h1>编辑民宿信息</h1>
-	               	 	<p>你可以在这里修改已上线的民宿信息,或者删除信息错误的民宿</p>
-					</div>
-					 <Pagination current={this.state.current} onChange={this.onChange.bind(this)} total={180} />
-	               	 
-	               	 <div className="listbox">
-	               	 	<table>
-	               	 		<thead>
-               	 				<tr>
-               	 					<th>序号</th>
-               	 					<th>酒店名称</th>
-               	 					<th>价格</th>
-               	 					<th>城市</th>
-               	 					<th>操作</th>
-               	 				</tr>
-	               	 		</thead>
-	               	 		<tbody>
-	               	 			{
-	               	 				this.props.ajaxResult.map((item,idx) => {
-	               	 					return (
-	               	 						<tr key={item.hid}>
-			               	 					<td>{idx+1}</td>
-			               	 					<td>{item.title}</td>
-			               	 					<td>{item.price}</td>
-			               	 					<td>{item.city}</td>
-			               	 					<td>
-			               	 						<Button type="primary"><Icon type="check" />保存</Button>
-			               	 						<Button type="danger"><Icon type="close" />删除</Button>
-			               	 					</td>
-			               	 				</tr>
-	               	 					)
-	               	 				})
-	               	 			}
-               	 				
-               	 			</tbody>
-	               	 	</table>
-	               	 </div>
+			<div className="controlBox">
+				<div className="head">
+					<h1>编辑民宿信息</h1>
+               	 	<p>你可以在这里修改已上线的民宿信息,或者删除信息错误的民宿</p>
 				</div>
+				 <Pagination current={this.state.current} onChange={this.onChange.bind(this)} total={180} />
+               	 
+               	 <div className="listbox">
+               	 	<table>
+               	 		<thead>
+           	 				<tr>
+           	 					<th>序号</th>
+           	 					<th>酒店名称</th>
+           	 					<th>价格</th>
+           	 					<th>城市</th>
+           	 					<th>操作</th>
+           	 				</tr>
+               	 		</thead>
+               	 		<tbody>
+               	 			{
+               	 				this.props.ajaxResult.map((item,idx) => {
+               	 					return (
+               	 						<tr key={item.hid}>
+		               	 					<td>{idx+1}</td>
+		               	 					<td>{item.title}</td>
+		               	 					<td>{item.price}</td>
+		               	 					<td>{item.city}</td>
+		               	 					<td>
+		               	 						<Button type="primary"><Icon type="check" />保存</Button>
+		               	 						<Button type="danger"  onClick={this.delclick.bind(this,item.hid)}><Icon type="close" />删除</Button>
+		               	 					</td>
+		               	 				</tr>
+               	 					)
+               	 				})
+               	 			}
+           	 				
+           	 			</tbody>
+               	 	</table>
+               	 </div>
+			</div>
 		)
 	}
 }
