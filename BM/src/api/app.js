@@ -7,7 +7,7 @@ var mysql = require("mysql");
 //连接服务器配置.......................................................................
 function createConnection() {
 	var connection = mysql.createConnection({
-		host: '10.3.136.153',
+		host: '10.3.136.153',//127.0.0.1
 		user: 'root',
 		password: '',
 		database: 'homestay'
@@ -27,12 +27,27 @@ app.use(express.static('public'));
 // parse application/json 
 
 //get请求.................................................................................
-
-//增加
-app.get('/insert', function(req, res) {
-	//  解决跨域
-	res.append("Access-Control-Allow-Origin", "*")
-	//然后请求的很快的时候才能正常关闭链接、
+//删除homestary里面的民宿信息
+app.get('/delethomestray', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/del').delSelf(req,res,connection);
+	console.log(req.query)
+})	
+//删除checkhomestay里面的民宿信息
+app.get('/deletcheck', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/del').delCheck(req,res,connection);
+	console.log(req.query)
+})	
+//增加审核过关的民宿信息
+app.get('/insertcheck', function(req, res) {
+	
 	var connection = createConnection();
 	connection.connect();
 	//引入插入模块	
@@ -40,12 +55,30 @@ app.get('/insert', function(req, res) {
 	console.log(req.query)
 })
 
+
+//增加
+app.get('/insert', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/insert').insert(req,res,connection)
+	console.log(req.query)
+})
+
+//分页获取前端页面的商品数据
+app.get('/selectpage', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/select').selectPage(req,res,connection);
+	console.log(req.query)
+})	
 	
 //获取所有前端页面的商品数据
 app.get('/selectAll', function(req, res) {
-	//  解决跨域
-//	res.append("Access-Control-Allow-Origin", "*")
-	//然后请求的很快的时候才能正常关闭链接、
+	
 	var connection = createConnection();
 	connection.connect();
 	//引入查找模块

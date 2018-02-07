@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
+import {connect} from 'react-redux'
+import * as actions from '../../../actions/strategyAction.js';
 
 import './release.scss'
-export default class releaseComponent extends Component{
-
+class releaseComponent extends Component{
+    componentWillMount(){
+        this.props.getstrategy()
+    }
     render(){
         return (
             <div className="release">
@@ -20,25 +24,25 @@ export default class releaseComponent extends Component{
                         <ul className="clearfix">
                             <li>
                                 <span>城市</span>
-                                <p>请选择城市</p>
+                                <input type="text" placeholder="请输入城市"/>
                             </li>
                             <li>
                                 <span>区域</span>
-                                <p>请选择区域</p>
+                                <input type="text" placeholder="请选择区域"/>
                             </li>
                         </ul>
                         <div className="timeout">
                             <p>入住离店日期</p>
-                            <p>请选择入住和离店日期</p>
+                            <input placeholder="请输入入住和离店日期"/>
                         </div>
                     </div>
                     <div className="mains_b">
                         <p>房源户型</p>
                         <ul>
-                            <li>1室</li>
-                            <li>2室</li>
-                            <li>3室</li>
-                            <li>4室以上</li>
+                        <li><label><input type="radio" name="room"/>1室</label></li>
+                        <li><label><input type="radio" name="room"/>2室</label></li>
+                        <li><label><input type="radio" name="room"/>3室</label></li>
+                        <li><label><input type="radio" name="room"/>4室以上</label></li>
                         </ul>
                         <div className="mains_b_room">
                             <p><span>入住人数</span></p>
@@ -55,3 +59,13 @@ export default class releaseComponent extends Component{
     }
 
 }
+
+let mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        ajaxStatus: state.strategylist.status,
+        ajaxResult: state.strategylist.result || []
+    }
+}
+
+export default connect(mapStateToProps, actions)(releaseComponent);

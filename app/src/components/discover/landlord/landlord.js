@@ -1,60 +1,52 @@
 import React from 'react';
 import './landlord.scss'
 import {Link} from 'react-router'
+import {connect} from 'react-redux'
+import * as actions from '../../../actions/landlordAction';
+import {hashHistory} from 'react-router'
 
-export default class Landlord extends React.Component{
+class Landlord extends React.Component{
+    componentWillMount(){
+        this.props.getlandlord()
+    }
+    btnClick(n){
+        hashHistory.push({  
+            pathname: '/sare',
+            query:{
+                id:n,
+            },  
+            
+        })      
+    }
     render(){
         return(
                 <div className="landlord">
-                   <div className="box">
-                        <Link to="detail"><img src="../../../../assets/04.jpg" /></Link>
-                        <div>
-                            <span>故事</span>
-                            <p>东北房客遇到上海房东</p>
-                            <p>
-                                <b>2018/1/9</b>
-                                <span><i className="empty heart icon"></i>687</span>                    
-                                <span><i className="talk outline icon"></i>1</span>           
-                            </p>
-                        </div>
-                   </div>
-                   <div className="box">
-                        <img src="../../../../assets/04.jpg" />
-                        <div>
-                            <span>故事</span>
-                            <p>东北房客遇到上海房东</p>
-                            <p>
-                                <b>2018/1/9</b>
-                                <span><i className="empty heart icon"></i>687</span>                    
-                                <span><i className="talk outline icon"></i>1</span>           
-                            </p>
-                        </div>
-                   </div>
-                   <div className="box">
-                        <img src="../../../../assets/04.jpg" />
-                        <div>
-                            <span>故事</span>
-                            <p>东北房客遇到上海房东</p>
-                            <p>
-                                <b>2018/1/9</b>
-                                <span><i className="empty heart icon"></i>687</span>                    
-                                <span><i className="talk outline icon"></i>1</span>           
-                            </p>
-                        </div>
-                   </div>
-                   <div className="box">
-                        <img src="../../../../assets/04.jpg" />
-                        <div>
-                            <span>故事</span>
-                            <p>东北房客遇到上海房东</p>
-                            <p>
-                                <b>2018/1/9</b>
-                                <span><i className="empty heart icon"></i>687</span>                    
-                                <span><i className="talk outline icon"></i>1</span>           
-                            </p>
-                        </div>
-                   </div>
+                   {this.props.ajaxResult.map(item=>{
+                        return (<div className="box" key={item.id} onClick={this.btnClick.bind(this,item.id)}>
+                                <img src={item.imgurls.split(';')[0]} />
+                                <div>
+                                    <span>故事</span>
+                                    <p>{item.title}</p>
+                                    <p>
+                                        <b>2018/1/9</b>
+                                        <span><i className="empty heart icon"></i>{item.commons}</span>                    
+                                        <span><i className="talk outline icon"></i>{item.likes}</span>           
+                                    </p>
+                                </div>
+                            </div>)
+                        })
+                    }
                 </div>
             )
     }
 }
+
+let mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        ajaxStatus: state.strategylist.status,
+        ajaxResult: state.strategylist.result || []
+    }
+}
+
+export default connect(mapStateToProps, actions)(Landlord);
