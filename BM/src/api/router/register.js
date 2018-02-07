@@ -49,12 +49,12 @@ exports.registerAdmin = function(req, res, connection) {
 		if(data.length == 0) {
 			connection.query(`INSERT into admin (username,password)values('${username}','${password}')`, function(err, data) {
 				
-				res.send('注册成功')
+				res.send(true)
 			})
 			//关闭数据库要写进判断里面
 			connection.end();
 		} else {
-			res.send('该用户已注册')
+			res.send(false)
 			//关闭数据库要写进判断里面
 			connection.end();
 		}

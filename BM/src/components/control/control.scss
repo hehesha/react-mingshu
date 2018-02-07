@@ -66,11 +66,21 @@
         margin-top: 30px;
         border: 1px solid gainsboro;
         text-align: center;
-        td,th{
+        width: 786px;
+        th{
             border: 1px solid gainsboro;
-            padding: 15px 35px;
-            font-size: 20px;
+            padding: 15px 9px;
+            font-size: 18px;
             
+        }
+        td{
+            padding: 15px 5px;
+            width: 200px;
+            font-size: 16px;
+            border: 1px solid gainsboro;
+        }
+        tr:nth-child(2n){
+            background-color: beige;
         }
         th{
             background: cornflowerblue;
@@ -105,4 +115,7 @@
     font-weight: bold;
     padding: 6px;
     
+}
+input{
+    width: 100%;
 }

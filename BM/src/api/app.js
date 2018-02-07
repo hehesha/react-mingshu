@@ -28,6 +28,17 @@ app.use(express.static('public'));
 // parse application/json 
 
 //get请求.................................................................................
+//更新民宿信息的接口
+app.get('/edithhomestay', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/update').edithhomestay(req,res,connection);
+	console.log(req.query)
+})
+
+
 //.......................赖俊豪写的两个接口...........................................
 app.post('/userregister',function(req,res){
 	// res.append("Access-Control-Allow-Origin", "*")
@@ -81,6 +92,16 @@ app.get('/insert', function(req, res) {
 	require('./router/insert').insert(req,res,connection)
 	console.log(req.query)
 })
+//根据hid获取酒店数据
+app.get('/selecthid', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/select').selectId(req,res,connection);
+	console.log(req.query)
+})	
+
 
 //分页获取前端页面的商品数据
 app.get('/selectpage', function(req, res) {

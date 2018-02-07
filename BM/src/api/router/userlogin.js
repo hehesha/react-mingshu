@@ -8,7 +8,7 @@ exports.userlogin = function(req, res, connection) {
             res.send(false)
             connection.end();
         }else{
-            
+           connection.query(`UPDATE user set type = 1 where username = '${user}'`)
             res.send(true)
             connection.end();
         }
