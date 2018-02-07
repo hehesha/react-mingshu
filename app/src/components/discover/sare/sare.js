@@ -38,8 +38,8 @@ import * as actions from '../../../actions/strategyAction.js';
 let mapStateToProps = (state) => {
     console.log(state)
     return {
-        ajaxStatus: state.strategylist.status,
-        ajaxResult: state.strategylist.result || []
+        ajaxStatus: state.sharelist.status,
+        ajaxResult: state.sharelist.result || []
     }
 }
 

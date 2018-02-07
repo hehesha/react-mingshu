@@ -112,7 +112,17 @@ app.get('/selectTravel', function(req, res) {
 	require('./router/select').selectTravel(req,res,connection);
 	console.log(req.query)
 })	
+// 每次查找十条酒店信息
+app.get('/selecthotel', function(req, res) {
+	//  解决跨域
 
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/selecthotel').selecthotel(req,res,connection);
+	console.log(req.query)
+})	
 
 // 查找分享
 app.get('/selectShare', function(req, res) {
