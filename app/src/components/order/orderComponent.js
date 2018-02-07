@@ -13,8 +13,8 @@ export default class HomeComponent extends Component{
                 <div className="order_bg">
                     <div>
                         <img src="../../../assets/order_bg_logo.jpg" />
+                        <p>暂无进行中订单</p>
                     </div>
-                    <p>暂无进行中订单</p>
                 </div>
             </div>
         )
