@@ -7,7 +7,7 @@ import './release.scss'
 class releaseComponent extends Component{
     wanted(){
         // var city = $('.city').val()
-        var name = 'laoxie'
+        var name = ['laoxie','DK']
         this.props.getstrategy(name)
     }
     render(){
