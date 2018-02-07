@@ -2,6 +2,10 @@ import React, {Component} from 'react'
 import './detail.scss'
 
 export default class HomeComponent extends Component{
+    componentWillMount(){
+        console.log(this.props.location.query.id)
+        
+    }
     render(){
         return (
             <div className="detail">
