@@ -23,6 +23,19 @@ class EditComponent extends Component{
 			this.props.selectPage(this.current)
 		}.bind(this))
 	}
+	editTab(event){
+		if(event.target.tagName=='TD'&&event.target.className==''){
+			console.log(event.target);
+			let input = document.createElement('input');
+            input.type = 'text';
+            input.value = event.target.innerText;
+			event.target.innerHTML = '';
+            event.target.appendChild(input);
+
+            
+
+		}
+	}
 	render(){
 		return(
 			<div className="controlBox">
@@ -30,7 +43,7 @@ class EditComponent extends Component{
 					<h1>编辑民宿信息</h1>
                	 	<p>你可以在这里修改已上线的民宿信息,或者删除信息错误的民宿</p>
 				</div>
-				 <Pagination current={this.state.current} onChange={this.onChange.bind(this)} total={180} />
+				 <Pagination current={this.state.current} onChange={this.onChange.bind(this)} total={170} />
                	 
                	 <div className="listbox">
                	 	<table>
@@ -43,16 +56,16 @@ class EditComponent extends Component{
            	 					<th>操作</th>
            	 				</tr>
                	 		</thead>
-               	 		<tbody>
+               	 		<tbody onClick={this.editTab.bind(this)}>
                	 			{
                	 				this.props.ajaxResult.map((item,idx) => {
                	 					return (
                	 						<tr key={item.hid}>
-		               	 					<td>{idx+1}</td>
+		               	 					<td className='idx'>{idx+1}</td>
 		               	 					<td>{item.title}</td>
 		               	 					<td>{item.price}</td>
 		               	 					<td>{item.city}</td>
-		               	 					<td>
+		               	 					<td className="button">
 		               	 						<Button type="primary"><Icon type="check" />保存</Button>
 		               	 						<Button type="danger"  onClick={this.delclick.bind(this,item.hid)}><Icon type="close" />删除</Button>
 		               	 					</td>
