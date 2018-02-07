@@ -1,5 +1,6 @@
 //查找travel所有的东西
 exports.selecthotel = function(req, res, connection) {
+    console.log(111);
     var pageCount = 10;
     var page = (req.query.page);
     var pageEnd = pageCount * (page);
@@ -9,8 +10,7 @@ exports.selecthotel = function(req, res, connection) {
         //results =>array类型
         console.log('The solution is: ', results);
         //把数据整理，返回到前端
-        
-        res.send(results);
+       res.send(results);
         connection.end();
     });
 }

@@ -6,9 +6,16 @@ import * as actions from '../../actions/strategyAction.js';
 
 class SearchhotelComponent extends Component{
     componentWillMount(){
-        var city="广州",
-        city=encodeURI(city)
+        var city=this.props.location.query.city;
         this.props.gethotel(city)
+    }
+    toDetail(id){
+        hashHistory.push({  
+        pathname: '/detail',
+        query:{
+            id:id
+        }
+        });  
     }
     render(){
         return (
@@ -17,7 +24,7 @@ class SearchhotelComponent extends Component{
                     <i className="angle left icon" onClick={()=>hashHistory.goBack()}></i>
                     <div className="search">
                         <div className="location">
-                            <input type="text" value="大理"/>
+                            <input type="text" value={decodeURI(this.props.location.query.city)}/>
                             <i className="caret down icon"></i>
                         </div>
                         <div className="find">
@@ -48,7 +55,7 @@ class SearchhotelComponent extends Component{
                 <main className="h_main">
                         {this.props.ajaxResult.map(item=>{
                             return (
-                                <div className="hcontent" key={item.hid}>
+                                <div className="hcontent" key={item.hid} onClick={this.toDetail.bind(this,item.hid)}>
                                     <div className="pic">
                                         <img src={item.image_src} />
                                         <span>￥{item.price}</span>
@@ -67,7 +74,7 @@ class SearchhotelComponent extends Component{
                         })}
                         
                     
-                    <span onClick={this.props.gethotel.bind(this,"广州")}>加载更多</span>
+                    <span onClick={this.props.gethotel.bind(this,decodeURI(this.props.location.query.city))}>加载更多</span>
                 </main>
                  
             </div>
@@ -76,7 +83,7 @@ class SearchhotelComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-    console.log(state);
+    console.log(state,111);
     return {
         
         ajaxStatus: state.hotellist.status,
