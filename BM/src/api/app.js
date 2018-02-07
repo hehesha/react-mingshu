@@ -3,6 +3,7 @@ var app = express();
 //链接数据库模块
 var mysql = require("mysql");
 
+
 //连接服务器配置.......................................................................
 function createConnection() {
 	var connection = mysql.createConnection({
@@ -54,7 +55,7 @@ app.get('/selectAll', function(req, res) {
 //查找所有travel里面的东西
 app.get('/selectTravel', function(req, res) {
 	//  解决跨域
-//	res.append("Access-Control-Allow-Origin", "*")
+
 	//然后请求的很快的时候才能正常关闭链接、
 	var connection = createConnection();
 	connection.connect();
@@ -63,10 +64,22 @@ app.get('/selectTravel', function(req, res) {
 	console.log(req.query)
 })	
 
+
+// 查找分享
+app.get('/selectShare', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/share').selectShare(req,res,connection);
+	console.log(req.query)
+})	
+	
+
 //查找所有审核表单里的东西
 app.get('/checkhomestay', function(req, res) {
 	//  解决跨域
-//	res.append("Access-Control-Allow-Origin", "*")
+
 	//然后请求的很快的时候才能正常关闭链接、
 	var connection = createConnection();
 	connection.connect();
@@ -84,6 +97,25 @@ app.get('/getplan', function(req, res) {
 	require('./router/select').getplan(req,res,connection);
 	console.log(req.query)
 })	
+//获取所有admin里面的东西
+app.get('/getadmin', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/select').getadmin(req,res,connection);
+	console.log(req.query)
+})	
+//更新admin的员工评分
+app.get('/changerate', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/update').updaterare(req,res,connection);
+	console.log(req.query)
+})	
+
 
 
 //要post请求...............................................................................
