@@ -19,6 +19,7 @@ import Employee from '../components/controldetalist/employee'
 import Performance from '../components/controldetalist/performance'
 import GoodTalk from '../components/controldetalist/GoodTalk'
 import Sell from '../components/controldetalist/sell'
+import Edit from '../components/controldetalist/editComponent'
 
 const routes = (
 	<Route path="/" component={HomeComponent}>	
@@ -34,6 +35,7 @@ const routes = (
 			<Route path="/control/performance" component={Performance}></Route>
 			<Route path="/control/sell" component={Sell}></Route>
 			<Route path="/control/goodtalk" component={GoodTalk}></Route>
+			<Route path="/control/edit" component={Edit}></Route>
 			
 		</Route>
 	</Route>

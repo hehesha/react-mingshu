@@ -7,3 +7,9 @@ export function getstrategy(){
         
     }
 }
+export function getShare(n){
+    return{
+        url:'selectShare',
+        data:{uid:n},
+    }
+}

@@ -13,23 +13,43 @@ export default function middleware(api){
 	return function(dispatch){
 		return function(action){
 			let {type,types,method = 'get',data={},url} =action;
-			
+
 			if(!url){
 				return dispatch(action)
 			}
-			api.dispatch({type:ajaxContants.AJAX_REQUESTING});
+			let defaultConstants = [ajaxContants.AJAX_REQUESTING, ajaxContants.AJAX_REQUESTED, ajaxContants.AJAX_REQUESTERROR];
+			//如果有就使用传过来的，没有就使用默认的，是由Action.js传过来的
+			let [requesting, requested, requesterror] = types ? types : defaultConstants;
+			
+			api.dispatch({type:requesting});
 			if(url){
-				http[method](url,data).then(res => {
-					api.dispatch({
-						type:ajaxContants.AJAX_REQUESTED,
-						result:res.body.data
-					})
-				}).catch(error => {
-					api.dispatch({
-                        type: ajaxContants.AJAX_REQUESTERROR,
-                        result:error
+				return new Promise((resolve, reject) => {
+                    http[method](url, data).then(res => {
+                        api.dispatch({
+                            type: requested,
+                            result: JSON.parse(res.text)
+                        })
+                        resolve(JSON.parse(res.text))
+                    }).catch(error => {
+                        api.dispatch({
+                            type: requesterror,
+                            result: error
+                        })
+                        reject(error)
                     })
-				})
+                })
+//				http[method](url,data).then(res => {
+//					console.log(JSON.parse(res.text));
+//					api.dispatch({
+//						type:requested,
+//						result:JSON.parse(res.text)
+//					})
+//				}).catch(error => {
+//					api.dispatch({
+//                      type: requesterror,
+//                      result:error
+//                  })
+//				})
 			}
 		}
 	}

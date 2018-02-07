@@ -8,54 +8,54 @@ import * as actions from './checkAction';
 class CheckHomestay extends Component{
 	componentWillMount(){
 		this.props.getcheck()
+		
+	}
+	deleteclick(hid){
+		this.props.deletcheck(hid).then(function(){
+			this.props.getcheck()
+		}.bind(this))
+	}
+	insertclick(hid,src,address,budget,city){
+		console.log(hid,src,address,budget,city);
 	}
 	render(){
 		return(
-				<div className="controlBox">
-	               	 <div className="head">
-	               	 	<h1>申请列表</h1>
-	               	 	<p>这里可以查看和审核业主租房申请,如果经过核实为真实信息,可以批准,并加入到民宿列表</p>
-	               	 </div>
-	               	 <div className="listbox">
-	               	 	<ul className="clearfix">
-	               	 		<li>
-								<img src="https://image.xiaozhustatic1.com/12/12,0,98,8880,1800,1200,d6d22b18.jpg"/>
-								<p>民宿地址:<span>广州长隆欢乐世界</span></p>
-								<p>预算价格:<span>88元</span></p>
-								<p>所在城市:<span>广州</span></p>
-								<Button type="primary">审核过关</Button>
-								<Button type="danger">审核不过关</Button>
-								
-	               	 		</li>
-	               	 		<li>
-								<img src="https://image.xiaozhustatic1.com/12/12,0,98,8880,1800,1200,d6d22b18.jpg"/>
-								<p>民宿地址:<span>广州长隆欢乐世界</span></p>
-								<p>预算价格:<span>88元</span></p>
-								<p>所在城市:<span>广州</span></p>
-								<Button type="primary">审核过关</Button>
-								<Button type="danger">审核不过关</Button>
-								
-	               	 		</li>
-	               	 		<li>
-								<img src="https://image.xiaozhustatic1.com/12/12,0,98,8880,1800,1200,d6d22b18.jpg"/>
-								<p>民宿地址:<span>广州长隆欢乐世界</span></p>
-								<p>预算价格:<span>88元</span></p>
-								<p>所在城市:<span>广州</span></p>
-								<Button type="primary">审核过关</Button>
-								<Button type="danger">审核不过关</Button>
-								
-	               	 		</li>
-	               	 	</ul>
-	               	 </div>
-				</div>
+			<div className="controlBox">
+               	 <div className="head">
+               	 	<h1>申请列表</h1>
+               	 	<p>这里可以查看和审核业主租房申请,如果经过核实为真实信息,可以批准,并加入到民宿列表</p>
+               	 </div>
+               	 <div className="listbox">
+               	 	<ul className="clearfix">
+	               	 		{
+             	 				this.props.ajaxResult.map(item =>{
+             	 					return (
+             	 						<li key={item.hid}>
+											<img src={item.image_src}/>
+											<p>民宿地址:<span>{item.address}</span></p>
+											<p>预算价格:<span>{item.budget}</span></p>
+											<p>所在城市:<span>{item.city}</span></p>
+											<Button type="primary" onClick={this.insertclick.bind(this,item.hid,item.image_src,item.address,item.budget,item.city)}>审核过关</Button>
+											<Button type="danger" onClick={this.deleteclick.bind(this,item.hid)}>审核不过关</Button>
+											
+				               	 		</li>
+             	 					)
+             	 				})
+	               	 		}
+           	 			
+               	 		
+               	 	</ul>
+               	 </div>
+			</div>
 		)
 	}
 }
-//接受ajax的状态，请求回来的东西
+//接受ajax的状态，请求回来的东西，通过this.props.ajaxStatus获取请求回来的东西
 let mapStateToProps = (state) =>{
+//	console.log(state),给个判断，让请求中underfined的时候不报错
 	return{
-		ajaxStatus:state.status,
-		ajaxResult:state.result
+		ajaxStatus:state.checkReducer.status,
+		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news
 	}
 }
 //把组件，状态，方法发射出去（代替export default class Component）

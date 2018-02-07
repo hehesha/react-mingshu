@@ -1,15 +1,20 @@
 import React,{Component} from 'react'
 import { Rate } from 'antd';
 
-export default class Performance extends Component{
-	state = {
-		value: 3,
+import {connect} from 'react-redux';
+import * as actions from './performanceAction';
+
+class Performance extends Component{
+	componentWillMount(){
+		this.props.getperformance()
 	}
-	handleChange = (value) => {
-		this.setState({ value });
+	handleChange = (value,aid) => {
+//		console.log(value,aid)
+		this.props.changeRate(value,aid).then(function(){
+			this.props.getperformance()
+		}.bind(this))
 	}
 	render(){
-		const { value } = this.state;
 		return(
 			<div className="controlBox">
                	<div className="head">
@@ -25,15 +30,20 @@ export default class Performance extends Component{
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>boa</td>
-								<td>
-									<span>
-								        <Rate onChange={this.handleChange} value={value} />
-								        {value && <span className="ant-rate-text">{value} stars</span>}
-								     </span>
-								</td>
-							</tr>
+							
+								
+								{
+									this.props.ajaxResult.map(item => {
+										return (
+											<tr key={item.aid}>
+												<td>{item.username}</td>
+												<td><Rate onChange={this.handleChange.bind(this,item.aid)} value={item.rate} />
+												</td>
+											</tr>
+										)
+									})
+								}
+							
 						</tbody>
 					</table>
 					 
@@ -42,3 +52,14 @@ export default class Performance extends Component{
 		)
 	}
 }
+
+let mapStateToProps = (state) =>{
+//	console.log(state);
+	return{
+		ajaxStatus:state.checkReducer.status,
+		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news
+
+	}
+}
+//把组件，状态，方法发射出去（代替export default class Component）
+export default connect(mapStateToProps,actions)(Performance);

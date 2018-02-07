@@ -59,7 +59,7 @@ export default class HomeComponent extends Component{
                         <span>全国396个城市可预订</span>
                         <div className="photos">
                             <ul>
-                                <li><img src="../../../assets/02.jpg"/></li>
+                                <li><Link to="detail"><img src="../../../assets/02.jpg"/></Link></li>
                                 <li><img src="../../../assets/01.jpg"/></li>
                                 <li><img src="../../../assets/01.jpg"/></li>
                                 <li><img src="../../../assets/01.jpg"/></li>
