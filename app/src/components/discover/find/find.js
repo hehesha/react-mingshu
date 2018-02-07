@@ -117,38 +117,49 @@ class Find extends React.Component{
                     <div className="nav">
                         <img src="../../../../assets/j_shanghai.jpg" />
                     </div>
-                    <div className="user_common">
-                        <div className="user_data">
-                                <img src="../../../../assets/order_bg_logo.jpg" />
-                                <span>康</span>
-                                <span>入住城市</span>
-                                <span>青岛</span>
-                        </div>
-                        <div className="user_content">
-                            <p>房子装修得不错免费沙发森林防火是佛寿山福海三首付款哈哈 还是符合舒服舒服石佛寺佛山佛是房子装修得不错免费沙发森林防火是佛寿山福海三首付款哈哈 还是符合舒服舒服石佛寺佛山佛是房子装修得不错免费沙发森林防火是佛寿山福海三首付款哈哈 还是符合舒服舒服石佛寺佛山佛是</p>
-                            <ul>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                        <p className="point_to">评论提到的房源</p>
-                        <div className="user_checkout_room">
-                            <img src='../../../../assets/05.jpg'/>
-                            <div>
-                                <p>
-                                    <span>崂山区</span>
-                                    山海边绿谷聚会别墅——地中海风格
-                                    <span>5.0</span>
-                                </p>
-                                <p>
-                                    <span>整租-独栋别墅-宜住20人以上</span>
-                                    <span>青岛崂山区</span>
-                                    <span>1条评价</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                  
+                    {this.props.ajaxResult1.map(item=>{
+                            if(item.hid == 25){
+                               return (
+                                <div className="user_common" key={item.hid}>
+                                    <div className="user_data" >
+                                            <img src={item.head_image} />
+                                            <span>康</span>
+                                            <span>入住城市</span>
+                                            <span>{item.city}</span>
+                                    </div>
+                                    <div className="user_content">
+                                        <p>这里的评论的是写死的是写死的是写死的是写死的是写死的是写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的写死的死的死的死的死的死死死死死死</p>
+                                        <ul>
+                                            <li>
+                                                <img src={item.image_src} />
+                                            </li>
+                                            <li>
+                                                <img src={item.image_src} />
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p className="point_to">评论提到的房源</p>
+                                    <div className="user_checkout_room">
+                                        <img src={item.image_src}/>
+                                        <div className="show_price">￥{item.price.slice(0,item.price.length-1)}</div>
+                                        <div>
+                                            <p>
+                                                <span>{/*崂山区*/}</span>
+                                                {item.title}
+                                                <span>5.0</span>
+                                            </p>
+                                            <p>
+                                                <span>整租-独栋别墅-宜住20人以上</span>
+                                                <span>{item.city}崂山区</span>
+                                                <span>{item.talk}条评价</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                               )
+                            }
+                        })
+                    }
                 </div>
             )
     }
@@ -160,7 +171,7 @@ let mapStateToProps = (state) => {
         ajaxStatus: state.strategylist.status,
         ajaxResult: state.strategylist.result || [],
         ajaxStatus1: state.getpage.status,
-        ajaxStatus1: state.getpage.result || [],
+        ajaxResult1: state.getpage.result || [],
     }
 }
 
