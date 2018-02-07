@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
-import * as actions from '../../../actions/strategyAction.js';
+import * as actions from '../../../actions/releaseAction.js';
 
 import './release.scss'
 class releaseComponent extends Component{
-    componentWillMount(){
-        this.props.getstrategy()
+    wanted(){
+        // var city = $('.city').val()
+        var name = 'laoxie'
+        this.props.getstrategy(name)
     }
     render(){
         return (
@@ -24,7 +26,7 @@ class releaseComponent extends Component{
                         <ul className="clearfix">
                             <li>
                                 <span>城市</span>
-                                <input type="text" placeholder="请输入城市"/>
+                                <input type="text" placeholder="请输入城市" className="city"/>
                             </li>
                             <li>
                                 <span>区域</span>
@@ -53,7 +55,7 @@ class releaseComponent extends Component{
                         </div>
                     </div>
                 </div>
-                <div className="release1"><img src="../../../../assets/release1.png"/></div>
+                <div className="release1" onClick={this.wanted.bind(this)}><img src="../../../../assets/release1.png"/></div>
             </div>
         )
     }
@@ -63,8 +65,8 @@ class releaseComponent extends Component{
 let mapStateToProps = (state) => {
     console.log(state)
     return {
-        ajaxStatus: state.strategylist.status,
-        ajaxResult: state.strategylist.result || []
+        ajaxStatus: state.releaseRoom.status,
+        ajaxResult: state.releaseRoom.result || []
     }
 }
 
