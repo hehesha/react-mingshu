@@ -10,7 +10,8 @@ function createConnection() {
 		host: '10.3.136.153',//127.0.0.1
 		user: 'root',
 		password: '',
-		database: 'homestay'
+		database: 'homestay',
+		multipleStatements: true
 	});
 	return connection
 }

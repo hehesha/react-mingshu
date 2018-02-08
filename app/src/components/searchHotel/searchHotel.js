@@ -10,10 +10,22 @@ class SearchhotelComponent extends Component{
         // this.props.gethotel(city)
         this.getlist();
     }
+   
+    componentDidMount(){
+        // 拉倒底部自动加载更多
+        var self=this;
+        var h_main=document.getElementsByClassName('h_main')[0];
+        var foot=document.getElementById('foot')
+        h_main.onscroll=function(){
+            if(h_main.scrollHeight-h_main.scrollTop==h_main.clientHeight){
+                self.getlist();
+            }
+        }
+    }  
     getlist(city){
         var city;
         if(city){
-            city=city;
+            city=encodeURI(city);
         }else{
          city=this.props.location.query.city;
         }
@@ -51,7 +63,7 @@ class SearchhotelComponent extends Component{
         h_sort[0].style.display='none';
     }
     render(){
-        var html='下拉加载更多';
+       
         var style,style1;
         if(this.props.ajaxStatus==0){
                 style={display:'block'}
@@ -59,8 +71,7 @@ class SearchhotelComponent extends Component{
         }else{
             style={display:'none'}
             style1={display:'block'}
-        }
-         
+        }      
         return (
             <div className="searchhotel">
                 <header className="h_header">
@@ -103,9 +114,9 @@ class SearchhotelComponent extends Component{
                         </ul>
                 </nav>
                 <main className="h_main">
-                        {this.props.ajaxResult.map(item=>{
-                            return (
-                                <div className="hcontent" key={item.hid} onClick={this.getlist}>
+                    {this.props.ajaxResult.map(item=>{
+                        return (
+                                <div className="hcontent" key={item.hid} onClick={this.toDetail.bind(this,item.hid)}>
                                     <div className="pic">
                                         <img src={item.image_src} />
                                         <span>￥{item.price}</span>
@@ -121,10 +132,10 @@ class SearchhotelComponent extends Component{
                                     </dl>
                                 </div>
                                 )
-                        })}
-                        
+                    })}
+                           
                     
-                    <span onClick={this.props.gethotel.bind(this,decodeURI(this.props.location.query.city))} style={style1}>{html}</span>
+                    
                     <div id="loading" style={style}>
                         <img src='./assets/loading.gif'/>
                     </div>
@@ -136,12 +147,15 @@ class SearchhotelComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-    console.log(state.hotellist,111);
-    return {
-        
-        ajaxStatus: state.hotellist.status,
-        ajaxResult: state.hotellist.result || []
-    }
+
+        return {
+            
+            ajaxStatus: state.hotellist.status,
+            ajaxResult: state.hotellist.result || []    
+        }
+    
+    
+
 }
 
 export default connect(mapStateToProps, actions)(SearchhotelComponent);
