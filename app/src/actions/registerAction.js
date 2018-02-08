@@ -1,10 +1,10 @@
-/* 
-* @Author: Marte
-* @Date:   2018-02-06 15:42:40
-* @Last Modified by:   Marte
-* @Last Modified time: 2018-02-06 15:42:40
-*/
+import * as constants from '../constants/ajaxConstants.js'
 
-$(document).ready(function(){
-    
-});
+export function registerAction(data){
+    return{
+        types:[constants.REGISTER_REQUESTING,constants.REGISTER_REQUESTED,constants.REGISTER_REQUESTERRO],
+        url:'userregister',
+        method:'post',
+        data
+    }
+}

@@ -30,9 +30,10 @@ export function getDetail(id){
     console.log(id)
     return{
         url:'selecthid',
-        data:{hid:id},
+        data:{hid:id}
     }
 }
+
 export function sorthotel(city,sort){
     return{
         url:'sorthotel',

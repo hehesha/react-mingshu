@@ -11,6 +11,8 @@ import hotellist from './hotelReducer.js'
 import getpage from './findReducer.js'
 
 import loginreducer from '../reducer/loginReducer.js'
+import registerreducer from '../reducer/registerReducer.js'
+import changereducer from '../reducer/changeReducer.js'
 
 import getdetail from './detailReducer.js'
 
@@ -19,6 +21,8 @@ import deleteRelease from './deleteReducer.js'
 
 export default combineReducers({
     strategylist,
+    registerreducer,
+    changereducer,
     releaseRoom,
     getpage,
     loginreducer,

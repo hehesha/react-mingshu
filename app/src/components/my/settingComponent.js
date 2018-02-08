@@ -3,6 +3,9 @@ import './settingComponent.scss'
 import {Link} from 'react-router'
 
 export default class settingComponent extends Component{
+    exit(){
+        sessionStorage.removeItem("username")
+    }
     render(){
         return (
             <div>
@@ -38,7 +41,8 @@ export default class settingComponent extends Component{
                         <p>清除缓存<i className="angle right icon"></i></p>
                         <span>9.68M</span>
                     </li>
-                    <input type="button" className="exit" value="退出登录"/> 
+                    <Link to="/login"><input type="button" onClick={this.exit.bind(this)}className="exit" value="退出登录"/>
+                    </Link> 
                 </ul>
             </div>
         )
