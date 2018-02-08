@@ -22,7 +22,7 @@ import FindComponent from '../components/discover/find/find'
 import LandlordComponent from '../components/discover/landlord/landlord'
 import storyComponent from '../components/discover/story/story'
 import releaseComponent from '../components/recommend/release/releaseComponent'
-
+import SearchHotel from '../components/searchHotel/searchHotel.js'
 import SareComponent from '../components/discover/sare/sare.js'
 import goodsOrderComponent from '../components/order/goodsOrderComponent'
 
@@ -57,7 +57,7 @@ const routes = (
         <Route path="release" component={releaseComponent}/>
 
         <Route path="sare" component={SareComponent}/>
-
+        <Route path="searchhotel" component={SearchHotel}/>
         <Route path="myRelease" component={myReleaseComponent}/>
         <Route path="detail" component={DetailComponent}/>
 

@@ -1,9 +1,8 @@
 import * as ajaxConstants from '../constants/ajaxConstants.js';
-import * as strategyConstants from '../constants/landlordConstants';
+import * as strategyConstants from '../constants/strategyConstants.js';
 
 
-export default function landlordReducer(state={},action){
-    // console.log(action);
+export default function strategyReducer(state={},action){
     let newState = JSON.parse(JSON.stringify(state));
     switch(action.type){
         case(strategyConstants.GETSTRATEGY_REQUESTING || ajaxConstants.AJAX_REQUESTING):
@@ -21,7 +20,6 @@ export default function landlordReducer(state={},action){
             newState.status = 1;
             newState.result = action.result;
             break;
-       
     }
     return newState;
 }

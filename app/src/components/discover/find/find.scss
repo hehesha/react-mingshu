@@ -27,6 +27,7 @@
                 height:5.786667rem;
                 float:left;
                 margin-right:0.213333rem;
+                
             }
         }
         span{
@@ -166,6 +167,10 @@
         height: 8.8667rem;
         border-top: .013333rem solid #ccc;
         padding-top: .693333rem;
+        img{
+            width: 9.2rem;
+            height: 5.746667rem;
+        }
         div{
             height: 1.933333rem;
             padding-top: .386667rem;
@@ -270,8 +275,11 @@
                     height: 1.6rem;
                     background: #E6E6E6;
                     text-align: center;
-                    padding-top: .4rem;
                     border-radius: 10px;
+                    img{
+                        width:2.053333rem;
+                        height:1.6rem;
+                    }
                 }
             }
         }
@@ -284,6 +292,21 @@
         .user_checkout_room{
             border-top:1px solid #ccc;
             border-bottom:1px solid #ccc;
+            position: relative;
+            img{
+                width: 9.2rem;
+                height: 5.746667rem;
+            }
+            .show_price{
+                position: absolute;
+                left: 0;
+                bottom: 2.5rem;
+                background: #000;
+                opacity: 0.75;
+                padding:.133333rem .266667rem;
+                color:#fff;
+                text-align: center;
+            }
             div{
                 p:nth-of-type(1){
                     margin-top: .133333rem;
@@ -302,7 +325,7 @@
                         margin-right: .373333rem;
                     }
                     span:nth-of-type(2){
-                        margin-right: 1.866667rem;
+                        margin-right: 1.5rem;
                     }
                 }
             }

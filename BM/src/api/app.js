@@ -7,7 +7,7 @@ var mysql = require("mysql");
 //连接服务器配置.......................................................................
 function createConnection() {
 	var connection = mysql.createConnection({
-		host: '10.3.136.153',//127.0.0.1
+		host: '10.3.136.153',// 127.0.0.1
 		user: 'root',
 		password: '',
 		database: 'homestay'
@@ -28,6 +28,17 @@ app.use(express.static('public'));
 // parse application/json 
 
 //get请求.................................................................................
+//更新民宿信息的接口
+app.get('/edithhomestay', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/update').edithhomestay(req,res,connection);
+	console.log(req.query)
+})
+
+
 //.......................赖俊豪写的两个接口...........................................
 app.post('/userregister',function(req,res){
 	// res.append("Access-Control-Allow-Origin", "*")
@@ -43,6 +54,20 @@ app.get('/userlogin',function(req,res){
 	require('./router/userlogin.js').userlogin(req,res,connection);
 })
 //.......................赖俊豪写的两个接口................................................
+
+//通过aid寻找管理员的信息
+app.get('/selectaid', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/select').selectAid(req,res,connection);
+	console.log(req.query)
+})	
+
+
+
+
 //删除homestary里面的民宿信息
 app.get('/delethomestray', function(req, res) {
 	
@@ -81,6 +106,16 @@ app.get('/insert', function(req, res) {
 	require('./router/insert').insert(req,res,connection)
 	console.log(req.query)
 })
+//根据hid获取酒店数据
+app.get('/selecthid', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/select').selectId(req,res,connection);
+	console.log(req.query)
+})	
+
 
 //分页获取前端页面的商品数据
 app.get('/selectpage', function(req, res) {
@@ -112,7 +147,17 @@ app.get('/selectTravel', function(req, res) {
 	require('./router/select').selectTravel(req,res,connection);
 	console.log(req.query)
 })	
+// 每次查找十条酒店信息
+app.get('/selecthotel', function(req, res) {
+	//  解决跨域
 
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/selecthotel').selecthotel(req,res,connection);
+	console.log(req.query)
+})	
 
 // 查找分享
 app.get('/selectShare', function(req, res) {
@@ -124,6 +169,15 @@ app.get('/selectShare', function(req, res) {
 	console.log(req.query)
 })	
 	
+// 酒店排序
+app.get('/sorthotel', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/sorthotel').sorthotel(req,res,connection);
+	console.log(req.query)
+})	
 
 //查找所有审核表单里的东西
 app.get('/checkhomestay', function(req, res) {
@@ -194,6 +248,16 @@ app.post('/registeradmin', function(req, res) {
 	connection.connect();
 	//引入插入模块	
 	require('./router/register').registerAdmin(req,res,connection)
+})
+//验证登录者
+app.post('/loginadmin', function(req, res) {
+	//  解决跨域
+	
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/register').loginAdmin(req,res,connection)
 })
 
 //监听该端口..............................................................................

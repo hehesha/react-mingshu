@@ -3,12 +3,29 @@ import { Row, Col ,Menu, Icon} from 'antd';
 import './control.scss';
 import {Link} from 'react-router'
 
+import {connect} from 'react-redux';
+import * as actions from './controlAction';
+
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
-export default class ControlComponent extends Component{
+class ControlComponent extends Component{
+	state = {
+		aidname:'',
+		permission:'',
+	}
+	componentWillMount(){
+		var aid = this.props.location.query.aidnumber;
+		this.props.getaiddatalist(aid).then(function(res){
+			this.setState({
+				aidname:res[0].username,
+				permission:res[0].permission
+			})
+			console.log(this.state.aidname,this.state.permission);
+		}.bind(this));
+	}
 	handleClick = (e) => {
-//	    console.log('click ', e);
+	//	    console.log('click ', e);
 	  }
 	render(){
 		return(
@@ -41,6 +58,13 @@ export default class ControlComponent extends Component{
 			    	
 			    </Col>
 			    <Col xs={12} sm={14} md={13} lg={10} xl={14}>
+			    	<div className="adminhead">
+			    		<ul>
+			    			<li>欢迎,管理者<span>{this.state.aidname}</span></li>
+			    			<li><Link to = '/login'>退出登录</Link></li>
+			    			
+			    		</ul>
+			    	</div>
 			    	{this.props.children}
 			    </Col>
 			    
@@ -48,3 +72,14 @@ export default class ControlComponent extends Component{
 		)
 	}
 }
+
+let mapStateToProps = (state) =>{
+//	console.log(state);
+	return{
+		ajaxStatus:state.checkReducer.status,
+		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news
+
+	}
+}
+//把组件，状态，方法发射出去（代替export default class Component）
+export default connect(mapStateToProps,actions)(ControlComponent);
