@@ -1,6 +1,7 @@
 import React from 'react'
-import {Route} from 'react-router'
-
+import {Route,Redirect,IndexRoute} from 'react-router'
+// import {Icon} from 'antd'
+// import 'antd/dist/antd.css';
 import HomeComponent from '../components/home/home'
 import recommendComponent from '../components/recommend/recommendComponent'
 import cityComponent from '../components/recommend/citys/cityComponent'
@@ -24,6 +25,7 @@ import storyComponent from '../components/discover/story/story'
 import releaseComponent from '../components/recommend/release/releaseComponent'
 import SearchHotel from '../components/searchHotel/searchHotel.js'
 import SareComponent from '../components/discover/sare/sare.js'
+import goodsOrderComponent from '../components/order/goodsOrderComponent'
 
 
 import myReleaseComponent from '../components/recommend/release/myReleaseComponent'

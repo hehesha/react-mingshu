@@ -236,7 +236,6 @@ app.post('/release', function(req, res) {
 	connection.connect();
 	//引入插入模块	
 	require('./router/release').release(req,res,connection)
-	console.log(req.body)
 })
 
 
