@@ -1,14 +1,16 @@
 import React,{Component} from 'react';
 
 import { Form, Icon, Input, Button, Checkbox,Alert } from 'antd';
-import {Link,browserHistory} from 'react-router'
+import {Link,hashHistory} from 'react-router'
+import {connect} from 'react-redux'
 
-export default class LoginComponent extends Component{
+import * as actions from './loginAction';
+
+class LoginComponent extends Component{
 	state = {
 		username:'',
 		password:'',
 		display:'none',
-		repeat:'none',
 	}
 	changeA(){
 		this.setState({
@@ -30,7 +32,15 @@ export default class LoginComponent extends Component{
 		}
 	}
 	login(){
-		console.log(this.state.username,this.state.password);
+		this.props.loginAdmin(this.state.username,this.state.password).then(function(res){
+			alert('登录成功，正在跳转....')
+			hashHistory.push({
+				pathname:'/control',
+				query:{
+					aidnumber:res[0].aid
+				}
+			})
+		})
 		
 	}
 	render(){
@@ -59,7 +69,7 @@ export default class LoginComponent extends Component{
 							<input type="password"  placeholder="please write.." ref="password" onChange={this.changeA.bind(this)}/>
 						</p>
 						<p>
-							<Button type="primary"><Icon type="key" />Login</Button>
+							<Button type="primary" onClick={this.login.bind(this)}><Icon type="key" />Login</Button>
 							<Link to='/register'>new employee?</Link>
 						</p>
 					</div>
@@ -74,3 +84,14 @@ export default class LoginComponent extends Component{
     
 	}
 }
+
+let mapStateToProps = (state) =>{
+//	console.log(state);
+	return{
+		ajaxStatus:state.checkReducer.status,
+		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news
+
+	}
+}
+//把组件，状态，方法发射出去（代替export default class Component）
+export default connect(mapStateToProps,actions)(LoginComponent);

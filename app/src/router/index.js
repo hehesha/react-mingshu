@@ -1,12 +1,14 @@
 import React from 'react'
-import {Route} from 'react-router'
-
+import {Route,Redirect,IndexRoute} from 'react-router'
+// import {Icon} from 'antd'
+// import 'antd/dist/antd.css';
 import HomeComponent from '../components/home/home'
 import recommendComponent from '../components/recommend/recommendComponent'
 import cityComponent from '../components/recommend/citys/cityComponent'
 import discoverComponent from '../components/discover/discoverComponent'
 import myComponent from '../components/my/myComponent'
 import orderComponent from '../components/order/orderComponent.js'
+import goodsOrderComponent from '../components/order/goodsOrderComponent'
 
 import settingComponent from '../components/my/settingComponent.js'
 import changePasswordComponent from '../components/my/changePasswordComponent.js'
@@ -21,8 +23,9 @@ import FindComponent from '../components/discover/find/find'
 import LandlordComponent from '../components/discover/landlord/landlord'
 import storyComponent from '../components/discover/story/story'
 import releaseComponent from '../components/recommend/release/releaseComponent'
-
+import SearchHotel from '../components/searchHotel/searchHotel.js'
 import SareComponent from '../components/discover/sare/sare.js'
+import goodsOrderComponent from '../components/order/goodsOrderComponent'
 
 
 import myReleaseComponent from '../components/recommend/release/myReleaseComponent'
@@ -44,6 +47,7 @@ const routes = (
         </Route>
         <Route path="my" component={myComponent}/>
         <Route path="order" component={orderComponent}/>
+        <Route path="goodsorder" component={goodsOrderComponent}/>
 
         <Route path="setting" component={settingComponent}/>
         <Route path="register" component={registerComponent}/>
@@ -54,7 +58,7 @@ const routes = (
         <Route path="release" component={releaseComponent}/>
 
         <Route path="sare" component={SareComponent}/>
-
+        <Route path="searchhotel" component={SearchHotel}/>
         <Route path="myRelease" component={myReleaseComponent}/>
         <Route path="detail" component={DetailComponent}/>
 

@@ -2,6 +2,14 @@
     .photos{
         width:100%;
         overflow-y:hidden;
+        ul{
+            li{
+                img{
+                    width: 9.2rem;
+                    height: 5.746667rem;
+                }
+            }
+        }
     }
     .photos>ul{
         height:5.786667rem;
@@ -184,7 +192,7 @@
                     margin-right: .2rem;
                 }
                 span:nth-of-type(3){
-                    margin-right: 3.533333rem;
+                    margin-right: 3.1rem;
                 }
                 span:nth-of-type(4){
                     color:#DC9988;

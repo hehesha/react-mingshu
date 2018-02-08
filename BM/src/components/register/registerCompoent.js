@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
 
 import { Form, Icon, Input, Button, Checkbox, Alert } from 'antd';
-import {Link} from 'react-router'
+import {Link,hashHistory} from 'react-router'
+import {connect} from 'react-redux'
 
+import * as actions from './registerAction';
 
-
-export default class RegisterComponent extends Component{
+class RegisterComponent extends Component{
 	state = {
 		username:'',
 		password:'',
@@ -32,8 +33,23 @@ export default class RegisterComponent extends Component{
 		}
 	}
 	register(){
-		console.log(this.state.username,this.state.password);
 		
+		this.props.insertReister(this.state.username,this.state.password).then(function(res){
+			if(res==false){
+				this.setState({
+					repeat:'block'
+				})
+			}else if(res==true){
+				this.setState({
+					repeat:'none'
+				})
+				alert('注册成功，正在跳转到登录页面..')
+				 hashHistory.push({
+                          pathname:'/login'
+                 })
+
+			}
+		}.bind(this))
 	}
 	render(){
 		return(
@@ -78,3 +94,14 @@ export default class RegisterComponent extends Component{
     
 	}
 }
+
+let mapStateToProps = (state) =>{
+//	console.log(state);
+	return{
+		ajaxStatus:state.checkReducer.status,
+		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news
+
+	}
+}
+//把组件，状态，方法发射出去（代替export default class Component）
+export default connect(mapStateToProps,actions)(RegisterComponent);

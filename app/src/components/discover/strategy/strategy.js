@@ -18,25 +18,31 @@ class StrategyComponent extends Component{
     })      
     }
     render(){
+        var style;
+        if(this.props.ajaxStatus==0){
+            style={display:'block'}
+        }else{
+            style={display:'none'}
+        }
         return (
             <div>
-                
+                <div className="bloading" style={style}>
+                    <img src="./assets/bigloading.gif"/>
+                </div>
                 <div>{
                     this.props.ajaxResult.map(items=>{
                         return (<div className="main" key={items.id} onClick={this.btnClick.bind(this,items.id)}>
-                            <ul className="pic" >
-                            <li><u>01</u><img src={items.imgurls.split(';')[0]}/></li>
-                            <li><u>02</u><img src={items.imgurls.split(';')[1]}/></li>
-                            <li><u>03</u><img src={items.imgurls.split(';')[2]}/></li>
-                        </ul>
-                        <h3 className="clearfix"><span>攻略</span><b>{items.title}</b></h3>
-                        <p>
-                        <b>2018/1/9</b>
-                        <span><i className="empty heart icon"></i>{items.likes}</span>                    
-                        <span><i className="talk outline icon"></i>{items.common}</span>           
-                        </p>
-                    
-
+                                <ul className="pic" >
+                                <li><u>01</u><img src={items.imgurls.split(';')[0]}/></li>
+                                <li><u>02</u><img src={items.imgurls.split(';')[1]}/></li>
+                                <li><u>03</u><img src={items.imgurls.split(';')[2]}/></li>
+                            </ul>
+                            <h3 className="clearfix"><span>攻略</span><b>{items.title}</b></h3>
+                            <p>
+                            <b>2018/1/9</b>
+                            <span><i className="empty heart icon"></i>{items.likes}</span>                    
+                            <span><i className="talk outline icon"></i>{items.common}</span>           
+                            </p>
                         </div>)
                     })
                 }</div>
@@ -47,7 +53,7 @@ class StrategyComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-    console.log(state)
+    console.log(state.strategylist,111)
     return {
         ajaxStatus: state.strategylist.status,
         ajaxResult: state.strategylist.result || []

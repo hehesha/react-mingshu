@@ -7,6 +7,7 @@ import * as actions from './checkAction';
 //把action挂载在props上了
 class CheckHomestay extends Component{
 	componentWillMount(){
+		console.log(this.props.permission)
 		this.props.getcheck()
 		
 	}
@@ -17,6 +18,10 @@ class CheckHomestay extends Component{
 	}
 	insertclick(hid,src,address,budget,city){
 		console.log(hid,src,address,budget,city);
+		this.props.insertclick(src,address,budget,city).then(function(){
+			alert('添加成功')
+			this.deleteclick(hid)
+		}.bind(this))
 	}
 	render(){
 		return(
@@ -30,7 +35,7 @@ class CheckHomestay extends Component{
 	               	 		{
              	 				this.props.ajaxResult.map(item =>{
              	 					return (
-             	 						<li key={item.hid}>
+             	 						<li key={item.hid} className='checkli'>
 											<img src={item.image_src}/>
 											<p>民宿地址:<span>{item.address}</span></p>
 											<p>预算价格:<span>{item.budget}</span></p>
@@ -52,7 +57,7 @@ class CheckHomestay extends Component{
 }
 //接受ajax的状态，请求回来的东西，通过this.props.ajaxStatus获取请求回来的东西
 let mapStateToProps = (state) =>{
-//	console.log(state),给个判断，让请求中underfined的时候不报错
+//	console.log(state.loginReducer)//,给个判断，让请求中underfined的时候不报错
 	return{
 		ajaxStatus:state.checkReducer.status,
 		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news

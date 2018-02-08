@@ -11,10 +11,19 @@ import * as actions from '../../../actions/strategyAction.js';
         this.props.getShare(this.props.location.query.id)
     }
     render(){
+        var style;
+        if(this.props.ajaxStatus==0){
+            style={display:'block'}
+        }else{
+            style={display:'none'}
+        }
       
         return (
 
             <div className="sare">
+                <div className="bloading" style={style}>
+                    <img src="./assets/bigloading.gif"/>
+                </div>
                 <header>
                 <p>
                     <i className="angle left icon" onClick={()=>hashHistory.goBack()}></i>
@@ -36,10 +45,10 @@ import * as actions from '../../../actions/strategyAction.js';
     }
 }
 let mapStateToProps = (state) => {
-    console.log(state)
+    console.log(state.sharelist,111)
     return {
-        ajaxStatus: state.strategylist.status,
-        ajaxResult: state.strategylist.result || []
+        ajaxStatus: state.sharelist.status,
+        ajaxResult: state.sharelist.result || []
     }
 }
 

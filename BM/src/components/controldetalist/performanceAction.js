@@ -9,7 +9,6 @@ export function getperformance(){
 }
 
 export function changeRate(aid,value){
-	console.log(aid,value);
 	return{
 		types:[performanceConstants.PERFORMANCE_REQUESTING,performanceConstants.PERFORMANCE_REQUESTED,performanceConstants.PERFORMANCE_REQUESTERROR],
 		url:'changerate',

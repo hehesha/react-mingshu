@@ -1,10 +1,16 @@
-/* 
-* @Author: Marte
-* @Date:   2018-02-08 10:47:01
-* @Last Modified by:   Marte
-* @Last Modified time: 2018-02-08 17:52:51
-*/
 
-$(document).ready(function(){
-    
-});
+exports.userchange = function(req, res, connection) {
+    var user = req.query.username;
+    var password = req.query.password;
+    connection.query(`SELECT * from user where username = '${user}'`, function(err, data) {
+        if(data.length==0){
+            res.send(false)
+            connection.end();
+        }else{
+            connection.query(`UPDATE user set password = '${password}' where username = '${user}'`)
+            res.send(true);
+            connection.end();
+        }
+    })
+}
+
