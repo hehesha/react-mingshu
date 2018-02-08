@@ -16,5 +16,17 @@ export function deleteHomestray(hid){
 		}
 	}
 }
+export function editHomestay(hid,city,price,title){
+	return{
+		types:[performanceConstants.PERFORMANCE_REQUESTING,performanceConstants.PERFORMANCE_REQUESTED,performanceConstants.PERFORMANCE_REQUESTERROR],
+		url:'edithhomestay',
+		data:{
+			hid:hid,
+			city:city,
+			price:price,
+			title:title
+		}
+	}
+}
 //假如需要传参
 //data:{}
