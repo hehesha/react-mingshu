@@ -15,7 +15,13 @@ import registerreducer from '../reducer/registerReducer.js'
 import changereducer from '../reducer/changeReducer.js'
 
 import getdetail from './detailReducer.js'
+import orderlist from './orderlistReducer.js'
 
+import setOrder from './orderReducer.js'
+
+import updateType from './tpyeReducer.js'
+
+import getCommon from './commonReducer.js'
 import deleteRelease from './deleteReducer.js'
 
 
@@ -29,6 +35,11 @@ export default combineReducers({
     sharelist,
     hotellist,
     getdetail,
+    orderlist,
+    setOrder,
+    updateType,
+    getCommon,
     myreleaseRoom,
     deleteRelease
+
 })

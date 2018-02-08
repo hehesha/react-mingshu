@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router'
+import {Link,hashHistory} from 'react-router'
 
 import cityLists from './city.js'
 import './citys.scss'
@@ -150,6 +150,7 @@ export default class cityComponent extends Component{
             this.setState({Z:Z})
     }
     componentDidMount() {
+        var self=this;
         window.onscroll = function () {
             // 变量t就是滚动条滚动时，到顶部的距离
             const t = document.documentElement.scrollTop || document.body.scrollTop;
@@ -158,7 +159,37 @@ export default class cityComponent extends Component{
                 top_view.style.display = t >= 100 ? 'block' : 'none';
             }
         };
+
+        // 点击跳转
+        var city=document.getElementsByClassName('citys')[0];
+        console.log(city);
+        city.onclick=function(e){
+            // console.log(e.target);
+            if(e.target.parentNode.parentNode.className=='citys_c'||e.target.parentNode.className=='citylist'){
+                console.log(e.target.innerText);
+                
+                var reg=/^[\u4e00-\u9fa5]+$/;
+                if(reg.test(e.target.innerText)){
+                    // 如果是汉字
+                    // 跳转到列表页
+                    self.toHotelList(e.target.innerText);
+                }
+            }
+            
+        }   
     }
+    // 跳转到列表页
+    toHotelList(city){
+        city=encodeURI(city);
+        hashHistory.push({  
+        pathname: '/searchHotel',
+        query:{
+            city:city
+        }
+        }); 
+
+    }
+
     // 返回顶部
     scrollToTop = () => {
         window.scrollTo(0, 0);
@@ -180,7 +211,7 @@ export default class cityComponent extends Component{
                     <div className="citys_t">
                         <div className="searchNav">
                             <i className="search icon" data-filtered="filtered"></i>
-                            <Link to="/recommend"><span>取消</span></Link>
+                            <span onClick={()=>hashHistory.goBack()}>取消</span>
                             <input type="text" placeholder="请输入目的地城市/景点商圈"/>
                             <div id='allmap'></div>
                         </div>
@@ -188,9 +219,12 @@ export default class cityComponent extends Component{
                     <div className="citys_c">   
                         <p>热门城市</p>
                         <ul className="clearfix">
+                            <li><Link to="searchhotel?city=成都">成都</Link></li>
+                            <li><Link to="searchhotel?city=大理">大理</Link></li>
+                            <li><Link to="searchhotel?city=武汉">武汉</Link></li>
+                            <li><Link to="searchhotel?city=厦门">厦门</Link></li>
+                            <li><Link to="searchhotel?city=上海">上海</Link></li>
                             <li>北京</li>
-                            <li>成都</li>
-                            <li>大连</li>
                             <li>广州</li>
                             <li>杭州</li>
                             <li>昆明</li>
@@ -199,14 +233,11 @@ export default class cityComponent extends Component{
                             <li>青岛</li>
                             <li>日照</li>
                             <li>三亚</li>
-                            <li>厦门</li>
-                            <li>上海</li>
                             <li>深圳</li>
                             <li>沈阳</li>
                             <li>苏州</li>
                             <li>天津</li>
                             <li>威海</li>
-                            <li>武汉</li>
                             <li>西安</li>
                             <li>烟台</li>
                             <li>长沙</li>

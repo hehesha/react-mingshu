@@ -7,13 +7,12 @@ import * as actions from '../../actions/strategyAction.js';
 
 class HomeComponent extends Component{
     componentWillMount(){
-        console.log(this.props.location.query.hid)
-        this.props.getDetail(this.props.location.query.hid)
+        console.log(this.props.location.query.id)
+        this.props.getDetail(this.props.location.query.id)
     }
     btnClick(n){
-        console.log(n)
         hashHistory.push({  
-            pathname: '/goodsorder',
+            pathname: '/preorder',
             query:{
                 hid:n,
             },  
