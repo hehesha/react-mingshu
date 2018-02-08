@@ -135,7 +135,28 @@ app.get('/selectAll', function(req, res) {
 	//引入查找模块
 	require('./router/select').selectAll(req,res,connection);
 	console.log(req.query)
+})
+
+//获取所有我发布的求租信息 余路的接口（不要在打错名字了各位）
+app.get('/myrelease', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/myRelease').myRelease(req,res,connection);
+	console.log(req.query)
 })	
+
+//删除发布求租的信息 
+app.get('/deleteRelease', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/deleteRelease').deleteRelease(req,res,connection);
+	console.log(req.query)
+})	
+
 //查找所有travel里面的东西
 app.get('/selectTravel', function(req, res) {
 	//  解决跨域
