@@ -7,6 +7,7 @@ import * as actions from './checkAction';
 //把action挂载在props上了
 class CheckHomestay extends Component{
 	componentWillMount(){
+		console.log(this.props.permission)
 		this.props.getcheck()
 		
 	}
@@ -56,7 +57,7 @@ class CheckHomestay extends Component{
 }
 //接受ajax的状态，请求回来的东西，通过this.props.ajaxStatus获取请求回来的东西
 let mapStateToProps = (state) =>{
-//	console.log(state),给个判断，让请求中underfined的时候不报错
+//	console.log(state.loginReducer)//,给个判断，让请求中underfined的时候不报错
 	return{
 		ajaxStatus:state.checkReducer.status,
 		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news

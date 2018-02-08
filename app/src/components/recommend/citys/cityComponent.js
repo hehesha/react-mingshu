@@ -185,7 +185,7 @@ export default class cityComponent extends Component{
                             <div id='allmap'></div>
                         </div>
                     </div>
-                    <div className="citys_c">
+                    <div className="citys_c">   
                         <p>热门城市</p>
                         <ul className="clearfix">
                             <li>北京</li>

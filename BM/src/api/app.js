@@ -7,7 +7,7 @@ var mysql = require("mysql");
 //连接服务器配置.......................................................................
 function createConnection() {
 	var connection = mysql.createConnection({
-		host: '10.3.136.153',//127.0.0.1
+		host: '10.3.136.153',// 127.0.0.1
 		user: 'root',
 		password: '',
 		database: 'homestay',
@@ -41,12 +41,7 @@ app.get('/edithhomestay', function(req, res) {
 
 
 //.......................赖俊豪写的两个接口...........................................
-app.post('/userregister',function(req,res){
-	// res.append("Access-Control-Allow-Origin", "*")
-	var connection = createConnection();
-	connection.connect();
-	require('./router/userregister.js').userregister(req,res,connection);
-})
+
 
 app.get('/userlogin',function(req,res){
 	// res.append("Access-Control-Allow-Origin", "*");
@@ -237,7 +232,6 @@ app.post('/release', function(req, res) {
 	connection.connect();
 	//引入插入模块	
 	require('./router/release').release(req,res,connection)
-	console.log(req.body)
 })
 
 
@@ -261,6 +255,28 @@ app.post('/loginadmin', function(req, res) {
 	//引入插入模块	
 	require('./router/register').loginAdmin(req,res,connection)
 })
+
+
+
+//赖俊豪写的
+app.post('/userregister', function(req, res) {
+	
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/userregister.js').userregister(req,res,connection)
+})
+app.post('/userchange', function(req, res) {
+	//  解决跨域
+	res.append("Access-Control-Allow-Origin", "*")
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/userchange.js').userchange(req,res,connection)
+})
+
 
 //监听该端口..............................................................................
 var server = app.listen(3000, function() {

@@ -10,11 +10,20 @@ const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 class ControlComponent extends Component{
+	state = {
+		aidname:'',
+		permission:'',
+	}
 	componentWillMount(){
 		var aid = this.props.location.query.aidnumber;
 		this.props.getaiddatalist(aid).then(function(res){
-			console.log(res);
-		});
+			this.setState({
+				aidname:res[0].username||0,
+				permission:res[0].permission||0,
+			})
+			console.log(this.state.aidname,this.state.permission);
+			
+		}.bind(this));
 	}
 	handleClick = (e) => {
 	//	    console.log('click ', e);
@@ -50,7 +59,18 @@ class ControlComponent extends Component{
 			    	
 			    </Col>
 			    <Col xs={12} sm={14} md={13} lg={10} xl={14}>
-			    	{this.props.children}
+			    	<div className="adminhead">
+			    		<ul>
+			    			<li>欢迎,管理者<span>{this.state.aidname}</span></li>
+			    			<li><Link to = '/login'>退出登录</Link></li>
+			    			
+			    		</ul>
+			    	</div>	
+			    	
+			    	{this.props.children && React.cloneElement(this.props.children, {
+			    		permission: this.state.permission
+			    	})}
+
 			    </Col>
 			    
 			 </Row>
