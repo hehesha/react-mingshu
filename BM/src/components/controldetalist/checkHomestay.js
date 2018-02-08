@@ -2,12 +2,13 @@ import React,{Component} from 'react'
 import { DatePicker,Input, Modal, Button} from 'antd';
 import {connect} from 'react-redux'
 import * as actions from './checkAction';
-
+import $ from 'jquery';
 //自动调用，需要用到一个生命周期 componentWillMount
 //把action挂载在props上了
 class CheckHomestay extends Component{
 	state = {
 		adminPermission:0,
+		lazyLoad:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1518105428615&di=f9050365179f55ade9f4c2e2d6749545&imgtype=0&src=http%3A%2F%2Fi2.wp.com%2Fpick.mydesy.com%2Fwp-content%2Fuploads%2F2016%2F09%2FPreloaders.gif%3Fresize%3D400%2C300'
 	}
 	componentWillMount(){
 		this.setState({
@@ -15,9 +16,30 @@ class CheckHomestay extends Component{
 		})
 		
 		this.props.getcheck().then(function(){
+			console.log(123);
+			var loadImages = this.lazyload();
+			loadImages();          
+			window.addEventListener('scroll', loadImages, false);
 			
 		}.bind(this))
 		
+	}
+	lazyload(){
+		var images = document.getElementsByTagName('img');
+		var len = images.length;
+		var n = 0;
+		return function(){
+			var seeHeight = document.documentElement.clientHeight;
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			for(var i = n; i < len; i++) {
+		    	if(images[i].offsetTop < seeHeight + scrollTop) {
+		        	if(images[i].getAttribute('src') === 'images/loading.gif') {
+			     		images[i].src = images[i].getAttribute('data-src');
+					}
+					n = n + 1;
+		     }
+			}
+		}
 	}
 	error(){
 		Modal.error({
@@ -68,7 +90,7 @@ class CheckHomestay extends Component{
              	 				this.props.ajaxResult.map(item =>{
              	 					return (
              	 						<li key={item.hid} className='checkli'>
-											<img src={item.image_src}/>
+											<img src={this.state.lazyLoad} data-src={item.image_src}/>
 											<p>民宿地址:<span>{item.address}</span></p>
 											<p>预算价格:<span>{item.budget}</span></p>
 											<p>所在城市:<span>{item.city}</span></p>
