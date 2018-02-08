@@ -1,17 +1,32 @@
 import React, {Component} from 'react'
-import './registerComponent.scss'
 import redux,{createStore} from 'redux'
+import * as actions from '../../actions/registerAction.js'
+import './registerComponent.scss'
+import {Link} from 'react-router'
+import http from 'superagent'
+import {connect} from 'react-redux'
+import {hashHistory} from 'react-router'
 
 
-export default class registerComponent extends Component{
+
+class registerComponent extends Component{
     register(){
-        console.log((this.refs.zhucezhanghao).value,(this.refs.zhucemima).value)
+        this.props.registerAction({username:(this.refs.zhucezhanghao).value,password:(this.refs.zhucemima).value}).then(res =>{
+            if(res == true){
+                alert('注册成功');
+                hashHistory.push({
+                    pathname:'/login'
+                })
+            }else{
+                alert('账号已被注册');
+            }
+        });  
     }
     render(){
         return(
             <div>
                 <div className="header1">
-                    <i className="angle left icon"></i>
+                    <Link to="/login"><i className="angle left icon"></i></Link>
                     <span>注册</span>
                 </div>
                 <div className="register">
@@ -25,9 +40,19 @@ export default class registerComponent extends Component{
                     </div>
                     <input type="text" onClick={this.register.bind(this)} className="save" value="注册"/>
                 </div>
+                
             </div>
         )
     }
 }
 
+let mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        loading:state.registerreducer.loading,
+        result:state.registerreducer.result,
+        error:state.registerreducer.error 
+    }
+}
 
+export default connect(mapStateToProps,actions)(registerComponent)

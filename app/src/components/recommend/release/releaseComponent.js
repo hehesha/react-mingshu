@@ -10,7 +10,6 @@ class releaseComponent extends Component{
     }
     rooms(event){
         if(event.target.tagName=='INPUT'){
-            console.log(event.target.value)
             this.setState({room:event.target.value})
         }
     }
@@ -18,7 +17,19 @@ class releaseComponent extends Component{
         var city = $('.city').val();
         var district = $('.district').val();
         var date = $('.date').val();
-        this.props.getstrategy(city,district,date,this.state.room)
+        if(city=='' || date=='' || district==''){
+            return ($('.ui.basic.modal').modal('show'))
+        }else{
+           this.props.getstrategy(city,district,date,this.state.room).then(()=>{
+                if(this.props.ajaxResult){
+                    alert('发布成功')
+                    window.location.reload();
+                }else{
+                    return alert('发布失败')
+                }
+            }) 
+        }
+        
     }
     render(){
         return (
@@ -65,7 +76,12 @@ class releaseComponent extends Component{
                         </div>
                     </div>
                 </div>
-                <div className="release1" onClick={this.wanted.bind(this)}><img src="../../../../assets/release1.png"/></div>
+                <div className="release1" onClick={this.wanted.bind(this)}>
+                    <img src="../../../../assets/release1.png"/>
+                </div>
+                <div className="ui basic modal" style={{fontSize:"50px",lineHeight:"70px",textAlign:"center"}}>
+                    请输入您需要求租的信息<br/>(不能为空)
+                </div>
             </div>
         )
     }
@@ -73,7 +89,6 @@ class releaseComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-    console.log(state)
     return {
         ajaxStatus: state.releaseRoom.status,
         ajaxResult: state.releaseRoom.result || []

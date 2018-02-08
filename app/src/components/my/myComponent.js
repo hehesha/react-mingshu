@@ -12,8 +12,8 @@ export default class HomeComponent extends Component{
                     <span><i className="comment outline icon"></i></span>
                 </div>
                 <div className="header_b">
-                    <p>用户4625</p>
-                    查看并编辑个人资料
+                    <Link to="/login"><p className="usermessage">{sessionStorage.getItem("username") || '未登录'}</p>
+                    查看并编辑个人资料</Link>
                 </div>
                 <ul className="function">
                     <li>
@@ -63,7 +63,7 @@ export default class HomeComponent extends Component{
                     </li>
                 </ul>
                 <p>客服电话:400-056-0055</p>
-            </div>
+             </div>
         )
     }
 }

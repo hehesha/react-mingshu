@@ -1,12 +1,33 @@
 import React,{Component} from 'react'
-import { Progress,Button,Icon } from 'antd';
+import { Progress,Button,Icon,Modal } from 'antd';
 
 import {connect} from 'react-redux'
 import * as actions from './getPlanAction';
 
+const confirm = Modal.confirm;
 class GetPlanComponent extends Component{
 	componentWillMount(){
 		this.props.getplan()
+	}
+	deletplane(wid){
+		this.props.closePlan(wid).then(function(){
+			this.props.getplan()
+			
+		}.bind(this));
+	}
+	showConfirm(wid){
+		var self = this;
+		confirm({
+    		title: 'Do you want to delete these items?',
+    		content: 'When clicked the OK button,it will be delete!',
+    	onOk() {
+      	return new Promise((resolve, reject) => {
+        	setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        	self.deletplane(wid)
+      	}).catch(() => console.log('Oops errors!'));
+    },
+    onCancel() {},
+  		});
 	}
 	render(){
 		return(
@@ -30,7 +51,7 @@ class GetPlanComponent extends Component{
 				               	 			<p>任务内容:</p>
 				               	 			<span>{item.content}</span>
 				               	 			<div>进度条:<Progress percent={item.percent*1} status="active" /></div>
-				               	 			<Button type="danger"><Icon type="close" />太难了,不干了</Button>
+				               	 			<Button type="danger" onClick={this.showConfirm.bind(this,item.wid)}><Icon type="close" />太难了,不干了</Button>
 				               	 		</li>
 	               	 				)
 	               	 			})

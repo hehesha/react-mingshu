@@ -1,7 +1,7 @@
 import http from 'superagent'
 
 let baseUrl = 'http://10.3.136.153:3000/'
-// let baseUrl='http://10.3.136.153:3000/'
+
 const geturl = (url) => {
     if(url.startsWith('http')){
         return url;

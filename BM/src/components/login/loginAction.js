@@ -1,13 +1,12 @@
 import * as ajaxConstants from '../../constaints/ajaxConstants'
-import * as performanceConstants from '../../constaints/performanceConstants'
+import * as loginConstants from '../../constaints/loginConstants'
 
 export function loginAdmin(username,password){
-	console.log(username,password)
 	return{
 		url:'loginadmin',
 		method:'post',
+		types:[loginConstants.LOGIN_REQUESTING,loginConstants.LOGIN_REQUESTED,loginConstants.LOGIN_REQUESTERROR],
 		data:{
-			types:[performanceConstants.PERFORMANCE_REQUESTING,performanceConstants.PERFORMANCE_REQUESTED,performanceConstants.PERFORMANCE_REQUESTERROR],
 			username:username,
 			password:password
 		}

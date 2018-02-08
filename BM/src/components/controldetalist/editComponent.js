@@ -1,18 +1,23 @@
 import React,{Component} from 'react'
-import { Button,Icon,Rate,Pagination } from 'antd';
+import { Button,Icon,Rate,Pagination,Modal } from 'antd';
 
 import {connect} from 'react-redux'
 import * as actions from './editAction';
 
 class EditComponent extends Component{
+	
 	componentWillMount(){
 		this.props.selectPage()
+		this.setState({
+			adminPermission:window.localStorage.Permission,
+		})
 	}
 	state = {
 		current:1,
 		price:'',
 		city:'',
 		title:'',
+		adminPermission:0,
 	}
 	onChange = (page) => {
    		this.setState({
@@ -20,11 +25,29 @@ class EditComponent extends Component{
     	});
     	this.props.selectPage(page);
   	}
+	error(){
+		Modal.error({
+			 title: '错误提示',
+    		 content: '你不是又酷又帅气能旋转跳跃飞舞的鱼露，你没权操作'
+		})
+	}
+	success(){
+		Modal.success({
+		    title: '温馨提示',
+		    content: '你已经成功操作',
+		});
+	}
 	delclick(hid){
-//		console.log(hid);
-		this.props.deleteHomestray(hid).then(function(){
-			this.props.selectPage(this.current)
-		}.bind(this))
+		if(this.state.adminPermission==1){
+			this.props.deleteHomestray(hid).then(function(){
+				this.success();
+				
+				this.props.selectPage(this.current)
+			}.bind(this))
+			
+		}else{
+			this.error();
+		}
 	}
 	saveclick(hid,hcity,htitle,hprice){
 		var city = this.state.city;
@@ -33,10 +56,13 @@ class EditComponent extends Component{
 		city = city != '' ? this.state.city : hcity;
 		price = price != '' ? this.state.price : hprice;
 		title = title != '' ? this.state.title : htitle;
-		
-		this.props.editHomestay(hid,city,this.state.price,this.state.title).then(function(){
-			alert('保存成功(#^.^#)')
-		})
+		if(this.state.adminPermission==1){
+			this.props.editHomestay(hid,city,this.state.price,this.state.title).then(function(){
+				this.success()
+			}.bind(this))
+		}else{
+			this.error();
+		}
 	}
 	editTab(event){
 		if(event.target.tagName=='TD'&&(event.target.className!='1'&&event.target.className!='5')){

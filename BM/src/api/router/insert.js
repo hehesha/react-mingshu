@@ -42,3 +42,18 @@ exports.insertCheck = function(req, res, connection) {
 		connection.end();
 	})
 }
+//订单插入
+exports.inserthzj = function(req, res, connection) {
+	console.log(req.query.room_id)
+	var room_id = req.query.room_id;
+	
+	connection.query(`INSERT into orderform (room_id)values('${room_id}')`, function(error, results, fields) {
+		if(error) throw error;
+		//results =>array类型
+		console.log('The solution is: ', results);
+		//把数据整理，返回到前端
+		
+		res.send(results);
+		connection.end();
+	})
+}

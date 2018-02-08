@@ -40,12 +40,7 @@ app.get('/edithhomestay', function(req, res) {
 
 
 //.......................赖俊豪写的两个接口...........................................
-app.post('/userregister',function(req,res){
-	// res.append("Access-Control-Allow-Origin", "*")
-	var connection = createConnection();
-	connection.connect();
-	require('./router/userregister.js').userregister(req,res,connection);
-})
+
 
 app.get('/userlogin',function(req,res){
 	// res.append("Access-Control-Allow-Origin", "*");
@@ -64,9 +59,35 @@ app.get('/selectaid', function(req, res) {
 	require('./router/select').selectAid(req,res,connection);
 	console.log(req.query)
 })	
+//订单插入
+app.get('/insertord', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/insert').inserthzj(req,res,connection)
+	console.log(req.query)
+})
 
+//删除工作计划
+app.get('/closeplan', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/del').closePlan(req,res,connection);
+	console.log(req.query)
+})
 
-
+//解雇员工
+app.get('/dismissal', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/del').disMissal(req,res,connection);
+	console.log(req.query)
+})
 
 //删除homestary里面的民宿信息
 app.get('/delethomestray', function(req, res) {
@@ -77,6 +98,7 @@ app.get('/delethomestray', function(req, res) {
 	require('./router/del').delSelf(req,res,connection);
 	console.log(req.query)
 })	
+
 //删除checkhomestay里面的民宿信息
 app.get('/deletcheck', function(req, res) {
 	
@@ -86,6 +108,7 @@ app.get('/deletcheck', function(req, res) {
 	require('./router/del').delCheck(req,res,connection);
 	console.log(req.query)
 })	
+
 //增加审核过关的民宿信息
 app.get('/insertcheck', function(req, res) {
 	
@@ -106,6 +129,7 @@ app.get('/insert', function(req, res) {
 	require('./router/insert').insert(req,res,connection)
 	console.log(req.query)
 })
+
 //根据hid获取酒店数据
 app.get('/selecthid', function(req, res) {
 	
@@ -135,7 +159,31 @@ app.get('/selectAll', function(req, res) {
 	//引入查找模块
 	require('./router/select').selectAll(req,res,connection);
 	console.log(req.query)
+})
+
+//获取所有我发布的求租信息 余路的接口（不要在打错名字了各位）
+app.get('/myrelease', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/myRelease').myRelease(req,res,connection);
+	console.log(req.query)
 })	
+
+<<<<<<< HEAD
+//删除发布求租的信息 
+app.get('/deleteRelease', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/deleteRelease').deleteRelease(req,res,connection);
+	console.log(req.query)
+})	
+
+=======
+>>>>>>> 6630380b967125fc7eb3a7ac43ae47cb61487822
 //查找所有travel里面的东西
 app.get('/selectTravel', function(req, res) {
 	//  解决跨域
@@ -147,6 +195,7 @@ app.get('/selectTravel', function(req, res) {
 	require('./router/select').selectTravel(req,res,connection);
 	console.log(req.query)
 })	
+
 // 每次查找十条酒店信息
 app.get('/selecthotel', function(req, res) {
 	//  解决跨域
@@ -219,7 +268,15 @@ app.get('/changerate', function(req, res) {
 	console.log(req.query)
 })	
 
-
+//更新订单状态
+app.get('/updateType', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/update').updateType(req,res,connection);
+	console.log(req.query)
+})	
 
 //要post请求...............................................................................
 // parse application/x-www-form-urlencoded 
@@ -259,6 +316,25 @@ app.post('/loginadmin', function(req, res) {
 	//引入插入模块	
 	require('./router/register').loginAdmin(req,res,connection)
 })
+
+
+
+//赖俊豪写的
+app.post('/userregister', function(req, res) {
+	
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/userregister.js').userregister(req,res,connection)
+})
+app.post('/userchange', function(req, res) {
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/userchange.js').userchange(req,res,connection)
+})
+
 
 //监听该端口..............................................................................
 var server = app.listen(3000, function() {
