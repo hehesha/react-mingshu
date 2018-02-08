@@ -5,11 +5,20 @@ import * as actions from '../../../actions/releaseAction.js';
 
 import './release.scss'
 class releaseComponent extends Component{
+    state = {
+        room:[],
+    }
+    rooms(event){
+        if(event.target.tagName=='INPUT'){
+            console.log(event.target.value)
+            this.setState({room:event.target.value})
+        }
+    }
     wanted(){
         var city = $('.city').val();
         var district = $('.district').val();
-        // var message={city}
-        this.props.getstrategy(city,district)
+        var date = $('.date').val();
+        this.props.getstrategy(city,district,date,this.state.room)
     }
     render(){
         return (
@@ -36,16 +45,16 @@ class releaseComponent extends Component{
                         </ul>
                         <div className="timeout">
                             <p>入住离店日期</p>
-                            <input placeholder="请输入入住和离店日期"/>
+                            <input placeholder="请输入入住和离店日期" className="date"/>
                         </div>
                     </div>
                     <div className="mains_b">
                         <p>房源户型</p>
-                        <ul>
-                        <li><label><input type="radio" name="room"/>1室</label></li>
-                        <li><label><input type="radio" name="room"/>2室</label></li>
-                        <li><label><input type="radio" name="room"/>3室</label></li>
-                        <li><label><input type="radio" name="room"/>4室以上</label></li>
+                        <ul onClick={this.rooms.bind(this)}>
+                        <li><label><input type="radio" name="room" value="1室"/>1室</label></li>
+                        <li><label><input type="radio" name="room" value="2室"/>2室</label></li>
+                        <li><label><input type="radio" name="room" value="3室"/>3室</label></li>
+                        <li><label><input type="radio" name="room" value="4室以上"/>4室以上</label></li>
                         </ul>
                         <div className="mains_b_room">
                             <p><span>入住人数</span></p>
