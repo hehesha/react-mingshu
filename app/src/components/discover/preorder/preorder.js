@@ -1,17 +1,50 @@
 import React from 'react'
 import './preorder.scss'
+import baseurl from '../../../baseurl'
 
-export default class PreorderComponent extends React.Component{
+import {connect} from 'react-redux'
+import {hashHistory,Link} from 'react-router'
+import * as actions from '../../../actions/strategyAction.js';
+
+class PreorderComponent extends React.Component{
+    componentWillMount(){
+        this.props.getDetail(this.props.location.query.hid)
+        console.log(this.props)
+    }
+    confirm(hid){
+        this.props.setOrder(this.props.location.query.hid).then(function(){
+            if(this.props.ajaxResult1.affectedRows == 1){
+                alert('预订成功')
+                hashHistory.push({  
+                    pathname: '/goodsorder',
+                    query:{
+                        hid:hid,
+                        orderid:this.props.ajaxResult1.insertId
+                    },  
+                })      
+            }
+        }.bind(this))
+        
+    }
     render(){
         return(
                 <div className="preorder">
                     <header className="pre_header">
-                       <i className="angle left icon" data-filtered="filtered"></i>预订
+                    <Link to={'detail?hid='+this.props.location.query.hid}>
+                        <i className="angle left icon" data-filtered="filtered"></i>预订
+                    </Link>
                     </header>
                     <main className="pre_main">
                         <div className="p_area clearfix">
-                            <div className="p_img"></div>
-                            <p>近南站号线地铁 公益西樵站 50米公益西樵站</p>
+                            <div className="p_img">
+                                <img src={this.props.ajaxResult.map(item=>{
+                                    return item.image_src
+                                })} />
+                            </div>
+                            <p>{this.props.ajaxResult.map(item=>{
+                                    return item.title
+                                })}
+                            </p>
                             <h4>宜住两人，最少入住1天</h4>
                         </div>
                         <ul className="j_massage">
@@ -52,19 +85,35 @@ export default class PreorderComponent extends React.Component{
                             <p>添加出行意外险（免费赠送一份）</p>
                             <i className="angle right icon" data-filtered="filtered"></i>                           
                         </div>
-                        <textarea>
-                           
-                        </textarea>
                         <div className="ui checkbox">
                           <input type="checkbox"  className="hidden"/>
                           <label>我同意<a>房东交易规则</a></label>
                         </div>
                     </main>
                     <footer className="pre_footer">
-                        <p>实付款： 328.00</p>
-                        <botton>立即预订</botton>
+                        <p>实付款：￥{this.props.ajaxResult.map(item=>{
+                                    return item.price.slice(0,item.price.length-1)
+                                })}.00
+                        </p>
+                        {
+                            this.props.ajaxResult.map(item => {
+                                return <botton key={item.hid} onClick={this.confirm.bind(this,item.hid)}>立即预订</botton>
+                            })
+                        }
                     </footer>
                 </div>
             )
     }
 }
+
+let mapStateToProps = (state) => {
+    // console.log(state)
+    return {
+        ajaxStatus: state.getdetail.status,
+        ajaxResult: state.getdetail.result || [],
+        ajaxStatus1:state.setOrder.status,
+        ajaxResult1:state.setOrder.result || []
+    }
+}
+
+export default connect(mapStateToProps, actions)(PreorderComponent);

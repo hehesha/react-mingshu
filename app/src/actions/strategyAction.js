@@ -1,6 +1,7 @@
 import * as ajaxConstants from '../constants/ajaxConstants'
 import * as strategyConstants from '../constants/strategyConstants.js'
 import * as shareConstants from '../constants/shareConstants.js'
+import * as orderConstants from '../constants/orderConstants'
 
 export function getstrategy(){
     return {
@@ -27,23 +28,41 @@ export function gethotel(city){
 }
 
 export function getDetail(id){
-    console.log(id)
+    // console.log(id)
     return{
         url:'selecthid',
-<<<<<<< HEAD
         data:{hid:id}
     }
 }
 
-=======
-        data:{hid:id},
-    }
-}
->>>>>>> 43f94d190759dc17d5bb1a6769abdd049ad0e23d
 export function sorthotel(city,sort){
     return{
         url:'sorthotel',
         data:{sort:sort,city:city},
         types:[strategyConstants.GETHOTEL_REQUESTING,strategyConstants.GETHOTEL_REQUESTED,strategyConstants.GETHOTEL_ERROR],
+    }
+}
+
+export function setOrder(hid){
+    // console.log(hid)
+    return{
+        url:'insertord',
+        data:{room_id:hid},
+        types:[orderConstants.ORDER_REQUESTING,orderConstants.ORDER_REQUESTED,orderConstants.ORDER_ERROR]
+    }
+}
+
+export function updateType(id,type){
+    return{
+        url:'updateType',
+        data:{id:id,type:type},
+        types:[orderConstants.TYPE_REQUESTING,orderConstants.TYPE_REQUESTED,orderConstants.TYPE_ERROR]
+    }
+}
+
+export function getCommon(){
+    return{
+        url:'selectcommon',
+        types:[orderConstants.COMMON_REQUESTING,orderConstants.COMMON_REQUESTED,orderConstants.COMMON_ERROR]
     }
 }

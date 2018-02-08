@@ -13,6 +13,12 @@ import loginreducer from '../reducer/loginReducer.js'
 
 import getdetail from './detailReducer.js'
 
+import setOrder from './orderReducer.js'
+
+import updateType from './tpyeReducer.js'
+
+import getCommon from './commonReducer.js'
+
 export default combineReducers({
     strategylist,
     releaseRoom,
@@ -21,5 +27,7 @@ export default combineReducers({
     sharelist,
     hotellist,
     getdetail,
-
+    setOrder,
+    updateType,
+    getCommon,
 })
