@@ -1,13 +1,50 @@
 import React, {Component} from 'react'
 import './goodsOrder.scss'
-import {Link} from 'react-router'
+import baseurl from '../../baseurl'
 
-export default class goodsOrderComponent extends Component{
+import {connect} from 'react-redux'
+import {hashHistory,Link} from 'react-router'
+import * as actions from '../../actions/strategyAction.js';
+
+class GoodsOrderComponent extends Component{
+    componentWillMount(){
+        this.props.getDetail(this.props.location.query.hid)
+    }
+    cancel(){
+        this.props.updateType(this.props.location.query.orderid,3).then(function(results){
+            if(results.message.split('Changed:')[1].trim().slice(0,1) == 0){
+                alert('订单已取消')
+                hashHistory.push({  
+                    pathname: '/recommend'
+                })    
+            }else{
+                alert('订单取消成功')
+                hashHistory.push({  
+                    pathname: '/discover/find'
+                })  
+            }
+        }.bind(this))
+    }
+    payment(){
+        this.props.updateType(this.props.location.query.orderid,1).then(function(results){
+            if(results.message.split('Changed:')[1].trim().slice(0,1) == 0){
+                alert('订单已支付')
+                hashHistory.push({  
+                    pathname: '/recommend'
+                })    
+            }else{
+                alert('支付成功')
+                hashHistory.push({  
+                    pathname: '/order'
+                })  
+            }
+        }.bind(this))
+    }
     render(){
         return (
             <div className="goodsorder">
                 <div className="head">
-                    <Link to=""><i className="chevron left icon" data-filtered="filtered"></i></Link>
+                    <Link to={'detail?hid='+this.props.location.query.hid}><i className="chevron left icon" data-filtered="filtered"></i></Link>
                     <span>订单详情</span>
                 </div>
                 <div className="head_t">
@@ -21,11 +58,15 @@ export default class goodsOrderComponent extends Component{
                 <div className="mains">
                     <div className="mains_t">
                         <div className="indent clearfix">
-                                <img src="../../../assets/dali1.jpg"/>
+                                <img src={this.props.ajaxResult.map(item=>{
+                                    return item.image_src
+                                })}/>
                             <div className="indent_r">
-                                <p>大理古城整棟独立房源,四室两厅大...</p>
-                                <p>2018-03-01 至 2018-03-03</p>
-                                <p>1套 共2晚</p>
+                                <p>{this.props.ajaxResult.map(item=>{
+                                    return item.title
+                                })}</p>
+                                <p>2018-03-01 至 2018-03-02</p>
+                                <p>1套 共1晚</p>
                             </div>
                             
                         </div>
@@ -33,7 +74,11 @@ export default class goodsOrderComponent extends Component{
                     <div className="mains_c">
                         <ul className="mains_c_t">
                             <li>
-                                <span>房东：大理沐府客栈</span>
+                                <span>房东：{this.props.ajaxResult.map(item=>{
+                                            // console.log(item)
+                                            return item.title
+                                        })}
+                                </span>
                                 <span style={{color:"#F88B84"}}><i className="calendar outline icon" data-filtered="filtered" style={{color:"#F88B84"}}></i>联系房东</span>
                             </li>
                             <li>
@@ -52,7 +97,11 @@ export default class goodsOrderComponent extends Component{
                             </li>
                             <li>
                                 <span>房款总额</span>
-                                <span style={{color:"#B5B5B5"}}>￥1098.00</span>
+                                <span style={{color:"#B5B5B5"}}>￥{
+                                        this.props.ajaxResult.map(item=>{
+                                        return item.price.slice(0,item.price.length-1)
+                                    })}
+                                </span>
                             </li>
                             <li>
                                 <span>优惠券</span>
@@ -64,7 +113,11 @@ export default class goodsOrderComponent extends Component{
                             </li>
                             <li>
                                 <span>实付款</span>
-                                <span>￥1048.00</span>
+                                <span>￥{
+                                        this.props.ajaxResult.map(item=>{
+                                        return item.price.slice(0,item.price.length-1)-50
+                                    })}
+                                </span>
                             </li>
                             <li>
                                 <span>入住日7天前中午12：00之前申请退款无违约金</span>
@@ -85,10 +138,22 @@ export default class goodsOrderComponent extends Component{
                     <div className="main_foot"></div>
                 </div>
                 <div className="payment">
-                    <img src="../../../assets/quxiao.jpg"/>
-                    <img src="../../../assets/zhifu.jpg"/>
+                    <img src="../../../assets/quxiao.jpg" onClick={this.cancel.bind(this)}/>
+                    <img src="../../../assets/zhifu.jpg"  onClick={this.payment.bind(this)}/>
                 </div>
             </div>
         )
     }
+
 }
+
+let mapStateToProps = (state) => {
+    return {
+        ajaxStatus: state.getdetail.status,
+        ajaxResult: state.getdetail.result || [],
+        ajaxStatus1:state.updateType.status,
+        ajaxResult1:state.updateType.result || []
+    }
+}
+
+export default connect(mapStateToProps, actions)(GoodsOrderComponent);

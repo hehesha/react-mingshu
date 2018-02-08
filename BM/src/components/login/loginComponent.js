@@ -25,6 +25,7 @@ class LoginComponent extends Component{
 			this.setState({
 				display:'none'
 			})
+			
 		}else{
 			this.setState({
 				display:'block'
@@ -33,18 +34,26 @@ class LoginComponent extends Component{
 	}
 	login(){
 		this.props.loginAdmin(this.state.username,this.state.password).then(function(res){
-			alert('登录成功，正在跳转....')
-			hashHistory.push({
-				pathname:'/control',
-				query:{
-					aidnumber:res[0].aid
-				}
-			})
+			
+			if(res==false){
+				alert("登录失败，请检查用户名或密码")
+			}else{
+				window.localStorage.aid = res[0].aid
+				window.localStorage.Permission = res[0].permission
+				alert('登录成功，正在进入..')
+				hashHistory.push({
+					pathname:'/control',
+//					query:{
+//						aidnumber:res[0].aid
+//					}
+				})
+				
+			}
 		})
 		
 	}
 	render(){
-
+		
 		return(
 			<div className="userbox">
 				<div className="snow-container">
@@ -90,7 +99,7 @@ let mapStateToProps = (state) =>{
 	return{
 		ajaxStatus:state.checkReducer.status,
 		ajaxResult:state.checkReducer.result == undefined ? [] : state.checkReducer.result.news
-
+	
 	}
 }
 //把组件，状态，方法发射出去（代替export default class Component）

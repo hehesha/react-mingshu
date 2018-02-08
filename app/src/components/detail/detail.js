@@ -11,9 +11,8 @@ class HomeComponent extends Component{
         this.props.getDetail(this.props.location.query.id)
     }
     btnClick(n){
-        console.log(n)
         hashHistory.push({  
-            pathname: '/goodsorder',
+            pathname: '/preorder',
             query:{
                 hid:n,
             },  

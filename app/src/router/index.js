@@ -8,7 +8,9 @@ import cityComponent from '../components/recommend/citys/cityComponent'
 import discoverComponent from '../components/discover/discoverComponent'
 import myComponent from '../components/my/myComponent'
 import orderComponent from '../components/order/orderComponent.js'
-// import goodsOrderComponent from '../components/order/goodsOrderComponent'
+
+import goodsOrderComponent from '../components/order/goodsOrderComponent'
+
 
 import settingComponent from '../components/my/settingComponent.js'
 import changePasswordComponent from '../components/my/changePasswordComponent.js'
@@ -25,7 +27,6 @@ import storyComponent from '../components/discover/story/story'
 import releaseComponent from '../components/recommend/release/releaseComponent'
 import SearchHotel from '../components/searchHotel/searchHotel.js'
 import SareComponent from '../components/discover/sare/sare.js'
-import goodsOrderComponent from '../components/order/goodsOrderComponent'
 
 
 import myReleaseComponent from '../components/recommend/release/myReleaseComponent'

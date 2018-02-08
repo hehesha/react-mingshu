@@ -219,9 +219,12 @@ export default class cityComponent extends Component{
                     <div className="citys_c">   
                         <p>热门城市</p>
                         <ul className="clearfix">
+                            <li><Link to="searchhotel?city=成都">成都</Link></li>
+                            <li><Link to="searchhotel?city=大理">大理</Link></li>
+                            <li><Link to="searchhotel?city=武汉">武汉</Link></li>
+                            <li><Link to="searchhotel?city=厦门">厦门</Link></li>
+                            <li><Link to="searchhotel?city=上海">上海</Link></li>
                             <li>北京</li>
-                            <li>成都</li>
-                            <li>大连</li>
                             <li>广州</li>
                             <li>杭州</li>
                             <li>昆明</li>
@@ -230,14 +233,11 @@ export default class cityComponent extends Component{
                             <li>青岛</li>
                             <li>日照</li>
                             <li>三亚</li>
-                            <li>厦门</li>
-                            <li>上海</li>
                             <li>深圳</li>
                             <li>沈阳</li>
                             <li>苏州</li>
                             <li>天津</li>
                             <li>威海</li>
-                            <li>武汉</li>
                             <li>西安</li>
                             <li>烟台</li>
                             <li>长沙</li>

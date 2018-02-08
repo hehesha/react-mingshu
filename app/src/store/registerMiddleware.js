@@ -4,11 +4,11 @@ import http from '../utils/httpclient'
 export function middleware(api){
     return function(dispatch){
         return function(action){
-            let {types, type, url, method = 'get',data = {}} = action;
+            let {types, type, url, method = 'post',data = {}} = action;
             if(!url){
                 return dispatch(action);
             }
-            api.dispatch({type:constants.LOGIN_REQUESTING});
+            api.dispatch({type:constants.REGISTER_REQUESTING});
             if(url){
                 return new Promise((resolve,reject)=>{
                     http[method](url)
@@ -16,13 +16,13 @@ export function middleware(api){
                     .end((error,res) => {
                         if(error){
                             api.dispatch({
-                                type:constants.LOGIN_REQUESTERROR,
+                                type:constants.REGISTER_REQUESTERRO,
                                 result:error
                             })
                             reject(error)
                         }else{
                             api.dispatch({
-                                type:constants.LOGIN_REQUESTED,
+                                type:constants.REGISTER_REQUESTED,
                                 result:res
                             })
                         }

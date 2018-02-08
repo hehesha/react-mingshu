@@ -6,10 +6,23 @@ import './loginComponent.scss'
 import {Link} from 'react-router'
 import http from 'superagent'
 import {connect} from 'react-redux'
+import {hashHistory} from 'react-router'
 
 class loginComponent extends Component{
     login(){
-        this.props.loginAction({username:(this.refs.zhanghao).value,password:(this.refs.mima).value});  
+        var value = (this.refs.zhanghao).value
+        this.props.loginAction({username:(this.refs.zhanghao).value,password:(this.refs.mima).value}).then(res =>{
+            if(res == true){
+                alert('登陆成功')
+                hashHistory.push({
+                    pathname:'/my',
+                    query:{name:(this.refs.zhanghao).value}
+                })
+                 sessionStorage.setItem("username", value)
+            }else{
+                alert('帐号没注册或者密码错误');
+            }
+        });  
     }
     render(){
        return(
@@ -29,7 +42,6 @@ class loginComponent extends Component{
                     </div>
                     <input type="button" className="save" value="登录" onClick={this.login.bind(this)}/>
                     <Link to="register"><p className="link">还没有账号？</p></Link>
-                    <p>{this.props.result}</p>
                 </div>
             </div>
         )
@@ -37,10 +49,11 @@ class loginComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
+    console.log(state);
     return {
-        loading:state.loading,
-        result:state.result,
-        error:state.error 
+        loading:state.loginreducer.loading,
+        result:state.loginreducer.result,
+        error:state.loginreducer.error 
     }
 }
 
