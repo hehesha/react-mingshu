@@ -30,16 +30,10 @@ export function getDetail(id){
     console.log(id)
     return{
         url:'selecthid',
-<<<<<<< HEAD
         data:{hid:id}
     }
 }
 
-=======
-        data:{hid:id},
-    }
-}
->>>>>>> 43f94d190759dc17d5bb1a6769abdd049ad0e23d
 export function sorthotel(city,sort){
     return{
         url:'sorthotel',

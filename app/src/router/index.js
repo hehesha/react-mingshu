@@ -25,7 +25,6 @@ import storyComponent from '../components/discover/story/story'
 import releaseComponent from '../components/recommend/release/releaseComponent'
 import SearchHotel from '../components/searchHotel/searchHotel.js'
 import SareComponent from '../components/discover/sare/sare.js'
-import goodsOrderComponent from '../components/order/goodsOrderComponent'
 
 
 import myReleaseComponent from '../components/recommend/release/myReleaseComponent'
