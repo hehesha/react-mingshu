@@ -15,10 +15,16 @@ class SearchhotelComponent extends Component{
         // 拉倒底部自动加载更多
         var self=this;
         var h_main=document.getElementsByClassName('h_main')[0];
-        var foot=document.getElementById('foot')
         h_main.onscroll=function(){
             if(h_main.scrollHeight-h_main.scrollTop==h_main.clientHeight){
+                console.log(self.props.ajaxResult.length%10)
+               if(self.props.ajaxResult.length%10==0){
+
                 self.getlist();
+               }else{
+                    var end=document.getElementById('end');
+                    end.style.display="block";
+               }
             }
         }
     }  
@@ -63,27 +69,28 @@ class SearchhotelComponent extends Component{
         h_sort[0].style.display='none';
     }
     render(){
-       
-        var style,style1;
+       var style={display:'none'};
+       var style2={display:'none'};
+        var style1;
         if(this.props.ajaxStatus==0){
-                style={display:'block'}
-                style1={display:'none'}
+                style1={display:'block'}
+               
         }else{
-            style={display:'none'}
-            style1={display:'block'}
+            style1={display:'none'}
+           
         }      
         return (
             <div className="searchhotel">
                 <header className="h_header">
                     <i className="angle left icon" onClick={()=>hashHistory.goBack()}></i>
                     <div className="search">
-                        <div className="location">
-                            <input type="text" value={decodeURI(this.props.location.query.city)}/>
+                        <div className="location" onClick={()=>hashHistory.push('/city')}>
+                            <input type="text" placeholder={decodeURI(this.props.location.query.city)}/>
                             <i className="caret down icon"></i>
                         </div>
                         <div className="find">
                              <i className="search icon"></i>
-                             <input type="text" value="搜索景点/商圈/关键字"/>
+                             <input type="text" placeholder="搜索景点/商圈/关键字"/>
                         </div>
                     </div>
                     <i className="marker icon"></i>
@@ -136,9 +143,10 @@ class SearchhotelComponent extends Component{
                            
                     
                     
-                    <div id="loading" style={style}>
+                    <div id="loading" style={style1}>
                         <img src='./assets/loading.gif'/>
                     </div>
+                    <p style={style2} id="end">已经到最底啦</p>
                 </main>
                  
             </div>

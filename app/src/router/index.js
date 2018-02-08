@@ -8,7 +8,7 @@ import cityComponent from '../components/recommend/citys/cityComponent'
 import discoverComponent from '../components/discover/discoverComponent'
 import myComponent from '../components/my/myComponent'
 import orderComponent from '../components/order/orderComponent.js'
-import goodsOrderComponent from '../components/order/goodsOrderComponent'
+// import goodsOrderComponent from '../components/order/goodsOrderComponent'
 
 import settingComponent from '../components/my/settingComponent.js'
 import changePasswordComponent from '../components/my/changePasswordComponent.js'
@@ -30,6 +30,7 @@ import goodsOrderComponent from '../components/order/goodsOrderComponent'
 
 import myReleaseComponent from '../components/recommend/release/myReleaseComponent'
 import DetailComponent from '../components/detail/detail'
+import orderlist from '../components/order/orderlist.js'
 
 
 
@@ -46,7 +47,9 @@ const routes = (
             <Route path="story" component={storyComponent}/>
         </Route>
         <Route path="my" component={myComponent}/>
-        <Route path="order" component={orderComponent}/>
+        <Route path="order" component={orderComponent}>
+               <Route path="orderlist" component={orderlist}/>
+        </Route>
         <Route path="goodsorder" component={goodsOrderComponent}/>
 
         <Route path="setting" component={settingComponent}/>

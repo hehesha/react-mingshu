@@ -12,6 +12,7 @@ import getpage from './findReducer.js'
 import loginreducer from '../reducer/loginReducer.js'
 
 import getdetail from './detailReducer.js'
+import orderlist from './orderlistReducer.js'
 
 export default combineReducers({
     strategylist,
@@ -21,5 +22,6 @@ export default combineReducers({
     sharelist,
     hotellist,
     getdetail,
+    orderlist
 
 })

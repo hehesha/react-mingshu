@@ -1,18 +1,9 @@
 import http from 'superagent'
 
-<<<<<<< HEAD
-// let baseUrl = 'http://localhost:3000/'
-let baseUrl='http://10.3.136.153:3000/'
-=======
-<<<<<<< HEAD
-let baseUrl = 'http://10.3.136.153:3000/'
-// let baseUrl='http://10.3.136.153:3000/'
-=======
 
-// let baseUrl = 'http://localhost:3000/'
-let baseUrl='http://10.3.136.153:3000/'
->>>>>>> 43f94d190759dc17d5bb1a6769abdd049ad0e23d
->>>>>>> 90726a879343722182b1768a037e36af9ae8234a
+let baseUrl = 'http://localhost:3000/'
+// let baseUrl='http://10.3.136.153:3000/'
+
 const geturl = (url) => {
     if(url.startsWith('http')){
         return url;

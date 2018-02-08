@@ -214,7 +214,15 @@ app.get('/changerate', function(req, res) {
 	require('./router/update').updaterare(req,res,connection);
 	console.log(req.query)
 })	
-
+//获取订单信息
+app.get('/getorder', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/orderlist').orderlist(req,res,connection);
+	console.log(req.query)
+})	
 
 
 //要post请求...............................................................................
