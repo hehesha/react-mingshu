@@ -61,6 +61,22 @@
         justify-content:space-around;
         margin-top:0.4rem;
         margin-bottom:0.266667rem;
+        position:relative;
+        .h_sort{
+            position:absolute;
+            width:100%;
+            background:#fff;
+            top:1.2rem;
+            z-index:30; 
+            display:none;           
+            li{
+                border-bottom:0.013333rem solid #ccc;
+                text-align:center;
+                padding:0.266667rem 0;
+                font-size:0.373333rem;
+                color:#ccc;
+            }
+        }
         dl{
             text-align:center;
         }
@@ -145,6 +161,10 @@
                     }
                 }
             }
+        }
+        #loading{
+            height:0.426667rem;
+            text-align:center;
         }
     }
 }

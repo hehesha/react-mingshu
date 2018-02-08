@@ -6,7 +6,17 @@ import * as actions from '../../actions/strategyAction.js';
 
 class SearchhotelComponent extends Component{
     componentWillMount(){
-        var city=this.props.location.query.city;
+        // var city=this.props.location.query.city;
+        // this.props.gethotel(city)
+        this.getlist();
+    }
+    getlist(city){
+        var city;
+        if(city){
+            city=city;
+        }else{
+         city=this.props.location.query.city;
+        }
         this.props.gethotel(city)
     }
     toDetail(id){
@@ -17,7 +27,40 @@ class SearchhotelComponent extends Component{
         }
         });  
     }
+    sort(){
+        var h_sort=document.getElementsByClassName('h_sort');
+        console.log(h_sort);
+        if(h_sort[0].style.display=='block'){
+            h_sort[0].style.display='none'
+        }else{
+            h_sort[0].style.display='block';
+        }
+    }
+    getSort(e){
+        var h_sort=document.getElementsByClassName('h_sort');
+        console.log(e.target.innerText);
+        if(e.target.innerText=='默认排序'){
+            this.getlist();
+        }
+        if(e.target.innerText=='价格高到低'){
+            this.props.sorthotel(this.props.location.query.city,'DESC');
+        }
+        if(e.target.innerText=='价格低到高'){
+            this.props.sorthotel(this.props.location.query.city,'ASC');
+        }
+        h_sort[0].style.display='none';
+    }
     render(){
+        var html='下拉加载更多';
+        var style,style1;
+        if(this.props.ajaxStatus==0){
+                style={display:'block'}
+                style1={display:'none'}
+        }else{
+            style={display:'none'}
+            style1={display:'block'}
+        }
+         
         return (
             <div className="searchhotel">
                 <header className="h_header">
@@ -43,7 +86,7 @@ class SearchhotelComponent extends Component{
                         <dt>位置区域</dt>
                         <dd>选择位置</dd>
                     </dl>
-                    <dl>
+                    <dl onClick={this.sort.bind(this)}>
                         <dt>推荐排序</dt>
                         <dd>默认排序</dd>
                     </dl>
@@ -51,11 +94,18 @@ class SearchhotelComponent extends Component{
                         <dt>更多筛选</dt>
                         <dd>选择条件</dd>
                     </dl>
+                    <ul className="h_sort" style={style} onClick={this.getSort.bind(this)}>
+                            <li>默认排序</li>
+                            <li>价格高到低</li>
+                            <li>价格低到高</li>
+                            <li>最新房源</li>
+                            <li>最受欢迎</li>
+                        </ul>
                 </nav>
                 <main className="h_main">
                         {this.props.ajaxResult.map(item=>{
                             return (
-                                <div className="hcontent" key={item.hid} onClick={this.toDetail.bind(this,item.hid)}>
+                                <div className="hcontent" key={item.hid} onClick={this.getlist}>
                                     <div className="pic">
                                         <img src={item.image_src} />
                                         <span>￥{item.price}</span>
@@ -74,7 +124,10 @@ class SearchhotelComponent extends Component{
                         })}
                         
                     
-                    <span onClick={this.props.gethotel.bind(this,decodeURI(this.props.location.query.city))}>加载更多</span>
+                    <span onClick={this.props.gethotel.bind(this,decodeURI(this.props.location.query.city))} style={style1}>{html}</span>
+                    <div id="loading" style={style}>
+                        <img src='./assets/loading.gif'/>
+                    </div>
                 </main>
                  
             </div>
@@ -83,7 +136,7 @@ class SearchhotelComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-    console.log(state,111);
+    console.log(state.hotellist,111);
     return {
         
         ajaxStatus: state.hotellist.status,
