@@ -18,10 +18,11 @@ class ControlComponent extends Component{
 		var aid = this.props.location.query.aidnumber;
 		this.props.getaiddatalist(aid).then(function(res){
 			this.setState({
-				aidname:res[0].username,
-				permission:res[0].permission
+				aidname:res[0].username||0,
+				permission:res[0].permission||0,
 			})
 			console.log(this.state.aidname,this.state.permission);
+			
 		}.bind(this));
 	}
 	handleClick = (e) => {
@@ -64,8 +65,12 @@ class ControlComponent extends Component{
 			    			<li><Link to = '/login'>退出登录</Link></li>
 			    			
 			    		</ul>
-			    	</div>
-			    	{this.props.children}
+			    	</div>	
+			    	
+			    	{this.props.children && React.cloneElement(this.props.children, {
+			    		permission: this.state.permission
+			    	})}
+
 			    </Col>
 			    
 			 </Row>
