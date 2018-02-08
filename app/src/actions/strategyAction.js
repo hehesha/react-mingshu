@@ -26,18 +26,18 @@ export function gethotel(city){
     }
 }
 
-<<<<<<< HEAD
 export function getDetail(id){
     console.log(id)
     return{
         url:'selecthid',
-        data:{hid:id},
-=======
+        data:{hid:id}
+    }
+}
+
 export function sorthotel(city,sort){
     return{
         url:'sorthotel',
         data:{sort:sort,city:city},
->>>>>>> f7a5f3cb6039bc38dbf0e8bbf14fa109bbffe11d
         types:[strategyConstants.GETHOTEL_REQUESTING,strategyConstants.GETHOTEL_REQUESTED,strategyConstants.GETHOTEL_ERROR],
     }
 }
