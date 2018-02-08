@@ -23,23 +23,23 @@ app.all('*', function(req, res, next) {
     next();
 });
 
+
+app.use(express.static('public'));
+// parse application/json 
+
 app.post('/userRegister',function(req,res){
-	res.append("Access-Control-Allow-Origin", "*")
+	
 	var connection = createConnection();
 	connection.connect();
 	require('./router/userregister.js').userregister(req,res,connection);
 })
 
 app.get('/userLogin',function(req,res){
-	res.append("Access-Control-Allow-Origin", "*");
+	
 	var connection = createConnection();
 	connection.connect();
 	require('./router/userlogin.js').userlogin(req,res,connection);
 })
-
-app.use(express.static('public'));
-// parse application/json 
-
 //get请求.................................................................................
 //删除homestary里面的民宿信息
 app.get('/delethomestray', function(req, res) {
@@ -184,6 +184,25 @@ app.post('/registeradmin', function(req, res) {
 	require('./router/register').registerAdmin(req,res,connection)
 })
 
+app.post('/userregister', function(req, res) {
+	//  解决跨域
+	res.append("Access-Control-Allow-Origin", "*")
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/userregister.js').userregister(req,res,connection)
+})
+
+app.post('/userchange', function(req, res) {
+	//  解决跨域
+	res.append("Access-Control-Allow-Origin", "*")
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/userchange.js').userchange(req,res,connection)
+})
 //监听该端口..............................................................................
 var server = app.listen(3000, function() {
 	//测试
