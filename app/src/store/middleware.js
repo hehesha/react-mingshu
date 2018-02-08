@@ -4,10 +4,7 @@ import * as ajaxContants from '../constants/ajaxConstants'
 export default function middleware(api){
     return function(dispatch){
         return function(action){
-
-            
             let {type, types, method = 'get', data = {}, url} = action;
-            
 
             if(!url){
                 return dispatch(action);

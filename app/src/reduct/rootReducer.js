@@ -8,12 +8,13 @@ import hotellist from './hotelReducer.js'
 import getpage from './findReducer.js'
 import loginreducer from '../reducer/loginReducer.js'
 
+import getdetail from './detailReducer.js'
+
 export default combineReducers({
     strategylist,
     getpage,
     loginreducer,
     sharelist,
-    hotellist
-
-
+    hotellist,
+    getdetail,
 })

@@ -1,14 +1,21 @@
 import React, {Component} from 'react'
 import './detail.scss'
 
-export default class HomeComponent extends Component{
+import {connect} from 'react-redux'
+import {hashHistory} from 'react-router'
+import * as actions from '../../actions/strategyAction.js';
+
+class HomeComponent extends Component{
     componentWillMount(){
         console.log(this.props.location.query.id)
-        
+        this.props.getDetail(this.props.location.query.id)
     }
     render(){
         return (
             <div className="detail">
+            {
+                console.log(this.props.ajaxResult)
+            }
                  <div className="photos">
                     <ul>
                         <li><img src="../../../assets/02.jpg"/></li>
@@ -211,3 +218,13 @@ export default class HomeComponent extends Component{
     }
 
 }
+
+let mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        ajaxStatus: state.getdetail.status,
+        ajaxResult: state.getdetail.result || []
+    }
+}
+
+export default connect(mapStateToProps, actions)(HomeComponent);

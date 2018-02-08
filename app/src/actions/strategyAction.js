@@ -25,3 +25,12 @@ export function gethotel(city){
         types:[strategyConstants.GETHOTEL_REQUESTING,strategyConstants.GETHOTEL_REQUESTED,strategyConstants.GETHOTEL_ERROR],
     }
 }
+
+export function getDetail(id){
+    console.log(id)
+    return{
+        url:'selecthid',
+        data:{hid:id},
+        types:[strategyConstants.GETHOTEL_REQUESTING,strategyConstants.GETHOTEL_REQUESTED,strategyConstants.GETHOTEL_ERROR],
+    }
+}
