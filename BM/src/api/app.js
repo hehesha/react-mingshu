@@ -69,6 +69,16 @@ app.get('/insertord', function(req, res) {
 	console.log(req.query)
 })
 
+//删除工作计划
+app.get('/closeplan', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/del').closePlan(req,res,connection);
+	console.log(req.query)
+})
+
 //解雇员工
 app.get('/dismissal', function(req, res) {
 	

@@ -57,3 +57,21 @@ exports.disMissal=function(req,res,connection){
 	});
 	
 }
+
+//删除工作计划
+exports.closePlan=function(req,res,connection){
+	var wid = req.query.wid;
+	connection.query(`delete FROM workplan where wid ='${wid}' `, function(error, results, fields) {
+		if(error) throw error;
+		//results =>array类型
+		console.log('The solution is: ', results);
+		//把数据整理，返回到前端
+		var obj = {
+			news: results,
+			status: true
+		}
+		res.send(JSON.stringify(obj));
+		connection.end();
+	});
+	
+}
