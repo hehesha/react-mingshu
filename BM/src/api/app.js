@@ -59,9 +59,25 @@ app.get('/selectaid', function(req, res) {
 	require('./router/select').selectAid(req,res,connection);
 	console.log(req.query)
 })	
+//订单插入
+app.get('/insertord', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/insert').inserthzj(req,res,connection)
+	console.log(req.query)
+})
 
-
-
+//解雇员工
+app.get('/dismissal', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/del').disMissal(req,res,connection);
+	console.log(req.query)
+})
 
 //删除homestary里面的民宿信息
 app.get('/delethomestray', function(req, res) {
@@ -72,6 +88,7 @@ app.get('/delethomestray', function(req, res) {
 	require('./router/del').delSelf(req,res,connection);
 	console.log(req.query)
 })	
+
 //删除checkhomestay里面的民宿信息
 app.get('/deletcheck', function(req, res) {
 	
@@ -81,6 +98,7 @@ app.get('/deletcheck', function(req, res) {
 	require('./router/del').delCheck(req,res,connection);
 	console.log(req.query)
 })	
+
 //增加审核过关的民宿信息
 app.get('/insertcheck', function(req, res) {
 	
@@ -101,6 +119,7 @@ app.get('/insert', function(req, res) {
 	require('./router/insert').insert(req,res,connection)
 	console.log(req.query)
 })
+
 //根据hid获取酒店数据
 app.get('/selecthid', function(req, res) {
 	
@@ -131,6 +150,7 @@ app.get('/selectAll', function(req, res) {
 	require('./router/select').selectAll(req,res,connection);
 	console.log(req.query)
 })	
+
 //查找所有travel里面的东西
 app.get('/selectTravel', function(req, res) {
 	//  解决跨域
@@ -142,6 +162,7 @@ app.get('/selectTravel', function(req, res) {
 	require('./router/select').selectTravel(req,res,connection);
 	console.log(req.query)
 })	
+
 // 每次查找十条酒店信息
 app.get('/selecthotel', function(req, res) {
 	//  解决跨域
@@ -214,7 +235,15 @@ app.get('/changerate', function(req, res) {
 	console.log(req.query)
 })	
 
-
+//更新订单状态
+app.get('/updateType', function(req, res) {
+	//然后请求的很快的时候才能正常关闭链接、
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/update').updateType(req,res,connection);
+	console.log(req.query)
+})	
 
 //要post请求...............................................................................
 // parse application/x-www-form-urlencoded 
@@ -267,9 +296,6 @@ app.post('/userregister', function(req, res) {
 	require('./router/userregister.js').userregister(req,res,connection)
 })
 app.post('/userchange', function(req, res) {
-	//  解决跨域
-	res.append("Access-Control-Allow-Origin", "*")
-	//然后请求的很快的时候才能正常关闭链接、
 	var connection = createConnection();
 	connection.connect();
 	//引入插入模块	

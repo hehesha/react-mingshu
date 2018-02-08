@@ -1,6 +1,6 @@
 exports.userchange = function(req, res, connection) {
-    var user = req.query.username;
-    var password = req.query.password;
+    var user = req.body.username;
+    var password = req.body.password;
     connection.query(`SELECT * from user where username = '${user}'`, function(err, data) {
         if(data.length==0){
             res.send(false)
