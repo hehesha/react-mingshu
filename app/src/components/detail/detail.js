@@ -1,21 +1,56 @@
 import React, {Component} from 'react'
 import './detail.scss'
 
-export default class HomeComponent extends Component{
+import {connect} from 'react-redux'
+import {hashHistory} from 'react-router'
+import * as actions from '../../actions/strategyAction.js';
+
+class HomeComponent extends Component{
     componentWillMount(){
-        console.log(this.props.location.query.id)
-        
+        console.log(this.props.location.query.hid)
+        this.props.getDetail(this.props.location.query.hid)
+    }
+    btnClick(n){
+        console.log(n)
+        hashHistory.push({  
+            pathname: '/goodsorder',
+            query:{
+                hid:n,
+            },  
+        })      
     }
     render(){
         return (
             <div className="detail">
+                {
+                this.props.ajaxResult.map(item => {
+                    console.log(item)
+                })
+            }
                  <div className="photos">
                     <ul>
-                        <li><img src="../../../assets/02.jpg"/></li>
-                        <li><img src="../../../assets/03.jpg"/></li>
+                        <li>
+                            <img src={
+                                this.props.ajaxResult.map(item => {
+                                    return item.image_src
+                                    })
+                                }/>
+                        </li>
+                        <li>
+                            <img src={
+                                this.props.ajaxResult.map(item => {
+                                    return item.image_src
+                                    })
+                                }/>
+                        </li>
                     </ul>
                 </div>
-                <p className="price">￥320</p>
+                <p className="price">￥{
+                            this.props.ajaxResult.map(item => {
+                                return item.price.slice(0,item.price.length-1)
+                                })
+                            }
+                </p>
                 <div className="detail_title">
                     <p>
                         <span>公寓--整套出租--55m²</span>
@@ -24,7 +59,12 @@ export default class HomeComponent extends Component{
                         <i className="check circle outline icon"></i>
                         <span>验真</span>
                     </p>
-                    <p>新街口地铁口浪漫北欧ins风床上风光秀套房</p>
+                    <p>{
+                        this.props.ajaxResult.map(item => {
+                            return item.title
+                            })
+                        }
+                    </p>
                 </div>
                 <div className="detail_data1">
                     <div className="bg">MUNIAO</div>
@@ -86,7 +126,11 @@ export default class HomeComponent extends Component{
                     <div className="other_commons">
                         <p>
                             <span>评价</span>
-                            <span>(1)</span>
+                            <span>({
+                            this.props.ajaxResult.map(item => {
+                                return item.talk
+                                })
+                            })</span>
                             <span>
                                 <i className="star icon"></i>
                                 <i className="star icon"></i>
@@ -98,7 +142,11 @@ export default class HomeComponent extends Component{
                         </p>
                         <div className="commons_content">
                             <div>
-                                <img src="../../../assets/order_bg_logo.jpg" />
+                                <img src={
+                                        this.props.ajaxResult.map(item => {
+                                            return item.head_image
+                                        })
+                                    } />
                             </div>
                             <span>非常赞(☄⊙ω⊙)☄</span>
                         </div>
@@ -199,11 +247,20 @@ export default class HomeComponent extends Component{
                         <span>电话联系</span>
                     </div>
                     <div>
-                        <p>￥330</p>
+                        <p>￥{
+                            this.props.ajaxResult.map(item => {
+                                return item.price.slice(0,item.price.length-1)
+                                })
+                            }
+                        </p>
                         <p>当日价格</p>
                     </div>
                     <div>
-                        <button className="ui button">立即预定</button>
+                        {
+                            this.props.ajaxResult.map(item => {
+                                return <button className="ui button" key={item.hid} onClick={this.btnClick.bind(this,item.hid)}>立即预定</button>
+                            })
+                        }
                     </div>
                 </div>
             </div>
@@ -211,3 +268,13 @@ export default class HomeComponent extends Component{
     }
 
 }
+
+let mapStateToProps = (state) => {
+    // console.log(state)
+    return {
+        ajaxStatus: state.getdetail.status,
+        ajaxResult: state.getdetail.result || []
+    }
+}
+
+export default connect(mapStateToProps, actions)(HomeComponent);
