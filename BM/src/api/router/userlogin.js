@@ -1,3 +1,4 @@
+
 exports.userlogin = function(req, res, connection) {
     var user = req.query.username;
     var password = req.query.password;
@@ -14,3 +15,4 @@ exports.userlogin = function(req, res, connection) {
         }
     })
 }
+

@@ -18,9 +18,17 @@ class StrategyComponent extends Component{
     })      
     }
     render(){
+        var style;
+        if(this.props.ajaxStatus==0){
+            style={display:'block'}
+        }else{
+            style={display:'none'}
+        }
         return (
             <div>
-                
+                <div className="bloading" style={style}>
+                    <img src="./assets/bigloading.gif"/>
+                </div>
                 <div>{
                     this.props.ajaxResult.map(items=>{
                         return (<div className="main" key={items.id} onClick={this.btnClick.bind(this,items.id)}>
@@ -45,7 +53,7 @@ class StrategyComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-    console.log(state)
+    console.log(state.strategylist,111)
     return {
         ajaxStatus: state.strategylist.status,
         ajaxResult: state.strategylist.result || []

@@ -1,3 +1,4 @@
+
 exports.userchange = function(req, res, connection) {
     var user = req.body.username;
     var password = req.body.password;
@@ -12,3 +13,4 @@ exports.userchange = function(req, res, connection) {
         }
     })
 }
+
