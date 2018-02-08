@@ -140,6 +140,17 @@ app.get('/selecthid', function(req, res) {
 	console.log(req.query)
 })	
 
+//获取评论数
+app.get('/selectcommon', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入查找模块
+	require('./router/select').selectCommon(req,res,connection);
+	console.log(req.query)
+})
+
+
 
 //分页获取前端页面的商品数据
 app.get('/selectpage', function(req, res) {
@@ -171,10 +182,8 @@ app.get('/myrelease', function(req, res) {
 	console.log(req.query)
 })	
 
-<<<<<<< HEAD
 //删除发布求租的信息 
 app.get('/deleteRelease', function(req, res) {
-	
 	var connection = createConnection();
 	connection.connect();
 	//引入查找模块
@@ -182,8 +191,7 @@ app.get('/deleteRelease', function(req, res) {
 	console.log(req.query)
 })	
 
-=======
->>>>>>> 6630380b967125fc7eb3a7ac43ae47cb61487822
+
 //查找所有travel里面的东西
 app.get('/selectTravel', function(req, res) {
 	//  解决跨域

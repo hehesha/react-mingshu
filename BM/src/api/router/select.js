@@ -123,3 +123,23 @@ exports.selectPage = function(req,res,connection){
 	
 }
 
+//获取所有评论
+exports.selectCommon = function(req,res,connection){
+	connection.query(`SELECT
+	*
+	FROM commons as a
+INNER JOIN orderform as b INNER JOIN homestary as c
+
+WHERE a.order_id = b.id AND b.room_id=c.hid;
+
+`, function(error, results, fields) {
+		if(error) throw error;
+		//results =>array类型
+		console.log('The solution is: ', results);
+		//把数据整理，返回到前端
+		
+		res.send(results);
+		connection.end();
+	});
+	
+}
