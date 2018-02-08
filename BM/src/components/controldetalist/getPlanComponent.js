@@ -10,7 +10,10 @@ class GetPlanComponent extends Component{
 		this.props.getplan()
 	}
 	deletplane(wid){
-		console.log(wid);
+		this.props.closePlan(wid).then(function(){
+			this.props.getplan()
+			
+		}.bind(this));
 	}
 	showConfirm(wid){
 		var self = this;
