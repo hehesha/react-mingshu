@@ -6,9 +6,10 @@ import * as actions from '../../../actions/releaseAction.js';
 import './release.scss'
 class releaseComponent extends Component{
     wanted(){
-        // var city = $('.city').val()
-        var name = ['laoxie','DK']
-        this.props.getstrategy(name)
+        var city = $('.city').val();
+        var district = $('.district').val();
+        // var message={city}
+        this.props.getstrategy(city,district)
     }
     render(){
         return (
@@ -30,7 +31,7 @@ class releaseComponent extends Component{
                             </li>
                             <li>
                                 <span>区域</span>
-                                <input type="text" placeholder="请选择区域"/>
+                                <input type="text" placeholder="请选择区域" className="district"/>
                             </li>
                         </ul>
                         <div className="timeout">
