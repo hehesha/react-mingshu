@@ -24,3 +24,4 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 )
+//  "start": "webpack-dev-server --devtool eval --progress --host 10.3.136.153 --port 3002 --colors --content-base ./"

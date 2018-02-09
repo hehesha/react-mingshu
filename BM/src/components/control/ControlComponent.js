@@ -94,7 +94,7 @@ class ControlComponent extends Component{
 				     </Menu>
 			    	
 			    </Col>
-			    <Col xs={12} sm={14} md={13} lg={10} xl={14}>
+			    <Col xs={12} sm={14} md={13} lg={18} xl={19}>
 			    	<div className="adminhead">
 			    		<ul>
 			    			<li>欢迎,管理者<span>{this.state.aidname}</span></li>

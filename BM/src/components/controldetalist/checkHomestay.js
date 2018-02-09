@@ -8,7 +8,7 @@ import $ from 'jquery';
 class CheckHomestay extends Component{
 	state = {
 		adminPermission:0,
-		lazyLoad:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1518105428615&di=f9050365179f55ade9f4c2e2d6749545&imgtype=0&src=http%3A%2F%2Fi2.wp.com%2Fpick.mydesy.com%2Fwp-content%2Fuploads%2F2016%2F09%2FPreloaders.gif%3Fresize%3D400%2C300'
+		
 	}
 	componentWillMount(){
 		this.setState({
@@ -16,31 +16,22 @@ class CheckHomestay extends Component{
 		})
 		
 		this.props.getcheck().then(function(){
-			console.log(123);
-			var loadImages = this.lazyload();
-			loadImages();          
-			window.addEventListener('scroll', loadImages, false);
 			
 		}.bind(this))
-		
+//		$(document).scroll(function(){
+////			console.log($("img"));
+//			var winHeight = window.innerHeight;
+//			var scrollTop = $(document).scrollTop();
+//			$.each($("img",function(i,ele){
+//				var top = $(this).offset().top//g该图片距离html的点顶部的距离
+//				if(scrollTop < top && top<winHeight+scrollTop){
+//					console.log(this)
+//				}
+//			}))
+//			
+//		})
 	}
-	lazyload(){
-		var images = document.getElementsByTagName('img');
-		var len = images.length;
-		var n = 0;
-		return function(){
-			var seeHeight = document.documentElement.clientHeight;
-			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-			for(var i = n; i < len; i++) {
-		    	if(images[i].offsetTop < seeHeight + scrollTop) {
-		        	if(images[i].getAttribute('src') === 'images/loading.gif') {
-			     		images[i].src = images[i].getAttribute('data-src');
-					}
-					n = n + 1;
-		     }
-			}
-		}
-	}
+	
 	error(){
 		Modal.error({
 			 title: '错误提示',
@@ -90,7 +81,7 @@ class CheckHomestay extends Component{
              	 				this.props.ajaxResult.map(item =>{
              	 					return (
              	 						<li key={item.hid} className='checkli'>
-											<img src={this.state.lazyLoad} data-src={item.image_src}/>
+											<img src={item.image_src} />
 											<p>民宿地址:<span>{item.address}</span></p>
 											<p>预算价格:<span>{item.budget}</span></p>
 											<p>所在城市:<span>{item.city}</span></p>
