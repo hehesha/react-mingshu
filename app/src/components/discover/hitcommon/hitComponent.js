@@ -13,7 +13,7 @@ class HitComponent extends React.Component{
         hashHistory.push({  
             pathname: '/detail',
             query:{
-                hid:hid,
+                id:hid,
             }
         })    
     }

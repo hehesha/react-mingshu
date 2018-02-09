@@ -32,7 +32,8 @@ export function getDetail(id){
     // console.log(id)
     return{
         url:'selecthid',
-        data:{hid:id}
+        data:{hid:id},
+        types:[orderConstants.DETAIL1_REQUESTING,orderConstants.DETAIL1_REQUESTED,orderConstants.DETAIL1_ERROR]
     }
 }
 

@@ -20,7 +20,7 @@ export default class HomeComponent extends Component{
                     </ul>
                 </div>
                 <div className="d_main">{this.props.children}</div>
-                
+                <div className="d_footer"></div>
             </div>
         )
     }

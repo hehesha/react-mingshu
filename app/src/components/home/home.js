@@ -8,7 +8,7 @@ export default class HomeComponent extends Component{
                 <div className="container">{this.props.children}</div>
                 <div className="navgation">
                     <ul>
-                        <a href="#/recommend">
+                        <a href="#/recommend" >
                             <i className="home icon" data-filtered="filtered"></i>
                             <li>推荐</li>
                         </a>
@@ -16,7 +16,7 @@ export default class HomeComponent extends Component{
                             <i className="search icon" data-filtered="filtered"></i>
                             <li>发现</li>
                         </a>
-                        <a href="#/order">
+                        <a href="#/order/orderlist">
                             <i className="file outline icon" data-filtered="filtered"></i>
                             <li>订单</li>
                         </a>

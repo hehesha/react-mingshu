@@ -7,8 +7,8 @@ import * as actions from '../../actions/strategyAction.js';
 
 class HomeComponent extends Component{
     componentWillMount(){
-        console.log(this.props.location.query.hid)
-        this.props.getDetail(this.props.location.query.hid)
+        console.log(this.props.location.query.id)
+        this.props.getDetail(this.props.location.query.id)
     }
     btnClick(n){
         hashHistory.push({  
@@ -17,6 +17,9 @@ class HomeComponent extends Component{
                 hid:n,
             },  
         })      
+    }
+    back(){
+        hashHistory.goBack()
     }
     render(){
         return (
@@ -27,6 +30,11 @@ class HomeComponent extends Component{
                 })
             }
                  <div className="photos">
+                 {
+                this.props.ajaxResult.map(item => {
+                    return <i className="chevron left icon" key={item.hid} onClick={this.back.bind(this)}></i>
+                })
+            }
                     <ul>
                         <li>
                             <img src={

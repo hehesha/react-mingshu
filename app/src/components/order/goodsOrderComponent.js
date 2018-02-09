@@ -35,7 +35,7 @@ class GoodsOrderComponent extends Component{
             }else{
                 alert('支付成功')
                 hashHistory.push({  
-                    pathname: '/order'
+                    pathname: '/order/orderlist'
                 })  
             }
         }.bind(this))

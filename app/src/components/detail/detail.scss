@@ -2,6 +2,13 @@
     .photos{
         width:100%;
         overflow-y:hidden;
+        .chevron{
+            display: inline-block;
+            position:absolute;
+            left:0.333333rem;
+            top:0.333333rem;
+            color:#fff;
+        }
         ul{
             li{
                 img{
