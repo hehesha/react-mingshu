@@ -104,7 +104,9 @@ class EditComponent extends Component{
 					<h1>编辑民宿信息</h1>
                	 	<p>你可以在这里修改已上线的民宿信息,或者删除信息错误的民宿</p>
 				</div>
+				<div style={{marginLeft:'30px'}}>
 				 <Pagination current={this.state.current} onChange={this.onChange.bind(this)} total={170} />
+				</div>
                	 
                	 <div className="listbox">
                	 	<table>

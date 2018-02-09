@@ -5,6 +5,27 @@
 //逻辑：(以后完善可以能要先判断数据库中是否已存在该数据)
 //返回：obj.status为ture
 //配置：路由：insert    require(该文件的路径).insert(req, res, connection)
+//工作计划的插入
+exports.setPlan = function(req, res, connection) {
+	var title = req.query.title;
+	var content = req.query.content;
+	var deadline = req.query.deadline;
+
+	connection.query(`INSERT into workplan (title,content,deadline)values('${title}','${content}','${deadline}')`, function(error, results, fields) {
+		if(error) throw error;
+		//results =>array类型
+		console.log('The solution is: ', results);
+		//把数据整理，返回到前端
+		var obj = {
+			news: results,
+			status: true
+		}
+		res.send(JSON.stringify(obj));
+		connection.end();
+	})
+}
+
+
 exports.insert = function(req, res, connection) {
 	var phone = req.query.phone;
 	var password = req.query.password;

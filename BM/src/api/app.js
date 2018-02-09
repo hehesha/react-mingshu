@@ -69,6 +69,17 @@ app.get('/insertord', function(req, res) {
 	console.log(req.query)
 })
 
+//工作计划制定
+app.get('/setplan', function(req, res) {
+	
+	var connection = createConnection();
+	connection.connect();
+	//引入插入模块	
+	require('./router/insert').setPlan(req,res,connection)
+	console.log(req.query)
+})
+
+
 //删除工作计划
 app.get('/closeplan', function(req, res) {
 	
